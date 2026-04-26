@@ -1,7 +1,14 @@
 import { createBrowserRouter } from "react-router";
 
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/HomePage/HomePage";
+import SearchPage from "./pages/SearchPage/SearchPage";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
-const router = createBrowserRouter([{ element: <HomePage />, path: "/" }]);
+const router = createBrowserRouter([
+  { element: <HomePage />, path: "/" },
+  { element: <HomePage />, path: "/home" },
+  { element: <SearchPage />, path: "/search" },
+  { element: <ProfilePage />, path: "/profile" },
+]);
 
 export default router;

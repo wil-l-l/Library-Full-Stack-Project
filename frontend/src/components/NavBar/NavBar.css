@@ -5,20 +5,23 @@
   align-items: center;
 }
 
-.nav-bar__option-box {
+.nav-bar__option-btn {
+  cursor: pointer;
+  padding: 0px 8px;
+  background: none;
+  border: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.nav-bar__option-box__img-box {
+.nav-bar__option-btn__img-box {
   width: 40px;
   height: 40px;
-  cursor: pointer;
 }
 
-.nav-bar__option-box__img-box__img {
+.nav-bar__option-btn__img-box__img {
   width: 100%;
   height: 100%;
   object-fit: cover;

@@ -1,7 +1,7 @@
 import "./HomePage.css";
-import NavBar from "../components/NavBar/NavBar";
-import TrendingSlides from "../components/TrendingSlides/TrendingSlides";
-import GenericSlides from "../components/GenericSlides/GenericSlides";
+import NavBar from "../../components/NavBar/NavBar";
+import TrendingSlides from "../../components/TrendingSlides/TrendingSlides";
+import GenericSlides from "../../components/GenericSlides/GenericSlides";
 
 function HomePage() {
   return (
