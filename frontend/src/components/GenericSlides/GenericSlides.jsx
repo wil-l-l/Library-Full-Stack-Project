@@ -5,7 +5,7 @@ const GenericSlides = ({ title }) => {
     <div className="generic-slides-box">
       <div className="generic-slides-box__text-box page-padding">
         <h2>{title}</h2>
-        <p>See More</p>
+        <p className="underline-on-hover">See More</p>
       </div>
       <ul className="generic-slides-box__list">
         <li className="generic-slides-box__list__item"></li>

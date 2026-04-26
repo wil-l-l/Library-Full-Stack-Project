@@ -13,9 +13,9 @@ const SearchPage = () => {
         />
         <ul className="search-page__trending-list">
           Trending Searches
-          <li className="search-page__trending-list__item">Placeholder Text</li>
-          <li className="search-page__trending-list__item">Placeholder Text</li>
-          <li className="search-page__trending-list__item">Placeholder Text</li>
+          <li className="underline-on-hover">Placeholder Text</li>
+          <li className="underline-on-hover">Placeholder Text</li>
+          <li className="underline-on-hover">Placeholder Text</li>
         </ul>
       </main>
     </>

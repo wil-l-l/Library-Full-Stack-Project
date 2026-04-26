@@ -18,10 +18,3 @@
   justify-content: center;
   align-items: center;
 }
-
-.search-page__trending-list__item {
-  cursor: pointer;
-}
-.search-page__trending-list__item:hover {
-  text-decoration: underline;
-}
