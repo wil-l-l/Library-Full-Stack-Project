@@ -1,5 +1,5 @@
 .nav-bar {
-  padding: 17px 20px;
+  padding: 15px var(--page-padding);
   display: flex;
   justify-content: space-between;
   align-items: center;

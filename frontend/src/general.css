@@ -1,3 +1,7 @@
+:root {
+  --page-padding: 12px;
+}
+
 html {
   font-size: 62.5%;
 }
@@ -5,4 +9,13 @@ html {
 body {
   font-size: 1.6rem;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+h2 {
+  font-weight: 500;
+  font-size: 1.9rem;
+}
+
+.page-padding {
+  padding: 0px var(--page-padding);
 }
