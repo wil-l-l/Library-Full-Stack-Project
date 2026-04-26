@@ -1,0 +1,25 @@
+.nav-bar {
+  padding: 17px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-bar__option-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-bar__option-box__img-box {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.nav-bar__option-box__img-box__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
