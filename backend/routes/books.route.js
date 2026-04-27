@@ -13,11 +13,12 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { title, author, summary, tags } = req.body;
+  const { title, author, summary, tags, type } = req.body;
 
   let newBook = new Book({
     title,
     author,
+    type,
   });
 
   if (summary) newBook.summary = summary;

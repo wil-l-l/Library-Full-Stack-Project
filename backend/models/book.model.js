@@ -25,6 +25,10 @@ const Book = mongoose.model(
       type: [String],
       default: [],
     },
+    type: {
+      type: String,
+      required: true,
+    },
   }),
 );
 
