@@ -21,6 +21,10 @@ const Book = mongoose.model(
       maxlength: 2000,
       default: "No summary available for this book.",
     },
+    tags: {
+      type: [String],
+      default: [],
+    },
   }),
 );
 

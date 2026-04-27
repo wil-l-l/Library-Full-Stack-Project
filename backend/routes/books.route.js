@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { title, author, summary } = req.body;
+  const { title, author, summary, tags } = req.body;
 
   let newBook = new Book({
     title,
@@ -21,6 +21,7 @@ router.post("/", async (req, res) => {
   });
 
   if (summary) newBook.summary = summary;
+  if (tags && tags.length > 0) newBook.tags = tags;
 
   newBook = await newBook.save();
 
