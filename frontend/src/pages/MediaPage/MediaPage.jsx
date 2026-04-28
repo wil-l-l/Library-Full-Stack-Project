@@ -3,6 +3,7 @@ import EBookIcon from "../../assets/icons/ebook.png";
 import StarIcon from "../../assets/icons/star.svg";
 import HeartIcon from "../../assets/icons/heart.png";
 import ShareIcon from "../../assets/icons/share.png";
+import { useState } from "react";
 
 const MediaPage = ({
   type,
@@ -12,6 +13,8 @@ const MediaPage = ({
   ratingStars = null,
   ratersCount = null,
 }) => {
+  const [doExpandText, setDoExpandText] = useState(false);
+
   return (
     <section className="media-page" style={{ paddingBottom: "200px" }}>
       <div className="media-page__entry-box">
@@ -95,7 +98,9 @@ const MediaPage = ({
       <div className="media-page__body-box">
         <div className="media-page__body-box__about-box">
           <h3>About</h3>
-          <p>
+          <p
+            className={`media-page__body-box__about-box__text--${doExpandText ? "open" : "closed"}`}
+          >
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint
             numquam voluptatem eius totam reiciendis? Laboriosam doloremque
             quidem, neque fugit consequuntur voluptate rem numquam dolorem quis
@@ -106,6 +111,12 @@ const MediaPage = ({
             repudiandae? Tempora?
           </p>
         </div>
+        <button
+          className="media-page__body-box__about-box__expand-text-btn"
+          onClick={() => setDoExpandText(!doExpandText)}
+        >
+          More
+        </button>
         <div className="media-page__body-box__details-box">
           <h3>Related Subjects</h3>
           <button>Business</button>
