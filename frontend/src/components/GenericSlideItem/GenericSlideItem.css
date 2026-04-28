@@ -1,7 +1,7 @@
 .generic-slides-box__list__item {
   border: 1px solid black;
   border-radius: 5px;
-  width: 30%;
+  min-width: 110px;
   height: 100%;
   display: flex;
   flex-direction: column;

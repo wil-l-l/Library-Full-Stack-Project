@@ -29,6 +29,11 @@ const GenericSlides = ({ title }) => {
           title={"What Every Body Is Saying"}
           authors={["Joe Navarro"]}
         />
+        <GenericSlideItem
+          icon={EBookIcon}
+          title={"What Every Body Is Saying"}
+          authors={["Joe Navarro"]}
+        />
       </ul>
     </div>
   );
