@@ -1,0 +1,52 @@
+.generic-slides-box__list__item {
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.generic-slides-box__list__item__cover-img-box {
+  width: 100%;
+  height: 60%;
+  border-bottom: 1px solid black;
+  border-radius: inherit;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.generic-slides-box__list__item__book-details {
+  width: 100%;
+  padding: 5px 7px;
+  border-top: none;
+  border-radius: inherit;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.3rem;
+  height: 40%;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.generic-slides-box__list__item__book-details__book-type-box {
+  display: flex;
+  column-gap: 3px;
+  align-items: center;
+}
+
+.generic-slides-box__list__item__book-details__book-type-box__icon {
+  width: 15px;
+  height: 15px;
+}
+
+.generic-slides-box__list__item__book-details__book-type-box__author-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

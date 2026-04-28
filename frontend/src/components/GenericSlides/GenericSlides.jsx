@@ -2,6 +2,7 @@ import "./GenericSlides.css";
 import HeadphonesIcon from "../../assets/icons/headphones.png";
 import EBookIcon from "../../assets/icons/ebook.png";
 import ComicIcon from "../../assets/icons/comic.png";
+import GenericSlideItem from "../GenericSlideItem/GenericSlideItem";
 
 const GenericSlides = ({ title }) => {
   return (
@@ -11,25 +12,23 @@ const GenericSlides = ({ title }) => {
         <p className="underline-on-hover">See More</p>
       </div>
       <ul className="generic-slides-box__list">
-        <li className="generic-slides-box__list__item">
-          <div className="generic-slides-box__list__item__cover-img-box">
-            <img src="" alt="" />
-          </div>
-          <div className="generic-slides-box__list__item__book-details">
-            <div className="generic-slides-box__list__item__book-details__book-type-box">
-              <img
-                src={EBookIcon}
-                alt=""
-                className="generic-slides-box__list__item__book-details__book-type-box__icon"
-              />
-              <p>Ebook</p>
-            </div>
-            <p>What Every Body Is Saying</p>
-            <p>Joe Navarro</p>
-          </div>
-        </li>
-        <li className="generic-slides-box__list__item"></li>
-        <li className="generic-slides-box__list__item"></li>
+        <GenericSlideItem
+          icon={EBookIcon}
+          title={"What Every Body Is Saying"}
+          authors={["Joe Navarro", "Joe Navarro"]}
+        />
+        <GenericSlideItem
+          icon={EBookIcon}
+          title={"What Every Body Is Sayinggggggggggggggggggggggggggg"}
+          authors={[
+            "Joe Navarroooooooooooooooooooooooooooooooooooooooooooooooooooooooooo",
+          ]}
+        />
+        <GenericSlideItem
+          icon={EBookIcon}
+          title={"What Every Body Is Saying"}
+          authors={["Joe Navarro"]}
+        />
       </ul>
     </div>
   );
