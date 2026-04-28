@@ -23,5 +23,5 @@
   height: 230px;
   width: 100vw;
   overflow-x: scroll;
-  padding-left: calc(108px + var(--page-padding));
+  padding-left: calc(120px + var(--page-padding));
 }
