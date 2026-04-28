@@ -13,7 +13,7 @@ const MediaPage = ({
   ratersCount = null,
 }) => {
   return (
-    <section className="media-page">
+    <section className="media-page" style={{ paddingBottom: "200px" }}>
       <div className="media-page__entry-box">
         <div className="media-page__entry-box__media-display-box">
           <div className="media-page__entry-box__media-type-box">
@@ -90,6 +90,39 @@ const MediaPage = ({
               className="media-page__entry-box__interact-box__side-btn__icon"
             />
           </button>
+        </div>
+      </div>
+      <div className="media-page__body-box">
+        <div className="media-page__body-box__about-box">
+          <h3>About</h3>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint
+            numquam voluptatem eius totam reiciendis? Laboriosam doloremque
+            quidem, neque fugit consequuntur voluptate rem numquam dolorem quis
+            quibusdam sequi cumque possimus id dolorum? Fuga fugit blanditiis
+            iste, architecto quis sequi enim? Exercitationem quidem eos eius.
+            Incidunt magni, at ad repellendus consectetur repudiandae voluptatum
+            quas ipsum molestias? Laboriosam consequatur quisquam itaque
+            repudiandae? Tempora?
+          </p>
+        </div>
+        <div className="media-page__body-box__details-box">
+          <h3>Related Subjects</h3>
+          <button>Business</button>
+          <button>Self Help</button>
+        </div>
+        <div className="media-page__body-box__details-box">
+          <h3>Authors</h3>
+          <button>Joe Navarro</button>
+          <button>Marvin Karlins</button>
+        </div>
+        <div className="media-page__body-box__borrow-details-box">
+          <h3>Borrow Details</h3>
+          <div className="media-page__body-box_borrow-details-box__text-box">
+            <p>
+              This title is available for 21 days (3 weeks) after you borrow it.
+            </p>
+          </div>
         </div>
       </div>
     </section>

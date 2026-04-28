@@ -89,3 +89,10 @@
   padding: 0px 16px;
   font-weight: 600;
 }
+
+.media-page__body-box {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
