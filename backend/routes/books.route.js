@@ -19,7 +19,8 @@ router.post("/", async (req, res) => {
     let newBook = new Book({
       title,
       author,
-      type,
+      type: index % 2 === 0 ? "Ebook" : "Audiobook",
+      popular: true,
     });
 
     if (summary) newBook.summary = summary;
@@ -32,7 +33,7 @@ router.post("/", async (req, res) => {
       res.status(201).send({
         success: true,
         message: "Successfully added books to library database",
-        data: newBook,
+        data: trackSavedBooks,
       });
   });
 });
