@@ -1,8 +1,14 @@
+import { useNavigate } from "react-router";
 import "./GenericSlideItem.css";
 
 const GenericSlideItem = ({ icon, title, authors }) => {
+  const navigate = useNavigate();
+
   return (
-    <li className="generic-slides-box__list__item">
+    <li
+      className="generic-slides-box__list__item"
+      onClick={() => navigate("/book")}
+    >
       <div className="generic-slides-box__list__item__cover-img-box">
         <img src="" alt="" />
       </div>

@@ -35,6 +35,16 @@ const Book = mongoose.model(
     trending: {
       type: Boolean,
     },
+    ratingStars: {
+      type: Number,
+      min: 0,
+      max: 5,
+    },
+    ratersCount: {
+      type: Number,
+      min: 0,
+      max: 200000,
+    },
   }),
 );
 
