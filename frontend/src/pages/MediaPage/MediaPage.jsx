@@ -115,7 +115,7 @@ const MediaPage = ({
           className="media-page__body-box__about-box__expand-text-btn"
           onClick={() => setDoExpandText(!doExpandText)}
         >
-          More
+          {doExpandText ? "Less" : "More"}
         </button>
         <div className="media-page__body-box__details-box">
           <h3>Related Subjects</h3>
