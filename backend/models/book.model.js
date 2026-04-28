@@ -29,6 +29,12 @@ const Book = mongoose.model(
       type: String,
       required: true,
     },
+    popular: {
+      type: Boolean,
+    },
+    trending: {
+      type: Boolean,
+    },
   }),
 );
 
