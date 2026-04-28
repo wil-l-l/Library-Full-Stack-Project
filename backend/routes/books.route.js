@@ -13,23 +13,27 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { title, author, summary, tags, type } = req.body;
+  const trackSavedBooks = [];
 
-  let newBook = new Book({
-    title,
-    author,
-    type,
-  });
+  req.body.forEach(async ({ title, author, summary, tags, type }, index) => {
+    let newBook = new Book({
+      title,
+      author,
+      type,
+    });
 
-  if (summary) newBook.summary = summary;
-  if (tags && tags.length > 0) newBook.tags = tags;
+    if (summary) newBook.summary = summary;
+    if (tags && tags.length > 0) newBook.tags = tags;
 
-  newBook = await newBook.save();
+    newBook = await newBook.save();
+    trackSavedBooks.push(newBook);
 
-  res.status(201).send({
-    success: true,
-    message: "Successfully created a book",
-    data: newBook,
+    if (trackSavedBooks.length === req.body.length)
+      res.status(201).send({
+        success: true,
+        message: "Successfully added books to library database",
+        data: newBook,
+      });
   });
 });
 
