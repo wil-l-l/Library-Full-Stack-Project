@@ -2,9 +2,14 @@ import "./HomePage.css";
 import NavBar from "../../components/NavBar/NavBar";
 import TrendingSlides from "../../components/TrendingSlides/TrendingSlides";
 import GenericSlides from "../../components/GenericSlides/GenericSlides";
+import { useState } from "react";
 
 function HomePage() {
-  return (
+  const [isLoading, setIsLoading] = useState(true);
+
+  return isLoading ? (
+    <p>Application is loading...</p>
+  ) : (
     <>
       <NavBar />
       <main>
