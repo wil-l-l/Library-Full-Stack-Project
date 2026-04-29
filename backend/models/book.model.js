@@ -10,7 +10,7 @@ const Book = mongoose.model(
       minlength: 2,
       maxlength: 200,
     },
-    author: {
+    authors: {
       type: [String],
       required: true,
       immutable: true,

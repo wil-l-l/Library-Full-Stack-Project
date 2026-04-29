@@ -15,10 +15,10 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   const trackSavedBooks = [];
 
-  req.body.forEach(async ({ title, author, summary, tags, type }, index) => {
+  req.body.forEach(async ({ title, authors, summary, tags, type }, index) => {
     let newBook = new Book({
       title,
-      author,
+      authors,
       type: index % 2 === 0 ? "Ebook" : "Audiobook",
       popular: true,
     });
