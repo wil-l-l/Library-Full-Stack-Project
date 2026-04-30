@@ -12,21 +12,13 @@ const SearchPage = () => {
   const { searchText } = useLocation().state;
 
   const filterBooksBySearchQuery = () =>
-    books
-      .filter(({ title }) => title.includes(searchText))
-      .map(({ title, authors, type, _id }) => (
-        <GenericSlideItem
-          icon={null}
-          title={title}
-          authors={authors}
-          type={type}
-          _id={_id}
-        />
-      ));
+    books.filter(({ title }) => title.includes(searchText));
   const filteredBooks = {
     data: filterBooksBySearchQuery(),
     length: filterBooksBySearchQuery().length,
   };
+
+  console.log(filteredBooks.data);
 
   return (
     <>
@@ -41,8 +33,19 @@ const SearchPage = () => {
             <p>Page 1 of 200</p>
           </div>
         </div>
-        <BookDisplay />
-        <BookDisplay />
+        {filteredBooks.data.length > 0 ? (
+          filteredBooks.data.map(({ authors, title, summary, cover, _id }) => (
+            <BookDisplay
+              authors={authors}
+              title={title}
+              summary={summary}
+              cover={cover}
+              _id={_id}
+            />
+          ))
+        ) : (
+          <p>Could not find any books with this search.</p>
+        )}
       </main>
     </>
   );
