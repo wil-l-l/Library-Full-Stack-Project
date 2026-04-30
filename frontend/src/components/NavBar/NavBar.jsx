@@ -7,7 +7,10 @@ import ProfileIcon from "../../assets/icons/profile.png";
 const NavBar = () => {
   return (
     <nav className="nav-bar">
-      <h1>E-Library</h1>
+      <div className="nav-bar__text-box">
+        <p className="nav-bar__text-box__welcome-txt">Welcome to</p>
+        <p className="nav-bar__text-box__library-txt">E-Library</p>
+      </div>
       <NavBarItem icon={SearchIcon} />
     </nav>
   );

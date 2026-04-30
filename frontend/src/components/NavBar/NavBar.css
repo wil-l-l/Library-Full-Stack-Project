@@ -3,9 +3,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(32, 80, 221);
+  background-color: black;
   height: 95px;
   color: white;
+}
+
+.nav-bar__text-box__welcome-txt {
+  color: #999999;
+}
+.nav-bar__text-box__library-txt {
+  font-size: 2.4rem;
 }
 
 .nav-bar__option-btn {

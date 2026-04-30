@@ -25,17 +25,16 @@ function HomePage() {
   ) : books === false ? (
     <p className="red-text">Could not load data</p>
   ) : (
-    <>
+    <section className="home-page">
       <NavBar />
       <main className="home-page__main-section">
         <MediaNavBar />
-        {/* <TrendingSlides /> */}
         <GenericSlides categoryTitle={"Popular Ebooks"} />
         <GenericSlides categoryTitle={"Popular Audiobooks"} />
         <GenericSlides categoryTitle={"Popular Comics"} />
         <p>HomePage</p>
       </main>
-    </>
+    </section>
   );
 }
 

@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { BooksContext } from "../../contexts/BooksContext";
 import { useLocation } from "react-router";
 import GenericSlideItem from "../../components/GenericSlideItem/GenericSlideItem";
+import BookDisplay from "../../components/BookDisplay/BookDisplay";
 
 const SearchPage = () => {
   const { books } = useContext(BooksContext);
@@ -30,20 +31,18 @@ const SearchPage = () => {
   return (
     <>
       <NavBar />
-      <main className="search-page">
-        <div className="search-page__filter-sort-bar">
-          <div className="search-page__filter-sort-bar__filter-box">
-            <img src="" alt="" />
-            <p>Filter (0)</p>
+      <main className="search-page" style={{ marginBottom: "1000px" }}>
+        <div className="search-page-results-box page-padding">
+          <p className="search-page-results-box__line-1">
+            {filteredBooks.length} MATCHES IN
+          </p>
+          <p className="search-page-results-box__line-2">Search Results</p>
+          <div className="search-page__page-display">
+            <p>Page 1 of 200</p>
           </div>
-          <img src="" alt="" />
         </div>
-        <p className="search-page__showing-text">
-          Showing 1-24 of {filteredBooks.length}
-        </p>
-        <SearchNavBtns />
-        <ul>{filteredBooks.data}</ul>
-        <SearchNavBtns />
+        <BookDisplay />
+        <BookDisplay />
       </main>
     </>
   );

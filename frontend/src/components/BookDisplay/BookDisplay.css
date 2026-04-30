@@ -1,0 +1,35 @@
+.book-display:first-child {
+  margin-top: 30px;
+}
+.book-display {
+  margin-top: 50px;
+}
+
+.book-display__authors,
+.book-display__title {
+  font-size: 1.7rem;
+}
+
+.book-display__title {
+  font-weight: 600;
+}
+
+.book-display__book-card {
+  margin-top: 12px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.book-display__book-card__cover-box {
+  height: 200px;
+  background-color: rgb(137, 180, 230);
+  width: 170px;
+  min-width: 140px;
+  box-shadow: 4px 4px 1px 0px gray;
+}
+
+.book-display__book-card__summary {
+  text-align: right;
+}
