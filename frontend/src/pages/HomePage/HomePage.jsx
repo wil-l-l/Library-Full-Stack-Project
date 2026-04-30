@@ -2,37 +2,34 @@ import "./HomePage.css";
 import NavBar from "../../components/NavBar/NavBar";
 import TrendingSlides from "../../components/TrendingSlides/TrendingSlides";
 import GenericSlides from "../../components/GenericSlides/GenericSlides";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import { BooksContext } from "../../contexts/BooksContext";
 
 function HomePage() {
-  const [loadedBooks, setLoadedBooks] = useState(null);
+  const { books, setBooks } = useContext(BooksContext);
 
   useEffect(() => {
     const fetchAllBooks = async () => {
       const response = await fetch("/api/books");
-      const books = await response.json();
-      if (books.success) {
-        setLoadedBooks(books);
-      } else {
-        setLoadedBooks(false);
-      }
+      const loadedBooks = await response.json();
+      if (loadedBooks.success) setBooks(loadedBooks.data);
+      else setBooks(false);
     };
     fetchAllBooks();
-  }, []);
+  }, [setBooks]);
 
-  return loadedBooks === null ? (
+  return books === null ? (
     <p>Application is loading...</p>
-  ) : loadedBooks === false ? (
+  ) : books === false ? (
     <p className="red-text">Could not load data</p>
   ) : (
     <>
       <NavBar />
       <main>
         <TrendingSlides />
-        <GenericSlides title={"Popular Ebooks"} />
-        <GenericSlides title={"Popular Audiobooks"} />
-        <GenericSlides title={"Popular Comics"} />
+        <GenericSlides categoryTitle={"Popular Ebooks"} />
+        <GenericSlides categoryTitle={"Popular Audiobooks"} />
+        <GenericSlides categoryTitle={"Popular Comics"} />
         <p>HomePage</p>
       </main>
     </>
