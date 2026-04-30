@@ -1,7 +1,7 @@
 import "./SearchPage.css";
 import NavBar from "../../components/NavBar/NavBar";
 import SearchNavBtns from "./SearchNavBtns/SearchNavBtns";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { BooksContext } from "../../contexts/BooksContext";
 import { useLocation, useSearchParams } from "react-router";
 import GenericSlideItem from "../../components/GenericSlideItem/GenericSlideItem";
@@ -28,6 +28,24 @@ const SearchPage = () => {
       : filterBooksByGenre().length,
   };
 
+  const [page, setPage] = useState(1);
+  const [openMore, setOpenMore] = useState(false);
+  const MAX_BOOKS_PER_PAGE = 6;
+  const MAX_PAGES = Math.ceil(filteredBooks.length / MAX_BOOKS_PER_PAGE);
+
+  const range = Array.from({ length: MAX_PAGES }, (_, index) => index + 1);
+
+  let startSlice;
+  let endSlice;
+
+  if (page === 1) {
+    startSlice = 0;
+    endSlice = MAX_BOOKS_PER_PAGE;
+  } else {
+    startSlice = MAX_BOOKS_PER_PAGE * (page - 1);
+    endSlice = MAX_BOOKS_PER_PAGE * page;
+  }
+
   return (
     <>
       <NavBar />
@@ -38,19 +56,44 @@ const SearchPage = () => {
           </p>
           <p className="search-page-results-box__line-2">Search Results</p>
           <div className="search-page__page-display">
-            <p>Page 1 of 200</p>
+            <p>
+              Page {page} of {MAX_PAGES}
+            </p>
+            <button
+              className="search-page__page-display__open-more-btn"
+              onClick={() => setOpenMore(!openMore)}
+            >
+              PG
+              {openMore && (
+                <ul className="search-page__page-display__pages-list">
+                  {range.map((pageNum) => (
+                    <li
+                      className="search-page__page-display__pages-list__item"
+                      onClick={() => setPage(pageNum)}
+                    >
+                      Page {pageNum}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </button>
           </div>
         </div>
         {filteredBooks.data.length > 0 ? (
-          filteredBooks.data.map(({ authors, title, summary, cover, _id }) => (
-            <BookDisplay
-              authors={authors}
-              title={title}
-              summary={summary}
-              cover={cover}
-              _id={_id}
-            />
-          ))
+          filterBooksByGenre()
+            .slice(startSlice, endSlice)
+            .map(
+              ({ authors, title, summary, cover, _id }, index) =>
+                (index + 1) * page <= MAX_BOOKS_PER_PAGE * page && (
+                  <BookDisplay
+                    authors={authors}
+                    title={title}
+                    summary={summary}
+                    cover={cover}
+                    _id={_id}
+                  />
+                ),
+            )
         ) : (
           <p>Could not find any books with this search.</p>
         )}
