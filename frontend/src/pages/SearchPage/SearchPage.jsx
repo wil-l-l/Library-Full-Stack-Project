@@ -3,22 +3,30 @@ import NavBar from "../../components/NavBar/NavBar";
 import SearchNavBtns from "./SearchNavBtns/SearchNavBtns";
 import { useContext } from "react";
 import { BooksContext } from "../../contexts/BooksContext";
-import { useLocation } from "react-router";
+import { useLocation, useSearchParams } from "react-router";
 import GenericSlideItem from "../../components/GenericSlideItem/GenericSlideItem";
 import BookDisplay from "../../components/BookDisplay/BookDisplay";
 
 const SearchPage = () => {
   const { books } = useContext(BooksContext);
-  const { searchText } = useLocation().state;
+  const [searchParams] = useSearchParams();
+  const location = useLocation();
+
+  const genre = searchParams.get("genre") || null;
+  const searchText = genre ? null : location.state.searchText;
 
   const filterBooksBySearchQuery = () =>
     books.filter(({ title }) => title.includes(searchText));
-  const filteredBooks = {
-    data: filterBooksBySearchQuery(),
-    length: filterBooksBySearchQuery().length,
-  };
 
-  console.log(filteredBooks.data);
+  const filterBooksByGenre = () =>
+    books.filter(({ type }) => type.toLowerCase() === genre);
+
+  const filteredBooks = {
+    data: !genre ? filterBooksBySearchQuery() : filterBooksByGenre(),
+    length: !genre
+      ? filterBooksBySearchQuery().length
+      : filterBooksByGenre().length,
+  };
 
   return (
     <>
