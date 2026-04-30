@@ -10,13 +10,14 @@ function HomePage() {
 
   useEffect(() => {
     const fetchAllBooks = async () => {
+      if (books) return;
       const response = await fetch("/api/books");
       const loadedBooks = await response.json();
       if (loadedBooks.success) setBooks(loadedBooks.data);
       else setBooks(false);
     };
     fetchAllBooks();
-  }, [setBooks]);
+  }, [books, setBooks]);
 
   return books === null ? (
     <p>Application is loading...</p>

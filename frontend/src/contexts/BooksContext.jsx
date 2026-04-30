@@ -5,8 +5,7 @@ const BooksContext = createContext();
 
 const BooksProvider = ({ children }) => {
   const [books, setBooks] = useState(
-    JSON.parse(localStorage.getItem("books")),
-    null,
+    JSON.parse(localStorage.getItem("books")) || null,
   );
 
   useEffect(() => {
