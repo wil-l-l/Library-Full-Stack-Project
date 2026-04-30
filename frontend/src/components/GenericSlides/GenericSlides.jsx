@@ -21,7 +21,7 @@ const GenericSlides = ({ categoryTitle }) => {
           .filter(({ type, popular }) => {
             return categoryTitle.match(new RegExp(type, "gi")) && popular;
           })
-          .map(({ authors, popular, type, title }) => (
+          .map(({ authors, popular, type, title, _id }) => (
             <GenericSlideItem
               title={title}
               popular={popular}
@@ -32,6 +32,7 @@ const GenericSlides = ({ categoryTitle }) => {
                   ? EBookIcon
                   : HeadphonesIcon
               }
+              _id={_id}
             />
           ))}
       </ul>

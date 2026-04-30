@@ -13,7 +13,7 @@ const router = createBrowserRouter([
   },
   { element: <SearchPage />, path: "/search" },
   { element: <ProfilePage />, path: "/profile" },
-  { element: <MediaPage />, path: "/book" },
+  { element: <MediaPage />, path: "/book/:id" },
 ]);
 
 export default router;

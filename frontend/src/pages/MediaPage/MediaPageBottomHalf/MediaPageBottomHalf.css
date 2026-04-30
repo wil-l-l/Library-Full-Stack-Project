@@ -1,0 +1,22 @@
+.media-page__body-box {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.media-page__body-box__about-box__text--closed {
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  line-clamp: 7;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.media-page__body-box__about-box__text--open {
+  display: block;
+}
+
+.media-page__body-box__about-box__expand-text-btn {
+  width: fit-content;
+}
