@@ -1,15 +1,10 @@
-.trending-slides-box {
+.trending-slides-list {
   list-style: none;
   margin-top: 12px;
   height: 170px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.tending-slides-box__item {
-  background-color: rgb(255, 208, 208);
-  width: 80%;
-  height: 100%;
-  border-radius: 7px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-left: 13px;
+  column-gap: 20px;
 }

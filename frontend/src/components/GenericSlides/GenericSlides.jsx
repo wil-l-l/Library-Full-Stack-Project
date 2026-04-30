@@ -2,7 +2,7 @@ import "./GenericSlides.css";
 import HeadphonesIcon from "../../assets/icons/headphones.png";
 import EBookIcon from "../../assets/icons/ebook.png";
 import ComicIcon from "../../assets/icons/comic.png";
-import GenericSlideItem from "../GenericSlideItem/GenericSlideItem";
+import GenericSlideItem from "./GenericSlideItem/GenericSlideItem";
 import { useContext } from "react";
 import { BooksContext } from "../../contexts/BooksContext";
 import sharedConstants from "../../../../sharedConstants";
@@ -18,8 +18,12 @@ const GenericSlides = ({ categoryTitle }) => {
       </div>
       <ul className="generic-slides-box__list">
         {books
-          .filter(({ type, popular }) => {
-            return categoryTitle.match(new RegExp(type, "gi")) && popular;
+          .filter(({ type, popular, trending }) => {
+            return (
+              categoryTitle.match(new RegExp(type, "gi")) &&
+              popular &&
+              !trending
+            );
           })
           .map(({ authors, popular, type, title, _id }) => (
             <GenericSlideItem

@@ -21,6 +21,7 @@ router.post("/", async (req, res) => {
       authors,
       type: index % 2 === 0 ? "Ebook" : "Audiobook",
       popular: true,
+      trending: index % 5 === 0 ? true : null,
     });
 
     if (summary) newBook.summary = summary;

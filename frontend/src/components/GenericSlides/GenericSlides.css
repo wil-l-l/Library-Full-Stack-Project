@@ -13,15 +13,11 @@
 
 .generic-slides-box__list {
   list-style: none;
-  padding: 0px var(--page-padding);
-  margin-top: 12px;
-  align-self: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  column-gap: 10px;
   height: 230px;
-  width: 100vw;
-  overflow-x: scroll;
-  padding-left: calc(120px + var(--page-padding));
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-left: 13px;
+  column-gap: 10px;
 }
