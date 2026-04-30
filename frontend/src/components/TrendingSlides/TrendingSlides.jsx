@@ -9,11 +9,11 @@ const TrendingSlides = () => {
   return (
     <>
       <h2 className="page-padding">Trending Now</h2>
-      <ul className="trending-slides-list">
+      <ul className="trending-slides-list horizontal-scroll-box">
         {books
           .filter(({ trending }) => trending)
-          .map(({ title, cover }) => (
-            <TrendingSlideItem title={title} cover={cover} />
+          .map(({ title, cover, _id }) => (
+            <TrendingSlideItem title={title} cover={cover} _id={_id} />
           ))}
       </ul>
     </>

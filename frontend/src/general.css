@@ -26,3 +26,9 @@ h2 {
 .underline-on-hover:hover {
   text-decoration: underline;
 }
+
+.horizontal-scroll-box {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}

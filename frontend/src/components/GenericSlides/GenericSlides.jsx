@@ -16,7 +16,7 @@ const GenericSlides = ({ categoryTitle }) => {
         <h2>{categoryTitle}</h2>
         <p className="underline-on-hover">See More</p>
       </div>
-      <ul className="generic-slides-box__list">
+      <ul className="generic-slides-box__list horizontal-scroll-box">
         {books
           .filter(({ type, popular, trending }) => {
             return (

@@ -15,9 +15,6 @@
   list-style: none;
   height: 230px;
   margin-top: 12px;
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
   padding-left: 13px;
   column-gap: 10px;
 }
