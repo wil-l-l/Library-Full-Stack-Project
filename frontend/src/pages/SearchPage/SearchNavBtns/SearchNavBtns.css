@@ -1,0 +1,15 @@
+.search-nav-bar {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 35px;
+}
+.search-nav-btns {
+  background: none;
+  border: none;
+  display: flex;
+  color: rgb(32, 80, 221);
+  font-size: 1.4rem;
+}

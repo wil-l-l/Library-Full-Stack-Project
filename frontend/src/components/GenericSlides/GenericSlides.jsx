@@ -2,7 +2,7 @@ import "./GenericSlides.css";
 import HeadphonesIcon from "../../assets/icons/headphones.png";
 import EBookIcon from "../../assets/icons/ebook.png";
 import ComicIcon from "../../assets/icons/comic.png";
-import GenericSlideItem from "./GenericSlideItem/GenericSlideItem";
+import GenericSlideItem from "../GenericSlideItem/GenericSlideItem";
 import { useContext } from "react";
 import { BooksContext } from "../../contexts/BooksContext";
 import sharedConstants from "../../../../sharedConstants";

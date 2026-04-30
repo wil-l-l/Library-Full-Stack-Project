@@ -1,23 +1,44 @@
 import { useState } from "react";
 import "./NavBarItem.css";
+import MatchingList from "./MatchingList/MatchingList";
+import { useNavigate } from "react-router";
 
 const NavBarItem = ({ icon, label }) => {
+  const navigate = useNavigate();
+
   const [active, setActive] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
   return (
     <>
       {active && (
         <div className="nav-bar__search-menu">
           <p>Search</p>
-          <form action="">
+          <form
+            action=""
+            onSubmit={(e) => {
+              e.preventDefault();
+              navigate(`/search`, {
+                state: {
+                  searchText,
+                },
+              });
+            }}
+          >
             <input
               type="text"
               name=""
               id=""
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
               className="nav-bar__search-menu__input"
               placeholder="Search"
             />
           </form>
+          <MatchingList
+            category={"Titles"}
+            searchText={searchText.toLowerCase()}
+          />
         </div>
       )}
       <button
