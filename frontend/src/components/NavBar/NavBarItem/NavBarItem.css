@@ -1,0 +1,22 @@
+.nav-bar__option-btn {
+  z-index: 1000;
+}
+
+.nav-bar__search-menu {
+  position: absolute;
+  top: 24px;
+  left: 10px;
+  width: 95vw;
+  padding: 10px 14px;
+  background-color: #191c25;
+  border-radius: 15px;
+  font-size: 2.5rem;
+}
+
+.nav-bar__search-menu__input {
+  margin-top: 10px;
+  width: 100%;
+  padding: 8px;
+  border-radius: 7px;
+  border: none;
+}

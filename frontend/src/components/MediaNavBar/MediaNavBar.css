@@ -8,6 +8,7 @@
 }
 
 .media-nav-bar__btn {
+  cursor: pointer;
   color: #343846;
   border: none;
   padding: 10px;
