@@ -9,6 +9,11 @@ const NavBarItem = ({ icon, label }) => {
   const [active, setActive] = useState(false);
   const [searchText, setSearchText] = useState("");
 
+  const closeSearchMenu = () => {
+    setActive(false);
+    setSearchText("");
+  };
+
   return (
     <>
       {active && (
@@ -23,6 +28,7 @@ const NavBarItem = ({ icon, label }) => {
                   searchText,
                 },
               });
+              closeSearchMenu();
             }}
           >
             <input
@@ -31,6 +37,7 @@ const NavBarItem = ({ icon, label }) => {
               id=""
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
+              onKeyDown={(e) => e.key === "Escape" && closeSearchMenu()}
               className="nav-bar__search-menu__input"
               placeholder="Search"
             />
