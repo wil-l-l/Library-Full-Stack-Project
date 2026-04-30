@@ -4,6 +4,7 @@ import TrendingSlides from "../../components/TrendingSlides/TrendingSlides";
 import GenericSlides from "../../components/GenericSlides/GenericSlides";
 import { useEffect, useContext } from "react";
 import { BooksContext } from "../../contexts/BooksContext";
+import MediaNavBar from "../../components/MediaNavBar/MediaNavBar";
 
 function HomePage() {
   const { books, setBooks } = useContext(BooksContext);
@@ -26,8 +27,9 @@ function HomePage() {
   ) : (
     <>
       <NavBar />
-      <main>
-        <TrendingSlides />
+      <main className="home-page__main-section">
+        <MediaNavBar />
+        {/* <TrendingSlides /> */}
         <GenericSlides categoryTitle={"Popular Ebooks"} />
         <GenericSlides categoryTitle={"Popular Audiobooks"} />
         <GenericSlides categoryTitle={"Popular Comics"} />

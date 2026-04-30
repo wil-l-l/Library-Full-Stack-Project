@@ -1,0 +1,23 @@
+.media-nav-bar {
+  margin-top: 12px;
+  display: flex;
+  padding: 0 23px;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.media-nav-bar__btn {
+  color: #343846;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+.media-nav-bar__btn--open {
+  background-color: #e1e3e6;
+}
+.media-nav-bar__btn--closed {
+  background-color: white;
+  opacity: 0.6;
+}
