@@ -30,7 +30,7 @@ const UserPage = () => {
             Favorites
           </button>
           <button
-            className={`user-page__tabs-bar__btn user-page__tabs-bar__btn--${"favorites" === activeTab ? "open" : "closed"} `}
+            className={`user-page__tabs-bar__btn user-page__tabs-bar__btn--closed `}
             onClick={() => {
               setUser(null);
               localStorage.setItem("user", null);
