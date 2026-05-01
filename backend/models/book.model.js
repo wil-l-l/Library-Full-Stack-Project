@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { default: sharedConstants } = require("../../sharedConstants");
 
 const Book = mongoose.model(
   "Book",
@@ -44,6 +45,16 @@ const Book = mongoose.model(
       type: Number,
       min: 0,
       max: 200000,
+    },
+    loanCount: {
+      type: Number,
+      min: 0,
+      max: sharedConstants.maxLoanLimit,
+      default: 0,
+    },
+    loanedTo: {
+      type: [mongoose.Types.ObjectId], // An array of UserIds
+      default: [],
     },
   }),
 );
