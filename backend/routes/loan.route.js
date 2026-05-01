@@ -3,6 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const Book = require("../models/book.model");
 const { User } = require("../models/user.model");
+const { default: sharedConstants } = require("../../sharedConstants");
 
 router.patch("/:id", async (req, res) => {
   const { id } = req.params;
@@ -18,6 +19,12 @@ router.patch("/:id", async (req, res) => {
     return res.status(404).send({
       success: false,
       message: "Could not find requested resource.",
+    });
+
+  if (bookToLoan.loanedTo.length + 1 > sharedConstants.maxLoanLimit)
+    return res.status(500).send({
+      success: false,
+      message: "Max loan limit reached for this book.",
     });
 
   bookToLoan.loanedTo.push(userId);
