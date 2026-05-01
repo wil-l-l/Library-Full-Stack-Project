@@ -14,7 +14,7 @@ const LoginPage = () => {
       subheading={"Log in to use all the features of this app!"}
       endpoint={"login"}
       doOnSuccess={(responseData) => {
-        navigate("/home");
+        navigate(-1);
         setUser(responseData);
       }}
       outsideChildren={

@@ -18,6 +18,24 @@ const MediaPageTopHalf = ({ type, title, authors, id }) => {
   const onInteractionSuccess = (response) =>
     response.success && setUser(response.data);
 
+  const interactionBtnClick = async (endpoint, method, setResponseState) => {
+    if (!user) return navigate("/login");
+
+    let response = await fetch(endpoint, {
+      method: method,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: user._id,
+      }),
+    });
+
+    response = await response.json();
+    setResponseState(response);
+    onInteractionSuccess(response);
+  };
+
   return (
     <div className="media-page__entry-box">
       <div className="media-page__entry-boxa__media-display-box">
@@ -86,21 +104,13 @@ const MediaPageTopHalf = ({ type, title, authors, id }) => {
       <div className="media-page__entry-box__interact-box">
         <button
           className="media-page__entry-box__interact-box__side-btn"
-          onClick={async () => {
-            let response = await fetch(`/api/user/favorite/${id}`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                userId: user._id,
-              }),
-            });
-
-            response = await response.json();
-            setFavoriteResponse(response);
-            onInteractionSuccess(response);
-          }}
+          onClick={async () =>
+            interactionBtnClick(
+              `/api/user/favorite/${id}`,
+              "POST",
+              setFavoriteResponse,
+            )
+          }
         >
           <img
             src={HeartIcon}
@@ -110,23 +120,9 @@ const MediaPageTopHalf = ({ type, title, authors, id }) => {
         </button>
         <button
           className="media-page__entry-box__interact-box__borrow-btn"
-          onClick={async () => {
-            if (!user) return navigate("/login");
-
-            let response = await fetch(`/api/loan/${id}`, {
-              method: "PATCH",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                userId: user._id,
-              }),
-            });
-
-            response = await response.json();
-            setBorrowResponse(response);
-            onInteractionSuccess(response);
-          }}
+          onClick={async () =>
+            interactionBtnClick(`/api/loan/${id}`, "PATCH", setBorrowResponse)
+          }
         >
           BORROW
         </button>
