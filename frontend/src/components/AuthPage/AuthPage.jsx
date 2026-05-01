@@ -51,7 +51,7 @@ const AuthPage = ({
           setAuthResponse(response);
           if (response.success) {
             clearForm();
-            doOnSuccess && doOnSuccess();
+            doOnSuccess && doOnSuccess(response.data);
           }
         }}
       >
@@ -62,12 +62,14 @@ const AuthPage = ({
           placeholder="Username"
           className="auth-form__input-field"
           ref={usernameRef}
+          defaultValue={"bookworm1"}
         />
         <input
           type="password"
           placeholder="Password"
           className="auth-form__input-field"
           ref={passwordRef}
+          defaultValue={"candy12345"}
         />
         <button type="submit" className="auth-page__btn">
           {heading}
