@@ -13,7 +13,12 @@ router.post("/", async (req, res) => {
 
   res.status(201).send({
     success: true,
-    data: newUser,
+    data: {
+      ...newUser._doc,
+      password: undefined,
+      _id: undefined,
+      __v: undefined,
+    },
     message: "Successfully created new user",
   });
 });
