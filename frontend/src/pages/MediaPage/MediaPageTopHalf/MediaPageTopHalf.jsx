@@ -5,8 +5,15 @@ import ShareIcon from "../../../assets/icons/share.png";
 import EbookIcon from "../../../assets/icons/ebook.png";
 import HeadphonesIcon from "../../../assets/icons/headphones.png";
 import sharedConstants from "../../../../../sharedConstants";
+import { useContext, useState } from "react";
+import { UserContext } from "../../../contexts/UserContext";
+import { useNavigate } from "react-router";
 
-const MediaPageTopHalf = ({ type, title, authors }) => {
+const MediaPageTopHalf = ({ type, title, authors, id }) => {
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
+  const [borrowResponse, setBorrowResponse] = useState(null);
+
   return (
     <div className="media-page__entry-box">
       <div className="media-page__entry-boxa__media-display-box">
@@ -80,7 +87,26 @@ const MediaPageTopHalf = ({ type, title, authors }) => {
             className="media-page__entry-box__interact-box__side-btn__icon"
           />
         </button>
-        <button className="media-page__entry-box__interact-box__borrow-btn">
+        <button
+          className="media-page__entry-box__interact-box__borrow-btn"
+          onClick={async () => {
+            if (!user) return navigate("/login");
+
+            let response = await fetch(`/api/loan/${id}`, {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                userId: user._id,
+              }),
+            });
+
+            response = await response.json();
+            setBorrowResponse(response);
+            if (response.success) setUser(response.data);
+          }}
+        >
           BORROW
         </button>
         <button className="media-page__entry-box__interact-box__side-btn">
@@ -91,6 +117,9 @@ const MediaPageTopHalf = ({ type, title, authors }) => {
           />
         </button>
       </div>
+      {borrowResponse && borrowResponse.success === false && (
+        <p className="error-text"> {borrowResponse.message}</p>
+      )}
     </div>
   );
 };

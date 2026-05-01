@@ -19,6 +19,7 @@ const MediaPage = () => {
         type={type}
         title={title}
         authors={authors}
+        id={id}
       />
       <MediaPageBottomHalf summary={summary} tags={tags} authors={authors} />
     </section>

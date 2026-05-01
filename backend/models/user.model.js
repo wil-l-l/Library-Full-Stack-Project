@@ -17,11 +17,9 @@ const User = mongoose.model(
       minlength: 8,
       maxlength: 200,
     },
-    borrowCount: {
-      type: Number,
-      min: 0,
-      max: 3,
-      default: 0,
+    books: {
+      type: [mongoose.Types.ObjectId],
+      default: [],
     },
   }),
 );

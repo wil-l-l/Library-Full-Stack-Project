@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const Book = require("../models/book.model");
 const { User } = require("../models/user.model");
 const { default: sharedConstants } = require("../../sharedConstants");
+const USER_LOAN_LIMIT = 3;
 
 router.patch("/:id", async (req, res) => {
   const { id } = req.params;
@@ -37,16 +38,23 @@ router.patch("/:id", async (req, res) => {
       message: "User is already borrowing this book.",
     });
 
+  if (user.books.length + 1 > USER_LOAN_LIMIT)
+    return res.status(500).send({
+      success: false,
+      message: "Max borrow limit reached for current user.",
+    });
+
   bookToLoan.loanedTo.push(userId);
-  user.borrowCount += 1;
+  user.books.push(bookToLoan._id);
 
   try {
     await bookToLoan.save();
     await user.save();
+
     res.status(200).send({
       success: true,
       message: `Successfully loaned out ${bookToLoan.title} to ${user.username}`,
-      data: bookToLoan,
+      data: user,
     });
   } catch (error) {
     res.status(500).send({ success: false, message: error.message });
