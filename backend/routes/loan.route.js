@@ -27,6 +27,16 @@ router.patch("/:id", async (req, res) => {
       message: "Max loan limit reached for this book.",
     });
 
+  if (
+    bookToLoan.loanedTo.some(
+      (idOfBorrower) => idOfBorrower.toString() === userId,
+    )
+  )
+    return res.status(500).send({
+      success: false,
+      message: "User is already borrowing this book.",
+    });
+
   bookToLoan.loanedTo.push(userId);
   user.borrowCount += 1;
 
@@ -35,7 +45,7 @@ router.patch("/:id", async (req, res) => {
     await user.save();
     res.status(200).send({
       success: true,
-      message: `Successfully loaned out ${bookToLoan.title}to ${user.username}`,
+      message: `Successfully loaned out ${bookToLoan.title} to ${user.username}`,
       data: bookToLoan,
     });
   } catch (error) {
