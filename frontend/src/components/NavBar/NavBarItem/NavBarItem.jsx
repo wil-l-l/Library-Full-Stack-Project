@@ -46,6 +46,10 @@ const NavBarItem = ({ icon, label }) => {
             category={"Titles"}
             searchText={searchText.toLowerCase()}
           />
+          <MatchingList
+            category={"Authors"}
+            searchText={searchText.toLowerCase()}
+          />
         </div>
       )}
       <button
