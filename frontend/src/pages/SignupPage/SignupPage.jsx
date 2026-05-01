@@ -10,9 +10,8 @@ const SignupPage = () => {
           Sign up to borrow books online!
         </p>
         <input
-          type="email"
-          placeholder="Email"
-          name="signup-form-email"
+          type="text"
+          placeholder="Username"
           className="signup-form__input-field"
         />
         <input
