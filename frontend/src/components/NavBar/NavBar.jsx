@@ -14,7 +14,10 @@ const NavBar = () => {
         <p className="nav-bar__text-box__welcome-txt">Welcome to</p>
         <p className="nav-bar__text-box__library-txt">E-Library</p>
       </div>
-      <NavBarItem icon={SearchIcon} />
+      <div className="nav-bar__items-box">
+        <NavBarItem icon={SearchIcon} />
+        <NavBarItem icon={SearchIcon} />
+      </div>
     </nav>
   );
 };
