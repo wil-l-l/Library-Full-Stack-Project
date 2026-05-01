@@ -1,10 +1,14 @@
 .user-page {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .user-page__tabs-bar {
   position: absolute;
-  top: -10px;
+  top: -20px;
   width: 100vw;
   background-color: white;
   border-radius: 9px;
@@ -29,4 +33,22 @@
 .user-page__tabs-bar__btn--closed {
   background-color: white;
   opacity: 0.6;
+}
+
+.user-page__active-cards-list {
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(2, 140px);
+  column-gap: 20px;
+  row-gap: 20px;
+}
+
+.user-page__active-cards-list__book-card {
+  height: 185px;
+  width: 100%;
+  box-shadow: 0px 0px 1px 1px lightgray;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

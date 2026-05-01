@@ -1,14 +1,19 @@
 import NavBar from "../../components/NavBar/NavBar";
 import "./UserPage.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../../contexts/UserContext";
 
 const UserPage = () => {
   const [activeTab, setActiveTab] = useState("borrowed");
+  const { user } = useContext(UserContext);
+
+  const listToIterThrough = () =>
+    activeTab === "borrowed" ? user.books : user.favorites;
 
   return (
     <>
       <NavBar />
-      <section className="user-page">
+      <section className="user-page" style={{ marginBottom: " 1000px" }}>
         <div className="user-page__tabs-bar">
           <button
             className={`user-page__tabs-bar__btn user-page__tabs-bar__btn--${"borrowed" === activeTab ? "open" : "closed"} `}
@@ -23,6 +28,15 @@ const UserPage = () => {
             Favorites
           </button>
         </div>
+        <ul className="user-page__active-cards-list">
+          {listToIterThrough() &&
+            listToIterThrough().length > 0 &&
+            listToIterThrough().map(({ title }) => (
+              <li className="user-page__active-cards-list__book-card">
+                <p>{title}</p>
+              </li>
+            ))}
+        </ul>
       </section>
     </>
   );
