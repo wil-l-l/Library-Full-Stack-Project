@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import SearchPage from "./pages/SearchPage/SearchPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import MediaPage from "./pages/MediaPage/MediaPage";
+import SignupPage from "./pages/SignupPage/SignupPage";
 
 const router = createBrowserRouter([
   { element: <HomePage />, path: "/" },
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
   { element: <SearchPage />, path: "/search" },
   { element: <ProfilePage />, path: "/profile" },
   { element: <MediaPage />, path: "/book/:id" },
+  { element: <SignupPage />, path: "/signup" },
 ]);
 
 export default router;
