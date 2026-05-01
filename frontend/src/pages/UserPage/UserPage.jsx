@@ -2,10 +2,12 @@ import NavBar from "../../components/NavBar/NavBar";
 import "./UserPage.css";
 import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
+import { useNavigate } from "react-router";
 
 const UserPage = () => {
   const [activeTab, setActiveTab] = useState("borrowed");
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const listToIterThrough = () =>
     activeTab === "borrowed" ? user.books : user.favorites;
@@ -26,6 +28,16 @@ const UserPage = () => {
             onClick={() => setActiveTab("favorites")}
           >
             Favorites
+          </button>
+          <button
+            className={`user-page__tabs-bar__btn user-page__tabs-bar__btn--${"favorites" === activeTab ? "open" : "closed"} `}
+            onClick={() => {
+              setUser(null);
+              localStorage.setItem("user", null);
+              navigate("/");
+            }}
+          >
+            Logout
           </button>
         </div>
         <ul className="user-page__active-cards-list">
