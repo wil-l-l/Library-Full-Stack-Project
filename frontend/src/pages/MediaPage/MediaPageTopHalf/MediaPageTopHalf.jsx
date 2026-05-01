@@ -13,6 +13,10 @@ const MediaPageTopHalf = ({ type, title, authors, id }) => {
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [borrowResponse, setBorrowResponse] = useState(null);
+  const [favoriteResponse, setFavoriteResponse] = useState(null);
+
+  const onInteractionSuccess = (response) =>
+    response.success && setUser(response.data);
 
   return (
     <div className="media-page__entry-box">
@@ -80,7 +84,24 @@ const MediaPageTopHalf = ({ type, title, authors, id }) => {
         </div>
       </div>
       <div className="media-page__entry-box__interact-box">
-        <button className="media-page__entry-box__interact-box__side-btn">
+        <button
+          className="media-page__entry-box__interact-box__side-btn"
+          onClick={async () => {
+            let response = await fetch(`/api/user/favorite/${id}`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                userId: user._id,
+              }),
+            });
+
+            response = await response.json();
+            setFavoriteResponse(response);
+            onInteractionSuccess(response);
+          }}
+        >
           <img
             src={HeartIcon}
             alt=""
@@ -104,7 +125,7 @@ const MediaPageTopHalf = ({ type, title, authors, id }) => {
 
             response = await response.json();
             setBorrowResponse(response);
-            if (response.success) setUser(response.data);
+            onInteractionSuccess(response);
           }}
         >
           BORROW
@@ -119,6 +140,9 @@ const MediaPageTopHalf = ({ type, title, authors, id }) => {
       </div>
       {borrowResponse && borrowResponse.success === false && (
         <p className="error-text"> {borrowResponse.message}</p>
+      )}
+      {favoriteResponse && favoriteResponse.success === false && (
+        <p className="error-text"> {favoriteResponse.message}</p>
       )}
     </div>
   );
