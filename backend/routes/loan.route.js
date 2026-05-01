@@ -45,7 +45,12 @@ router.patch("/:id", async (req, res) => {
     });
 
   bookToLoan.loanedTo.push(userId);
-  user.books.push(bookToLoan._id);
+  user.books.push({
+    ...bookToLoan,
+    loanedTo: undefined,
+    loanCount: 0,
+    __v: undefined,
+  });
 
   try {
     await bookToLoan.save();

@@ -12,7 +12,9 @@ router.post("/", async (req, res) => {
       message: "Incorrect username or password",
     });
 
-  let userFound = await User.findOne({ username, password }).select("username");
+  let userFound = await User.findOne({ username, password }).select(
+    "username books",
+  );
 
   if (!userFound)
     return res

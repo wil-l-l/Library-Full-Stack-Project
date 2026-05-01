@@ -18,7 +18,7 @@ const User = mongoose.model(
       maxlength: 200,
     },
     books: {
-      type: [mongoose.Types.ObjectId],
+      type: [Object],
       default: [],
     },
   }),
