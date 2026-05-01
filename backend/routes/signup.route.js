@@ -12,6 +12,13 @@ router.post("/", async (req, res) => {
       message: `Could not create user: ${error.details[0].message}`,
     });
 
+  const users = await User.find();
+  if (users.some((userObj) => userObj.username === username))
+    return res.status(400).send({
+      success: false,
+      message: "Username already taken. Please try again.",
+    });
+
   let newUser = new User({
     username,
     password,
