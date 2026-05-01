@@ -1,0 +1,32 @@
+.user-page {
+  position: relative;
+}
+
+.user-page__tabs-bar {
+  position: absolute;
+  top: -10px;
+  width: 100vw;
+  background-color: white;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  padding: 10px var(--page-padding);
+  column-gap: 10px;
+}
+
+.user-page__tabs-bar__btn {
+  cursor: pointer;
+  padding: 10px;
+  background: none;
+  border-radius: 5px;
+  font-weight: 600;
+  border: none;
+}
+
+.user-page__tabs-bar__btn--open {
+  background-color: #e1e3e6;
+}
+.user-page__tabs-bar__btn--closed {
+  background-color: white;
+  opacity: 0.6;
+}
