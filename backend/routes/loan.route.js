@@ -4,6 +4,9 @@ const mongoose = require("mongoose");
 const Book = require("../models/book.model");
 const { User } = require("../models/user.model");
 const { default: sharedConstants } = require("../../sharedConstants");
+const {
+  default: getUserPartialBookCopy,
+} = require("../utils/getUserPartialBookCopy");
 const USER_LOAN_LIMIT = 3;
 
 router.patch("/:id", async (req, res) => {
@@ -45,12 +48,7 @@ router.patch("/:id", async (req, res) => {
     });
 
   bookToLoan.loanedTo.push(userId);
-  user.books.push({
-    ...bookToLoan,
-    loanedTo: undefined,
-    loanCount: 0,
-    __v: undefined,
-  });
+  user.books.push(getUserPartialBookCopy(bookToLoan));
 
   try {
     await bookToLoan.save();

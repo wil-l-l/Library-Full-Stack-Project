@@ -22,7 +22,6 @@ router.post("/", async (req, res) => {
     success: true,
     data: {
       ...newUser._doc,
-      password: undefined,
       __v: undefined,
     },
     message: "Successfully created new user",

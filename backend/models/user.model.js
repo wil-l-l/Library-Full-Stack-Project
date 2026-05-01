@@ -16,9 +16,14 @@ const User = mongoose.model(
       required: true,
       minlength: 8,
       maxlength: 200,
+      select: false,
     },
     books: {
       type: [Object],
+      default: [],
+    },
+    favorites: {
+      type: [Object], // Partial copies of book documents
       default: [],
     },
   }),
