@@ -7,7 +7,7 @@ import HeadphonesIcon from "../../../assets/icons/headphones.png";
 import sharedConstants from "../../../../../sharedConstants";
 import { useContext, useState } from "react";
 import { UserContext } from "../../../contexts/UserContext";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 
 const MediaPageTopHalf = ({ type, title, authors, id }) => {
   const { user, setUser } = useContext(UserContext);
@@ -135,7 +135,12 @@ const MediaPageTopHalf = ({ type, title, authors, id }) => {
         </button>
       </div>
       {borrowResponse && borrowResponse.success === false && (
-        <p className="error-text"> {borrowResponse.message}</p>
+        <>
+          <p className="error-text"> {borrowResponse.message}</p>
+          <Link to={"/user"} className="media-page__borrows-redirect-text">
+            Go to borrows to return loaned books
+          </Link>
+        </>
       )}
       {favoriteResponse && favoriteResponse.success === false && (
         <p className="error-text"> {favoriteResponse.message}</p>
