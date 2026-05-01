@@ -1,9 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/user.model");
+const { User, validateUser } = require("../models/user.model");
 
 router.post("/", async (req, res) => {
   const { username, password } = req.body;
+
+  const { error } = validateUser(req.body);
+  if (error)
+    return res.status(400).send({
+      success: false,
+      message: "Incorrect username or password",
+    });
 
   let userFound = await User.findOne({ username, password }).select(
     "username -_id",

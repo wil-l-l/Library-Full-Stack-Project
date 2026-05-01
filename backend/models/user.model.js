@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Joi = require("joi");
 
 const User = mongoose.model(
   "User",
@@ -19,4 +20,14 @@ const User = mongoose.model(
   }),
 );
 
-module.exports = User;
+function validateUser(reqBody) {
+  const schema = Joi.object({
+    username: Joi.string().min(7).max(22).required(),
+    password: Joi.string().min(8).max(200).required(),
+  });
+
+  return schema.validate(reqBody);
+}
+
+exports.User = User;
+exports.validateUser = validateUser;
