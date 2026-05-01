@@ -22,7 +22,9 @@ const MatchingList = ({ category, searchText }) => {
 
   const filteredBooks =
     category === "Titles"
-      ? books.filter(({ title }) => title.toLowerCase().includes(searchText))
+      ? books.filter(({ title }) =>
+          title.toLowerCase().includes(searchText.toLowerCase()),
+        )
       : getAuthorMatches();
 
   return (

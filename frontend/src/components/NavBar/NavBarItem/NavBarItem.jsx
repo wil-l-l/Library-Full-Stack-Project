@@ -42,14 +42,8 @@ const NavBarItem = ({ icon, label }) => {
               placeholder="Search"
             />
           </form>
-          <MatchingList
-            category={"Titles"}
-            searchText={searchText.toLowerCase()}
-          />
-          <MatchingList
-            category={"Authors"}
-            searchText={searchText.toLowerCase()}
-          />
+          <MatchingList category={"Titles"} searchText={searchText} />
+          <MatchingList category={"Authors"} searchText={searchText} />
         </div>
       )}
       <button
