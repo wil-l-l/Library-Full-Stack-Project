@@ -102,17 +102,33 @@ router.patch("/rate/:id", async (req, res) => {
         "Rating must be greater than or equal to 0, and less than or equal to 5",
     });
 
+  let hasRatedBook = false;
+  if (
+    book.ratings.some((obj) => {
+      if (obj.userId === userId) {
+        obj.rating = userRating;
+        return true;
+      }
+    })
+  )
+    hasRatedBook = true;
+
   userBookToRate.rated = true;
   userBookToRate.rating = userRating;
 
-  book.ratings.push({ [userId]: userRating });
+  if (hasRatedBook === false)
+    book.ratings.push({
+      userId,
+      rating: userRating,
+    });
+
   book.ratersCount = book.ratings.length;
 
   book.ratingStars =
     book.ratings.length === 0
       ? userRating
       : book.ratings.reduce(
-          (accumulator, { [userId]: rating }) => rating + accumulator,
+          (accumulator, { rating }) => rating + accumulator,
           0,
         ) / book.ratings.length;
 
@@ -129,23 +145,22 @@ router.patch("/rate/:id", async (req, res) => {
     [4.5, 5],
   ];
 
-  let finalAverage = null;
+  let foundMatch = false;
   ranges.forEach((limit) => {
-    if (finalAverage !== null) return;
+    if (foundMatch === true) return;
 
     const lowerLimit = limit[0];
     const upperLimit = limit[1];
 
-    if (!(userRating <= upperLimit)) return;
+    if (!(book.ratingStars <= upperLimit)) return;
+    foundMatch = true;
 
     const lowerDifference = book.ratingStars - lowerLimit;
     const upperDifference = upperLimit - book.ratingStars;
 
-    if (upperDifference <= lowerDifference) finalAverage = upperLimit;
-    else finalAverage = lowerLimit;
+    if (upperDifference <= lowerDifference) book.ratingStars = upperLimit;
+    else book.ratingStars = lowerLimit;
   });
-
-  book.ratingStars = finalAverage;
 
   book.markModified("ratings");
   user.markModified("history");
@@ -157,7 +172,6 @@ router.patch("/rate/:id", async (req, res) => {
       .status(200)
       .send({ success: true, message: "Successfully rated book", data: user });
   } catch (error) {
-    console.log(error);
     res
       .status(400)
       .send({ success: false, message: "Could not perform rating" });
