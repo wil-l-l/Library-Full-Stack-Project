@@ -5,7 +5,7 @@ import ShareIcon from "../../../assets/icons/share.png";
 import EbookIcon from "../../../assets/icons/ebook.png";
 import HeadphonesIcon from "../../../assets/icons/headphones.png";
 import sharedConstants from "../../../../../sharedConstants";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { UserContext } from "../../../contexts/UserContext";
 import { useNavigate, Link, useLocation } from "react-router";
 
@@ -44,6 +44,10 @@ const MediaPageTopHalf = ({
   };
 
   const { pathname } = useLocation();
+
+  // RATING
+  const ratingRef = useRef(null);
+  const [ratingResponse, setRatingResponse] = useState(null);
 
   return (
     <div className="media-page__entry-box">
@@ -158,11 +162,28 @@ const MediaPageTopHalf = ({
             action=""
             className="media-page__entry-box__rate-form"
             onClick={() => user === null && navigate("/login")}
-            onSubmit={() => {
-              console.log("Submit rating form");
+            onSubmit={async (e) => {
+              e.preventDefault();
+
+              let response = await fetch(`/api/user/rate/${id}`, {
+                method: "PATCH",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  userId: user._id,
+                  rating: Number(ratingRef.current.value),
+                }),
+              });
+
+              response = await response.json();
+              setRatingResponse(response);
             }}
           >
-            <input type="number" step={0.5} min={0} max={5} />
+            <input type="number" step={0.5} min={0} max={5} ref={ratingRef} />
+            {ratingResponse && ratingResponse.success && (
+              <p>Rating submitted, thank you!</p>
+            )}
           </form>
         )}
       {borrowResponse && borrowResponse.success === false && (
