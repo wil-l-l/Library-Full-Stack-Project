@@ -12,6 +12,20 @@ const UserPage = () => {
   const listToIterThrough = () =>
     activeTab === "borrowed" ? user.books : user.favorites;
 
+  const bookBtnClickHandler = async (endpoint) => {
+    let response = await fetch(endpoint, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: user._id,
+      }),
+    });
+    response = await response.json();
+    if (response.success) setUser(response.data);
+  };
+
   return (
     <>
       <NavBar />
@@ -48,40 +62,17 @@ const UserPage = () => {
                 <p>{title}</p>
                 {activeTab === "borrowed" ? (
                   <button
-                    onClick={async () => {
-                      let response = await fetch(`/api/loan/return/${_id}`, {
-                        method: "PATCH",
-                        headers: {
-                          "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                          userId: user._id,
-                        }),
-                      });
-                      response = await response.json();
-                      if (response.success) setUser(response.data);
-                    }}
+                    onClick={() =>
+                      bookBtnClickHandler(`/api/loan/return/${_id}`)
+                    }
                   >
                     Return
                   </button>
                 ) : (
                   <button
-                    onClick={async () => {
-                      let response = await fetch(
-                        `/api/user/unfavorite/${_id}`,
-                        {
-                          method: "PATCH",
-                          headers: {
-                            "Content-Type": "application/json",
-                          },
-                          body: JSON.stringify({
-                            userId: user._id,
-                          }),
-                        },
-                      );
-                      response = await response.json();
-                      if (response.success) setUser(response.data);
-                    }}
+                    onClick={() =>
+                      bookBtnClickHandler(`/api/user/unfavorite/${_id}`)
+                    }
                   >
                     Unfavorite
                   </button>
