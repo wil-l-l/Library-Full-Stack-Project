@@ -41,10 +41,15 @@ const Book = mongoose.model(
       min: 0,
       max: 5,
     },
+    ratings: {
+      type: [Object], // { userId : their_rating }
+      default: [],
+    },
     ratersCount: {
       type: Number,
       min: 0,
       max: 200000,
+      default: 0,
     },
     loanCount: {
       type: Number,
