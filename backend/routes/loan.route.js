@@ -64,4 +64,59 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
+router.patch("/return/:id", async (req, res) => {
+  const { id } = req.params;
+  const { userId } = req.body;
+
+  if (!(mongoose.isValidObjectId(id) && mongoose.isValidObjectId(userId)))
+    return res.status(400).send({ success: false });
+
+  const bookToReturn = await Book.findById(id);
+  const user = await User.findById(userId);
+
+  if (!(bookToReturn && user))
+    return res.status(404).send({
+      success: false,
+      message: "Could not find requested resource.",
+    });
+
+  if (user.books.length === 0)
+    return res
+      .status(400)
+      .send({ success: false, message: "This user has no books to return" });
+
+  const userIndexInBookToReturn =
+    bookToReturn.length === 1
+      ? 0
+      : bookToReturn.loanedTo.findIndex(
+          (usersIds) => usersIds.toString() === userId,
+        );
+
+  const userBookToReturnIndex =
+    user.books.length === 1
+      ? 0
+      : user.books.findIndex(({ _id }, index) => _id === id);
+
+  if (!(userIndexInBookToReturn >= 0 || userBookToReturnIndex >= 0))
+    return res.status(500).send({ success: false });
+
+  bookToReturn.loanedTo.splice(userIndexInBookToReturn);
+  user.books.splice(userBookToReturnIndex);
+
+  try {
+    await bookToReturn.save();
+    await user.save();
+    res.status(200).send({
+      success: true,
+      message: `User successfully returned book`,
+      data: user,
+    });
+  } catch (error) {
+    res.status(500).send({
+      success: false,
+      message: "Could not return book.",
+    });
+  }
+});
+
 module.exports = router;
