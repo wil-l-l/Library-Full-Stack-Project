@@ -6,11 +6,16 @@ import { useParams } from "react-router";
 import getBookById from "../../utils/getBookById";
 import MediaPageTopHalf from "./MediaPageTopHalf/MediaPageTopHalf";
 import MediaPageBottomHalf from "./MediaPageBottomHalf/MediaPageBottomHalf";
+import { useEffect } from "react";
 
 const MediaPage = () => {
   const { id } = useParams();
 
   const { authors, summary, tags, title, type } = getBookById(id);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <section className="media-page" style={{ paddingBottom: "200px" }}>

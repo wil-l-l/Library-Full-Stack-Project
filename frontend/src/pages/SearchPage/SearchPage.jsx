@@ -1,7 +1,7 @@
 import "./SearchPage.css";
 import NavBar from "../../components/NavBar/NavBar";
 import SearchNavBtns from "./SearchNavBtns/SearchNavBtns";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BooksContext } from "../../contexts/BooksContext";
 import { useLocation, useSearchParams } from "react-router";
 import GenericSlideItem from "../../components/GenericSlideItem/GenericSlideItem";
@@ -45,6 +45,10 @@ const SearchPage = () => {
     startSlice = MAX_BOOKS_PER_PAGE * (page - 1);
     endSlice = MAX_BOOKS_PER_PAGE * page;
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
