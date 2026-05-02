@@ -2,23 +2,15 @@ import "./HomePage.css";
 import NavBar from "../../components/NavBar/NavBar";
 import TrendingSlides from "../../components/TrendingSlides/TrendingSlides";
 import GenericSlides from "../../components/GenericSlides/GenericSlides";
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import { BooksContext } from "../../contexts/BooksContext";
 import MediaNavBar from "../../components/MediaNavBar/MediaNavBar";
+import useBooks from "../../hooks/useBooks";
 
 function HomePage() {
-  const { books, setBooks } = useContext(BooksContext);
+  const { books } = useContext(BooksContext);
 
-  useEffect(() => {
-    const fetchAllBooks = async () => {
-      if (books) return;
-      const response = await fetch("/api/books");
-      const loadedBooks = await response.json();
-      if (loadedBooks.success) setBooks(loadedBooks.data);
-      else setBooks(false);
-    };
-    fetchAllBooks();
-  }, [books, setBooks]);
+  useBooks();
 
   return books === null ? (
     <p>Application is loading...</p>
