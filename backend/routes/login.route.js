@@ -13,7 +13,7 @@ router.post("/", async (req, res) => {
     });
 
   let userFound = await User.findOne({ username, password }).select(
-    "username books favorites",
+    "username books favorites history",
   );
 
   if (!userFound)

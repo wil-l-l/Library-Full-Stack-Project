@@ -10,7 +10,11 @@ const UserPage = () => {
   const navigate = useNavigate();
 
   const listToIterThrough = () =>
-    activeTab === "borrowed" ? user.books : user.favorites;
+    activeTab === "borrowed"
+      ? user.books
+      : activeTab === "history"
+        ? user.history
+        : user.favorites;
 
   const bookBtnClickHandler = async (endpoint) => {
     let response = await fetch(endpoint, {
@@ -44,6 +48,12 @@ const UserPage = () => {
             Favorites
           </button>
           <button
+            className={`user-page__tabs-bar__btn user-page__tabs-bar__btn--${"history" === activeTab ? "open" : "closed"} `}
+            onClick={() => setActiveTab("history")}
+          >
+            History
+          </button>
+          <button
             className={`user-page__tabs-bar__btn user-page__tabs-bar__btn--closed `}
             onClick={() => {
               setUser(null);
@@ -60,7 +70,7 @@ const UserPage = () => {
             listToIterThrough().map(({ title, _id }) => (
               <li className="user-page__active-cards-list__book-card">
                 <p>{title}</p>
-                {activeTab === "borrowed" ? (
+                {activeTab === "borrowed" && (
                   <button
                     onClick={() =>
                       bookBtnClickHandler(`/api/loan/return/${_id}`)
@@ -68,7 +78,8 @@ const UserPage = () => {
                   >
                     Return
                   </button>
-                ) : (
+                )}
+                {activeTab === "favorites" && (
                   <button
                     onClick={() =>
                       bookBtnClickHandler(`/api/user/unfavorite/${_id}`)
