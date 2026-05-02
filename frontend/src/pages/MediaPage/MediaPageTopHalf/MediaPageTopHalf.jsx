@@ -9,7 +9,14 @@ import { useContext, useState } from "react";
 import { UserContext } from "../../../contexts/UserContext";
 import { useNavigate, Link, useLocation } from "react-router";
 
-const MediaPageTopHalf = ({ type, title, authors, id }) => {
+const MediaPageTopHalf = ({
+  type,
+  title,
+  authors,
+  id,
+  ratersCount,
+  ratingStars,
+}) => {
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [borrowResponse, setBorrowResponse] = useState(null);
@@ -66,42 +73,46 @@ const MediaPageTopHalf = ({ type, title, authors, id }) => {
         {authors.map((name) => (
           <p>{name}</p>
         ))}
-        <div className="media-page__entry-box__rating-box">
-          <p>4.3</p>
-          <div className="media-page__entry-box__rating-box__stars">
-            <img
-              src={StarIcon}
-              alt=""
-              className="media-page__entry-box__rating-box__stars__star-icon"
-              fill={"black"}
-            />
-            <img
-              src={StarIcon}
-              alt=""
-              className="media-page__entry-box__rating-box__stars__star-icon"
-              fill={"black"}
-            />
-            <img
-              src={StarIcon}
-              alt=""
-              className="media-page__entry-box__rating-box__stars__star-icon"
-              fill={"black"}
-            />
-            <img
-              src={StarIcon}
-              alt=""
-              className="media-page__entry-box__rating-box__stars__star-icon"
-              fill={"black"}
-            />
-            <img
-              src={StarIcon}
-              alt=""
-              className="media-page__entry-box__rating-box__stars__star-icon"
-              fill={"black"}
-            />
+        {ratersCount === 0 ? (
+          "Book has no ratings yet!"
+        ) : (
+          <div className="media-page__entry-box__rating-box">
+            <p>{ratingStars}</p>
+            <div className="media-page__entry-box__rating-box__stars">
+              <img
+                src={StarIcon}
+                alt=""
+                className="media-page__entry-box__rating-box__stars__star-icon"
+                fill={"black"}
+              />
+              <img
+                src={StarIcon}
+                alt=""
+                className="media-page__entry-box__rating-box__stars__star-icon"
+                fill={"black"}
+              />
+              <img
+                src={StarIcon}
+                alt=""
+                className="media-page__entry-box__rating-box__stars__star-icon"
+                fill={"black"}
+              />
+              <img
+                src={StarIcon}
+                alt=""
+                className="media-page__entry-box__rating-box__stars__star-icon"
+                fill={"black"}
+              />
+              <img
+                src={StarIcon}
+                alt=""
+                className="media-page__entry-box__rating-box__stars__star-icon"
+                fill={"black"}
+              />
+            </div>
+            <p>({ratersCount})</p>
           </div>
-          <p>(21)</p>
-        </div>
+        )}
       </div>
       <div className="media-page__entry-box__interact-box">
         <button

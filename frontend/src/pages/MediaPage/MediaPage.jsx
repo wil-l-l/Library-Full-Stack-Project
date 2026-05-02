@@ -34,6 +34,8 @@ const MediaPage = () => {
         title={book.title}
         authors={book.authors}
         id={id}
+        ratersCount={book.ratersCount}
+        ratingStars={book.ratingStars}
       />
       <MediaPageBottomHalf
         summary={book.summary}
