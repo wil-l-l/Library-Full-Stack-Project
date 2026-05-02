@@ -7,7 +7,7 @@ import HeadphonesIcon from "../../../assets/icons/headphones.png";
 import sharedConstants from "../../../../../sharedConstants";
 import { useContext, useState } from "react";
 import { UserContext } from "../../../contexts/UserContext";
-import { useNavigate, Link } from "react-router";
+import { useNavigate, Link, useLocation } from "react-router";
 
 const MediaPageTopHalf = ({ type, title, authors, id }) => {
   const { user, setUser } = useContext(UserContext);
@@ -35,6 +35,8 @@ const MediaPageTopHalf = ({ type, title, authors, id }) => {
     setResponseState(response);
     onInteractionSuccess(response);
   };
+
+  const { pathname } = useLocation();
 
   return (
     <div className="media-page__entry-box">
@@ -126,7 +128,12 @@ const MediaPageTopHalf = ({ type, title, authors, id }) => {
         >
           BORROW
         </button>
-        <button className="media-page__entry-box__interact-box__side-btn">
+        <button
+          className="media-page__entry-box__interact-box__side-btn"
+          onClick={() =>
+            navigator.clipboard.writeText("http://localhost:5173" + pathname)
+          }
+        >
           <img
             src={ShareIcon}
             alt=""
