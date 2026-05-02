@@ -35,7 +35,9 @@ const MediaPageBottomHalf = ({ summary, tags, authors }) => {
         <h3>Authors</h3>
         {authors.map((name) => (
           <button
-            onClick={() => navigate(`/search/author=${formatAuthorName(name)}`)}
+            onClick={() =>
+              navigate(`/search/?author=${formatAuthorName(name)}`)
+            }
           >
             {name}
           </button>

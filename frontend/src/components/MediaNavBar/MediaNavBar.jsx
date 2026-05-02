@@ -5,7 +5,7 @@ import sharedConstants from "../../../../sharedConstants";
 const MediaNavBar = () => {
   const navigate = useNavigate();
 
-  const navigateToGenre = (genre) => navigate(`/search/?genre=${genre}`);
+  const navigateToType = (type) => navigate(`/search/?type=${type}`);
 
   return (
     <nav className="media-nav-bar">
@@ -15,7 +15,7 @@ const MediaNavBar = () => {
       <button
         className="media-nav-bar__btn media-nav-bar__btn--closed"
         onClick={() =>
-          navigateToGenre(sharedConstants.mediaTypes.ebook.toLowerCase())
+          navigateToType(sharedConstants.mediaTypes.ebook.toLowerCase())
         }
       >
         Ebooks
@@ -23,7 +23,7 @@ const MediaNavBar = () => {
       <button
         className="media-nav-bar__btn media-nav-bar__btn--closed"
         onClick={() =>
-          navigateToGenre(sharedConstants.mediaTypes.audiobook.toLowerCase())
+          navigateToType(sharedConstants.mediaTypes.audiobook.toLowerCase())
         }
       >
         Audiobooks
@@ -31,7 +31,7 @@ const MediaNavBar = () => {
       <button
         className="media-nav-bar__btn media-nav-bar__btn--closed"
         onClick={() =>
-          navigateToGenre(sharedConstants.mediaTypes.comics.toLowerCase())
+          navigateToType(sharedConstants.mediaTypes.comics.toLowerCase())
         }
       >
         Comics

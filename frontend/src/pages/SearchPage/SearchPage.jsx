@@ -21,8 +21,8 @@ const SearchPage = () => {
   const getFilteredBooks = () => {
     if (!books) return null;
 
-    const genre = searchParams.get("genre") || null;
-    if (genre) return books.filter(({ type }) => type.toLowerCase() === genre);
+    const type = searchParams.get("type") || null;
+    if (type) return books.filter((book) => book.type.toLowerCase() === type);
 
     const tag = searchParams.get("tag") || null;
     if (tag) {
