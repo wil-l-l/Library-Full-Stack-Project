@@ -101,6 +101,8 @@ router.patch("/return/:id", async (req, res) => {
     return res.status(500).send({ success: false });
 
   bookToReturn.loanedTo.splice(userIndexInBookToReturn, 1);
+
+  user.history.push(user.books[userBookToReturnIndex]);
   user.books.splice(userBookToReturnIndex, 1);
 
   try {

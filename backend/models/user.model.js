@@ -26,6 +26,10 @@ const User = mongoose.model(
       type: [Object], // Partial copies of book documents
       default: [],
     },
+    history: {
+      type: [Object], // Partial copies of book documents
+      default: [],
+    },
   }),
 );
 
