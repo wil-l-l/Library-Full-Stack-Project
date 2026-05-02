@@ -8,6 +8,7 @@ import GenericSlideItem from "../../components/GenericSlideItem/GenericSlideItem
 import BookDisplay from "../../components/BookDisplay/BookDisplay";
 import useBooks from "../../hooks/useBooks";
 import PaginationBar from "./PaginationBar/PaginationBar";
+import formatAuthorName from "../../utils/formatAuthorName";
 
 const SearchPage = () => {
   // HOOKS
@@ -35,10 +36,36 @@ const SearchPage = () => {
       return tagsList;
     }
 
-    if (location.state)
-      return books.filter(
-        ({ title }) => title.match(new RegExp(location.state.searchText, "gi")), // return searchText results
-      );
+    const author = searchParams.get("author") || null;
+    const booksByAuthor = [];
+    if (author) {
+      books.forEach((book) => {
+        book.authors.forEach(
+          (name) =>
+            author === formatAuthorName(name) && booksByAuthor.push(book),
+        );
+      });
+      return booksByAuthor;
+    }
+
+    if (location.state) {
+      const booksByAuthor = [];
+      books.forEach((book) => {
+        book.authors.forEach(
+          (name) =>
+            name.match(new RegExp(location.state.searchText, "gi")) &&
+            booksByAuthor.push(book),
+        );
+      });
+
+      return [
+        ...books.filter(
+          ({ title }) =>
+            title.match(new RegExp(location.state.searchText, "gi")), // return searchText results
+        ),
+        ...booksByAuthor,
+      ];
+    }
 
     return books;
   };
