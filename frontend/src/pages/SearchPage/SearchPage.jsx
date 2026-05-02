@@ -13,8 +13,12 @@ const SearchPage = () => {
   const location = useLocation();
 
   const genre = searchParams.get("genre") || null;
-  const tag = searchParams.get("tag").toLowerCase() || null;
-  const searchText = genre ? genre : tag ? tag : location.state.searchText;
+  const tag = searchParams.get("tag") || null;
+  const searchText = genre
+    ? genre
+    : tag
+      ? tag.toLowerCase()
+      : location.state.searchText;
 
   const filterBooksBySearchQuery = () =>
     books.filter(({ title }) => title.includes(searchText));
