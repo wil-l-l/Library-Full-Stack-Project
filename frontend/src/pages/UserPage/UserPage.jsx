@@ -68,7 +68,10 @@ const UserPage = () => {
           {listToIterThrough() &&
             listToIterThrough().length > 0 &&
             listToIterThrough().map(({ title, _id }) => (
-              <li className="user-page__active-cards-list__book-card">
+              <li
+                className="user-page__active-cards-list__book-card"
+                onClick={() => navigate(`/book/${_id}`)}
+              >
                 <p>{title}</p>
                 {activeTab === "borrowed" && (
                   <button
