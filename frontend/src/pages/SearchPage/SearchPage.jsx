@@ -1,7 +1,7 @@
 import "./SearchPage.css";
 import NavBar from "../../components/NavBar/NavBar";
 import SearchNavBtns from "./SearchNavBtns/SearchNavBtns";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { BooksContext } from "../../contexts/BooksContext";
 import { useLocation, useSearchParams } from "react-router";
 import GenericSlideItem from "../../components/GenericSlideItem/GenericSlideItem";
@@ -10,19 +10,15 @@ import useBooks from "../../hooks/useBooks";
 import PaginationBar from "./PaginationBar/PaginationBar";
 
 const SearchPage = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // HOOKS
+  const [searchParams] = useSearchParams();
+  const location = useLocation();
 
   // BOOKS
   const { books } = useContext(BooksContext);
   useBooks();
 
-  // HOOKS
-  const [searchParams] = useSearchParams();
-  const location = useLocation();
-
-  const getBooks = () => {
+  const getFilteredBooks = () => {
     if (!books) return null;
 
     const genre = searchParams.get("genre") || null;
@@ -46,7 +42,7 @@ const SearchPage = () => {
 
     return books;
   };
-  const filteredBooks = getBooks();
+  const filteredBooks = getFilteredBooks();
 
   // PAGINATION
   const [page, setPage] = useState(1);
@@ -63,7 +59,7 @@ const SearchPage = () => {
       ? null
       : Array.from({ length: MAX_PAGES }, (_, index) => index + 1);
 
-  // // LIST RENDERING
+  // LIST RENDERING
   const getSlices = () => {
     let startSlice;
     let endSlice;

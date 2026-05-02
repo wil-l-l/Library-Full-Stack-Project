@@ -1,17 +1,16 @@
 import NavBar from "../../components/NavBar/NavBar";
 import "./UserPage.css";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { useNavigate } from "react-router";
+import useScrollToTop from "../../hooks/useScrollToTop";
 
 const UserPage = () => {
   const [activeTab, setActiveTab] = useState("borrowed");
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  useScrollToTop();
 
   const listToIterThrough = () =>
     activeTab === "borrowed"

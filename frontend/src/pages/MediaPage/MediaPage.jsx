@@ -6,16 +6,15 @@ import { useParams } from "react-router";
 import getBookById from "../../utils/getBookById";
 import MediaPageTopHalf from "./MediaPageTopHalf/MediaPageTopHalf";
 import MediaPageBottomHalf from "./MediaPageBottomHalf/MediaPageBottomHalf";
-import { useEffect, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { BooksContext } from "../../contexts/BooksContext";
 import useBooks from "../../hooks/useBooks";
+import useScrollToTop from "../../hooks/useScrollToTop";
 
 const MediaPage = () => {
   const { id } = useParams();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  useScrollToTop();
 
   const { books } = useContext(BooksContext);
   const [book, setBook] = useState(!books ? null : getBookById(id, books));
