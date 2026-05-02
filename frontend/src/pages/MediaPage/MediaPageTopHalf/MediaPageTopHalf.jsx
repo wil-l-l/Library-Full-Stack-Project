@@ -107,7 +107,7 @@ const MediaPageTopHalf = ({ type, title, authors, id }) => {
           onClick={async () =>
             interactionBtnClick(
               `/api/user/favorite/${id}`,
-              "POST",
+              "PATCH",
               setFavoriteResponse,
             )
           }

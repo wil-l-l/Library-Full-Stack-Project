@@ -46,7 +46,7 @@ const UserPage = () => {
             listToIterThrough().map(({ title, _id }) => (
               <li className="user-page__active-cards-list__book-card">
                 <p>{title}</p>
-                {activeTab === "borrowed" && (
+                {activeTab === "borrowed" ? (
                   <button
                     onClick={async () => {
                       let response = await fetch(`/api/loan/return/${_id}`, {
@@ -63,6 +63,27 @@ const UserPage = () => {
                     }}
                   >
                     Return
+                  </button>
+                ) : (
+                  <button
+                    onClick={async () => {
+                      let response = await fetch(
+                        `/api/user/unfavorite/${_id}`,
+                        {
+                          method: "PATCH",
+                          headers: {
+                            "Content-Type": "application/json",
+                          },
+                          body: JSON.stringify({
+                            userId: user._id,
+                          }),
+                        },
+                      );
+                      response = await response.json();
+                      if (response.success) setUser(response.data);
+                    }}
+                  >
+                    Unfavorite
                   </button>
                 )}
               </li>
