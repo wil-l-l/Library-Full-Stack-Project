@@ -58,13 +58,21 @@ const SearchPage = () => {
         );
       });
 
-      return [
+      const combinedList = [
         ...books.filter(
           ({ title }) =>
             title.match(new RegExp(location.state.searchText, "gi")), // return searchText results
         ),
         ...booksByAuthor,
       ];
+
+      const foundIds = [];
+      combinedList.forEach((book, index) => {
+        if (!foundIds.includes(book._id)) return foundIds.push(book._id);
+        combinedList[index] = null;
+      });
+
+      return combinedList.filter((val) => val !== null);
     }
 
     return books;
