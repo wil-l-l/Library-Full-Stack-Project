@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { BooksContext } from "../contexts/BooksContext";
 
-function useBooks(callbackOnSuccess) {
+function useBooks(callbackOnSuccess = null) {
   const { books, setBooks } = useContext(BooksContext);
 
   useEffect(() => {
@@ -11,7 +11,7 @@ function useBooks(callbackOnSuccess) {
       const loadedBooks = await response.json();
       if (loadedBooks.success) {
         setBooks(loadedBooks.data);
-        callbackOnSuccess(loadedBooks.data);
+        callbackOnSuccess && callbackOnSuccess(loadedBooks.data);
       } else setBooks(false);
     };
     fetchAllBooks();

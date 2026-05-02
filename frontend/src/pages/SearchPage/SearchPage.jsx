@@ -6,74 +6,87 @@ import { BooksContext } from "../../contexts/BooksContext";
 import { useLocation, useSearchParams } from "react-router";
 import GenericSlideItem from "../../components/GenericSlideItem/GenericSlideItem";
 import BookDisplay from "../../components/BookDisplay/BookDisplay";
+import useBooks from "../../hooks/useBooks";
+import PaginationBar from "./PaginationBar/PaginationBar";
 
 const SearchPage = () => {
-  const { books } = useContext(BooksContext);
-  const [searchParams] = useSearchParams();
-  const location = useLocation();
-
-  const genre = searchParams.get("genre") || null;
-  const tag = searchParams.get("tag") || null;
-  const searchText = genre
-    ? genre
-    : tag
-      ? tag.toLowerCase()
-      : location.state.searchText;
-
-  const filterBooksBySearchQuery = () =>
-    books.filter(({ title }) => title.match(new RegExp(searchText, "gi")));
-
-  const filterBooksByGenre = () =>
-    books.filter(({ type }) => type.toLowerCase() === genre);
-
-  const filterBooksByTag = () => {
-    const tagsList = [];
-    books.forEach((bookObj) => {
-      bookObj.tags.forEach(
-        (tagVal) => tagVal.toLowerCase() === tag && tagsList.push(bookObj),
-      );
-    });
-    return tagsList;
-  };
-
-  const filteredBooks = {
-    data:
-      !genre && !tag
-        ? filterBooksBySearchQuery()
-        : !tag
-          ? filterBooksByGenre()
-          : filterBooksByTag(),
-    length:
-      !genre && !tag
-        ? filterBooksBySearchQuery().length
-        : !tag
-          ? filterBooksByGenre().length
-          : filterBooksByTag().length,
-  };
-
-  const [page, setPage] = useState(1);
-  const [openMore, setOpenMore] = useState(false);
-  const MAX_BOOKS_PER_PAGE = 6;
-  const MAX_PAGES = Math.ceil(filteredBooks.length / MAX_BOOKS_PER_PAGE);
-
-  const range = Array.from({ length: MAX_PAGES }, (_, index) => index + 1);
-
-  let startSlice;
-  let endSlice;
-
-  if (page === 1) {
-    startSlice = 0;
-    endSlice = MAX_BOOKS_PER_PAGE;
-  } else {
-    startSlice = MAX_BOOKS_PER_PAGE * (page - 1);
-    endSlice = MAX_BOOKS_PER_PAGE * page;
-  }
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  return (
+  // BOOKS
+  const { books } = useContext(BooksContext);
+  useBooks();
+
+  // HOOKS
+  const [searchParams] = useSearchParams();
+  const location = useLocation();
+
+  const getBooks = () => {
+    if (!books) return null;
+
+    const genre = searchParams.get("genre") || null;
+    if (genre) return books.filter(({ type }) => type.toLowerCase() === genre);
+
+    const tag = searchParams.get("tag") || null;
+    if (tag) {
+      const tagsList = [];
+      books.forEach((bookObj) => {
+        bookObj.tags.forEach(
+          (tagVal) => tagVal.toLowerCase() === tag && tagsList.push(bookObj),
+        );
+      });
+      return tagsList;
+    }
+
+    if (location.state)
+      return books.filter(
+        ({ title }) => title.match(new RegExp(location.state.searchText, "gi")), // return searchText results
+      );
+
+    return books;
+  };
+  const filteredBooks = getBooks();
+
+  // PAGINATION
+  const [page, setPage] = useState(1);
+
+  const MAX_BOOKS_PER_PAGE = 6;
+  const MAX_PAGES =
+    filteredBooks === null
+      ? null
+      : Math.ceil(filteredBooks.length / MAX_BOOKS_PER_PAGE);
+
+  const [showPages, setShowPages] = useState(false);
+  const pageRange =
+    MAX_PAGES === null
+      ? null
+      : Array.from({ length: MAX_PAGES }, (_, index) => index + 1);
+
+  // // LIST RENDERING
+  const getSlices = () => {
+    let startSlice;
+    let endSlice;
+
+    if (page === 1) {
+      startSlice = 0;
+      endSlice = MAX_BOOKS_PER_PAGE;
+    } else {
+      startSlice = MAX_BOOKS_PER_PAGE * (page - 1);
+      endSlice = MAX_BOOKS_PER_PAGE * page;
+    }
+    return {
+      startSlice,
+      endSlice,
+    };
+  };
+  const listSlicing = getSlices();
+
+  return books === null ? (
+    <p>Search page is loading...</p>
+  ) : books === false ? (
+    <p>Could not load search page. Please try again! </p>
+  ) : (
     <>
       <NavBar />
       <main className="search-page" style={{ marginBottom: "2000px" }}>
@@ -82,50 +95,34 @@ const SearchPage = () => {
             {filteredBooks.length} MATCHES IN
           </p>
           <p className="search-page-results-box__line-2">Search Results</p>
-          <div className="search-page__page-display">
-            <p>
-              {filteredBooks.length === 0
-                ? "Page 1 of 1"
-                : `Page ${page} of ${MAX_PAGES}`}
-            </p>
-            <button
-              className="search-page__page-display__open-more-btn"
-              onClick={() => setOpenMore(!openMore)}
-            >
-              PG
-              {openMore && (
-                <ul className="search-page__page-display__pages-list">
-                  {range.map((pageNum) => (
-                    <li
-                      className="search-page__page-display__pages-list__item"
-                      onClick={() => setPage(pageNum)}
-                    >
-                      Page {pageNum}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </button>
-          </div>
+          <PaginationBar
+            filteredBooks={filteredBooks}
+            page={page}
+            MAX_PAGES={MAX_PAGES}
+            showPages={showPages}
+            setShowPages={setShowPages}
+            pageRange={pageRange}
+            setPage={setPage}
+          />
+          {filteredBooks.length > 0 ? (
+            filteredBooks
+              .slice(listSlicing.startSlice, listSlicing.endSlice)
+              .map(
+                ({ authors, title, summary, cover, _id }, index) =>
+                  (index + 1) * page <= MAX_BOOKS_PER_PAGE * page && (
+                    <BookDisplay
+                      authors={authors}
+                      title={title}
+                      summary={summary}
+                      cover={cover}
+                      _id={_id}
+                    />
+                  ),
+              )
+          ) : (
+            <p>Could not find any books with this search.</p>
+          )}
         </div>
-        {filteredBooks.data.length > 0 ? (
-          filteredBooks.data
-            .slice(startSlice, endSlice)
-            .map(
-              ({ authors, title, summary, cover, _id }, index) =>
-                (index + 1) * page <= MAX_BOOKS_PER_PAGE * page && (
-                  <BookDisplay
-                    authors={authors}
-                    title={title}
-                    summary={summary}
-                    cover={cover}
-                    _id={_id}
-                  />
-                ),
-            )
-        ) : (
-          <p>Could not find any books with this search.</p>
-        )}
       </main>
     </>
   );

@@ -1,0 +1,28 @@
+.search-page__page-display {
+  margin-top: 20px;
+  font-size: 2rem;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #4c4c4c;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-page__page-display__open-more-btn {
+  position: relative;
+  padding: 10px;
+}
+
+.search-page__page-display__pages-list {
+  position: absolute;
+  left: -122px;
+  list-style: none;
+  background-color: lightgray;
+  width: 150px;
+  border-radius: 10px;
+}
+
+.search-page__page-display__pages-list__item {
+  border-bottom: 1px solid white;
+  padding: 10px;
+}
