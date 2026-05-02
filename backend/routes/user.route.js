@@ -5,14 +5,14 @@ const Book = require("../models/book.model");
 const {
   default: getUserPartialBookCopy,
 } = require("../utils/getUserPartialBookCopy");
-const { default: mongoose } = require("mongoose");
+const { default: validateIdList } = require("../utils/validateIdList");
 
-router.patch("/favorite/:id", async (req, res) => {
+async function getAndVerifyIdsAndUserAndBook(req, res) {
   const bookId = req.params.id;
   const { userId } = req.body;
 
-  if (!(mongoose.isValidObjectId(bookId) && mongoose.isValidObjectId(userId)))
-    return res.status(400).send({ success: false });
+  const validIdsResult = validateIdList([bookId, userId], res);
+  if (validIdsResult !== 0) return validIdsResult;
 
   const user = await User.findById(userId);
   const book = await Book.findById(bookId);
@@ -23,8 +23,16 @@ router.patch("/favorite/:id", async (req, res) => {
       message: "Could not find requested resource.",
     });
 
+  return { bookId, userId, book, user };
+}
+
+router.patch("/favorite/:id", async (req, res) => {
+  const response = await getAndVerifyIdsAndUserAndBook(req, res);
+  if (Object.hasOwn(response, "userId") === false) return response;
+  const { bookId, userId, book, user } = response;
+
   if (user.favorites.some(({ _id }) => _id === bookId))
-    return res.status(404).send({
+    return res.status(400).send({
       success: false,
       message: "Book is already favorited",
     });
@@ -47,20 +55,9 @@ router.patch("/favorite/:id", async (req, res) => {
 });
 
 router.patch("/unfavorite/:id", async (req, res) => {
-  const bookId = req.params.id;
-  const { userId } = req.body;
-
-  if (!(mongoose.isValidObjectId(bookId) && mongoose.isValidObjectId(userId)))
-    return res.status(400).send({ success: false });
-
-  const user = await User.findById(userId);
-  const book = await Book.findById(bookId);
-
-  if (!(user && book))
-    return res.status(404).send({
-      success: false,
-      message: "Could not find requested resource.",
-    });
+  const response = await getAndVerifyIdsAndUserAndBook(req, res);
+  if (Object.hasOwn(response, "userId") === false) return response;
+  const { bookId, userId, book, user } = response;
 
   if (user.favorites.length === 0)
     return res.status(400).send({
