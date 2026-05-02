@@ -43,9 +43,28 @@ const UserPage = () => {
         <ul className="user-page__active-cards-list">
           {listToIterThrough() &&
             listToIterThrough().length > 0 &&
-            listToIterThrough().map(({ title }) => (
+            listToIterThrough().map(({ title, _id }) => (
               <li className="user-page__active-cards-list__book-card">
                 <p>{title}</p>
+                {activeTab === "borrowed" && (
+                  <button
+                    onClick={async () => {
+                      let response = await fetch(`/api/loan/return/${_id}`, {
+                        method: "PATCH",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                          userId: user._id,
+                        }),
+                      });
+                      response = await response.json();
+                      if (response.success) setUser(response.data);
+                    }}
+                  >
+                    Return
+                  </button>
+                )}
               </li>
             ))}
         </ul>

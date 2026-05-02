@@ -100,8 +100,8 @@ router.patch("/return/:id", async (req, res) => {
   if (!(userIndexInBookToReturn >= 0 || userBookToReturnIndex >= 0))
     return res.status(500).send({ success: false });
 
-  bookToReturn.loanedTo.splice(userIndexInBookToReturn);
-  user.books.splice(userBookToReturnIndex);
+  bookToReturn.loanedTo.splice(userIndexInBookToReturn, 1);
+  user.books.splice(userBookToReturnIndex, 1);
 
   try {
     await bookToReturn.save();
