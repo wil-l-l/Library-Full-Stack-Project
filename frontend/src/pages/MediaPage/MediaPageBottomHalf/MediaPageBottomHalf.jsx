@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router";
 import "./MediaPageBottomHalf.css";
 import { useState } from "react";
+import formatAuthorName from "../../../utils/formatAuthorName";
 
 const MediaPageBottomHalf = ({ summary, tags, authors }) => {
   const [doExpandText, setDoExpandText] = useState(false);
@@ -33,7 +34,11 @@ const MediaPageBottomHalf = ({ summary, tags, authors }) => {
       <div className="media-page__body-box__details-box">
         <h3>Authors</h3>
         {authors.map((name) => (
-          <button>{name}</button>
+          <button
+            onClick={() => navigate(`/search/author=${formatAuthorName(name)}`)}
+          >
+            {name}
+          </button>
         ))}
       </div>
       <div className="media-page__body-box__borrow-details-box">
