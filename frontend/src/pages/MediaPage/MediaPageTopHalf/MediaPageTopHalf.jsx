@@ -152,6 +152,19 @@ const MediaPageTopHalf = ({
           />
         </button>
       </div>
+      {user.history.length > 0 &&
+        user.history.some(({ _id }) => _id === id) && (
+          <form
+            action=""
+            className="media-page__entry-box__rate-form"
+            onClick={() => user === null && navigate("/login")}
+            onSubmit={() => {
+              console.log("Submit rating form");
+            }}
+          >
+            <input type="number" step={0.5} min={0} max={5} />
+          </form>
+        )}
       {borrowResponse && borrowResponse.success === false && (
         <>
           <p className="error-text"> {borrowResponse.message}</p>
