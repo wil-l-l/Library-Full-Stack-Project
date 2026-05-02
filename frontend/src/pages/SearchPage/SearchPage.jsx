@@ -21,7 +21,7 @@ const SearchPage = () => {
       : location.state.searchText;
 
   const filterBooksBySearchQuery = () =>
-    books.filter(({ title }) => title.includes(searchText));
+    books.filter(({ title }) => title.match(new RegExp(searchText, "gi")));
 
   const filterBooksByGenre = () =>
     books.filter(({ type }) => type.toLowerCase() === genre);
@@ -84,7 +84,9 @@ const SearchPage = () => {
           <p className="search-page-results-box__line-2">Search Results</p>
           <div className="search-page__page-display">
             <p>
-              Page {page} of {MAX_PAGES}
+              {filteredBooks.length === 0
+                ? "Page 1 of 1"
+                : `Page ${page} of ${MAX_PAGES}`}
             </p>
             <button
               className="search-page__page-display__open-more-btn"

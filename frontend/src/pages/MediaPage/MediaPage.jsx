@@ -18,7 +18,7 @@ const MediaPage = () => {
   }, []);
 
   return (
-    <section className="media-page" style={{ paddingBottom: "200px" }}>
+    <section className="media-page" style={{ paddingBottom: "800px" }}>
       <MediaPageTopHalf
         icon={null}
         type={type}
