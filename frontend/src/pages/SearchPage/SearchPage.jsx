@@ -13,7 +13,8 @@ const SearchPage = () => {
   const location = useLocation();
 
   const genre = searchParams.get("genre") || null;
-  const searchText = genre ? null : location.state.searchText;
+  const tag = searchParams.get("tag").toLowerCase() || null;
+  const searchText = genre ? genre : tag ? tag : location.state.searchText;
 
   const filterBooksBySearchQuery = () =>
     books.filter(({ title }) => title.includes(searchText));
@@ -21,11 +22,29 @@ const SearchPage = () => {
   const filterBooksByGenre = () =>
     books.filter(({ type }) => type.toLowerCase() === genre);
 
+  const filterBooksByTag = () => {
+    const tagsList = [];
+    books.forEach((bookObj) => {
+      bookObj.tags.forEach(
+        (tagVal) => tagVal.toLowerCase() === tag && tagsList.push(bookObj),
+      );
+    });
+    return tagsList;
+  };
+
   const filteredBooks = {
-    data: !genre ? filterBooksBySearchQuery() : filterBooksByGenre(),
-    length: !genre
-      ? filterBooksBySearchQuery().length
-      : filterBooksByGenre().length,
+    data:
+      !genre && !tag
+        ? filterBooksBySearchQuery()
+        : !tag
+          ? filterBooksByGenre()
+          : filterBooksByTag(),
+    length:
+      !genre && !tag
+        ? filterBooksBySearchQuery().length
+        : !tag
+          ? filterBooksByGenre().length
+          : filterBooksByTag().length,
   };
 
   const [page, setPage] = useState(1);
@@ -53,7 +72,7 @@ const SearchPage = () => {
   return (
     <>
       <NavBar />
-      <main className="search-page" style={{ marginBottom: "1000px" }}>
+      <main className="search-page" style={{ marginBottom: "2000px" }}>
         <div className="search-page-results-box page-padding">
           <p className="search-page-results-box__line-1">
             {filteredBooks.length} MATCHES IN
@@ -84,7 +103,7 @@ const SearchPage = () => {
           </div>
         </div>
         {filteredBooks.data.length > 0 ? (
-          filterBooksByGenre()
+          filteredBooks.data
             .slice(startSlice, endSlice)
             .map(
               ({ authors, title, summary, cover, _id }, index) =>

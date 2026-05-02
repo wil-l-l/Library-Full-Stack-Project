@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router";
 import "./MediaPageBottomHalf.css";
 import { useState } from "react";
 
 const MediaPageBottomHalf = ({ summary, tags, authors }) => {
   const [doExpandText, setDoExpandText] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div className="media-page__body-box">
@@ -23,7 +25,9 @@ const MediaPageBottomHalf = ({ summary, tags, authors }) => {
       <div className="media-page__body-box__details-box">
         <h3>Related Subjects</h3>
         {tags.map((tag) => (
-          <button>{tag}</button>
+          <button onClick={() => navigate(`/search?tag=${tag.toLowerCase()}`)}>
+            {tag}
+          </button>
         ))}
       </div>
       <div className="media-page__body-box__details-box">
