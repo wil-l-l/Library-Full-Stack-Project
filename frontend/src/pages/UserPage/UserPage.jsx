@@ -13,6 +13,7 @@ const UserPage = () => {
     favorites: "Favorites",
     history: "History",
   };
+
   const [activeTab, setActiveTab] = useState(tabs.borrowed);
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
@@ -45,14 +46,17 @@ const UserPage = () => {
       className="user-page page-padding"
       style={{ marginBottom: " 1000px" }}
     >
-      <UserNavBar tabs={[tabs.borrowed, tabs.favorites, tabs.history]} />
+      <UserNavBar
+        tabs={[tabs.borrowed, tabs.favorites, tabs.history]}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
       <h3 className="user-page__active-tab-text">{activeTab}</h3>
       <div className="user-page__book-cards-box">
         <BookCard title={"The Atomic Habits"} authors={["James Clear"]} />
         <BookCard title={"The Atomic Habits"} authors={["James Clear"]} />
         <BookCard title={"The Atomic Habits"} authors={["James Clear"]} />
-        
-        
+
         <BookCard title={"The Atomic Habits"} authors={["James Clear"]} />
         <BookCard title={"The Atomic Habits"} authors={["James Clear"]} />
         <BookCard title={"The Atomic Habits"} authors={["James Clear"]} />

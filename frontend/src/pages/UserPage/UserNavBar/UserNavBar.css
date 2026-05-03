@@ -12,17 +12,25 @@
 }
 
 .user-page__nav-bar__btn {
+  cursor: pointer;
   border: none;
   background: transparent;
   font-weight: 500;
   font-size: 1.3rem;
+  height: 100%;
+  border-radius: inherit;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
-.user-page__nav-bar__btn--closed {
+.user-page__nav-bar__btn--closed,
+.user-page__nav-bar__btn--closed:active {
   color: #959595;
 }
 
-.user-page__nav-bar__btn--open {
+.user-page__nav-bar__btn--open,
+.user-page__nav-bar__btn--open:active {
   color: white;
   background-color: #6d6d6d;
 }
