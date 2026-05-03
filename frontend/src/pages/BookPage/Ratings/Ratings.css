@@ -1,0 +1,6 @@
+.book-page__ratings-box {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}

@@ -1,0 +1,9 @@
+.book-page__ratings-box__stars-box {
+  display: flex;
+  align-items: center;
+  column-gap: 2px;
+}
+
+.book-page__ratings-box__stars-box__star-icon {
+  width: 15px;
+}
