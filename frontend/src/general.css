@@ -38,3 +38,9 @@ button {
   font-size: 1.3rem;
   color: rgb(183, 6, 6);
 }
+
+.white-black-btn {
+  border: 1px solid black;
+  border-radius: 5px;
+  background: none;
+}

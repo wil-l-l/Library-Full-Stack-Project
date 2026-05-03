@@ -18,7 +18,7 @@ const PaginationBar = ({
       </p>
 
       <button
-        className="search-page__page-display__open-more-btn"
+        className="search-page__page-display__open-more-btn white-black-btn"
         onClick={() => setShowPages(!showPages)}
       >
         PG

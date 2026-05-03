@@ -15,7 +15,7 @@ const BookDisplay = ({ authors, title, summary, cover = null, _id }) => {
           <p className="book-display__title">{title}</p>
         </div>
         <button
-          className="book-display__top-box__open-btn"
+          className="book-display__top-box__open-btn white-black-btn"
           onClick={() => navigate(`/book/${_id}`)}
         >
           OPEN
