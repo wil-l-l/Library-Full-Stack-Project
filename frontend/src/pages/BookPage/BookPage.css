@@ -4,16 +4,15 @@
   align-items: center;
 }
 
-.book-page__buttons-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
 .book-page__book-display {
   margin-top: 20px;
   text-align: center;
+}
+
+.book-page__interaction-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .book-page__interact-bar {
@@ -21,4 +20,8 @@
   align-items: center;
   column-gap: 10px;
   margin-top: 20px;
+}
+
+.book-page__interact-bar__text {
+  font-size: 1.4rem;
 }

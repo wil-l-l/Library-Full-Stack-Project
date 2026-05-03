@@ -1,7 +1,4 @@
 import "./BookPage.css";
-import EBookIcon from "../../assets/icons/ebook.png";
-import HeartIcon from "../../assets/icons/heart.png";
-import ShareIcon from "../../assets/icons/share.png";
 import { useParams } from "react-router";
 import getBookById from "../../utils/getBookById";
 import { useContext, useState } from "react";
@@ -12,6 +9,7 @@ import BookCard from "../../components/BookCard/BookCard";
 import InteractButton from "./InteractButton/InteractButton";
 import Ratings from "./Ratings/Ratings";
 import Details from "./Details/Details";
+import InteractionBar from "./InteractionBar/InteractionBar";
 
 const BookPage = () => {
   const { id } = useParams();
@@ -32,14 +30,7 @@ const BookPage = () => {
       className="book-page page-padding"
       style={{ paddingBottom: "350px" }}
     >
-      <div className="book-page__buttons-bar">
-        <InteractButton icon={ShareIcon} />
-        <div className="book-page__interact-bar">
-          <InteractButton icon={HeartIcon} />
-          <InteractButton icon={HeartIcon} />
-          <InteractButton icon={ShareIcon} />
-        </div>
-      </div>
+      <InteractionBar />
       <div className="book-page__book-display">
         <BookCard
           title={book.title}
