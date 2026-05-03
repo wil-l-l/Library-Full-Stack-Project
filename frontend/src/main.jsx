@@ -5,6 +5,7 @@ import router from "./routes.jsx";
 import { BooksProvider } from "./contexts/BooksContext.jsx";
 import { UserProvider } from "./contexts/UserContext.jsx";
 
+import "./fonts/SFPro.css";
 import "./general.css";
 import "./reset.css";
 

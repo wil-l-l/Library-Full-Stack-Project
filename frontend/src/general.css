@@ -6,9 +6,11 @@ html {
   font-size: 62.5%;
 }
 
-body {
+body,
+button,
+input {
   font-size: 1.6rem;
-  font-family: "lato", sans-serif;
+  font-family: "SF Pro Display", sans-serif;
 }
 
 h2 {
