@@ -2,8 +2,9 @@ import { useState } from "react";
 import "./Details.css";
 import Section from "./Section/Section";
 import { useNavigate } from "react-router";
+import formatAuthorName from "../../../utils/formatAuthorName";
 
-const Details = ({ summary, tags }) => {
+const Details = ({ summary, tags, authors }) => {
   const [doExpandText, setDoExpandText] = useState(false);
   const navigate = useNavigate();
 
@@ -53,6 +54,31 @@ const Details = ({ summary, tags }) => {
               </button>
             ))}
           </div>
+        }
+      />
+      <Section
+        heading={"Authors"}
+        content={
+          <div className="book-page__details__btn-box">
+            {authors.map((name) => (
+              <button
+                className="book-page__details__btn"
+                onClick={() =>
+                  navigate(`/search?author=${formatAuthorName(name)}`)
+                }
+              >
+                {name}
+              </button>
+            ))}
+          </div>
+        }
+      />
+      <Section
+        heading={"Borrow Details"}
+        content={
+          <p>
+            This title is available for 21 days (3 weeks) after you borrow it.
+          </p>
         }
       />
     </div>

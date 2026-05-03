@@ -44,7 +44,7 @@ const BookPage = () => {
         <BookCard title={book.title} authors={book.authors} />
       </div>
       <Ratings />
-      <Details summary={book.summary} tags={book.tags} />
+      <Details summary={book.summary} tags={book.tags} authors={book.authors} />
     </section>
   );
 };
