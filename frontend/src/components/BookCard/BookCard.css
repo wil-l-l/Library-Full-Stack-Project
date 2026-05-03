@@ -7,7 +7,7 @@
 .book-card__img-box {
   height: 150px;
   background-color: rgb(208, 208, 208);
-  border-radius: 9px;
+  border-radius: 12px;
 }
 
 .book-card__title {
