@@ -156,7 +156,8 @@ const MediaPageTopHalf = ({
           />
         </button>
       </div>
-      {user.history.length > 0 &&
+      {user &&
+        user.history.length > 0 &&
         user.history.some(({ _id }) => _id === id) && (
           <form
             action=""

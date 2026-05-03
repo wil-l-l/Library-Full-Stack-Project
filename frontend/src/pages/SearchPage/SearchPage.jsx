@@ -9,9 +9,11 @@ import BookDisplay from "../../components/BookDisplay/BookDisplay";
 import useBooks from "../../hooks/useBooks";
 import PaginationBar from "./PaginationBar/PaginationBar";
 import formatAuthorName from "../../utils/formatAuthorName";
+import useScrollToTop from "../../hooks/useScrollToTop";
 
 const SearchPage = () => {
   // HOOKS
+  useScrollToTop();
   const [searchParams] = useSearchParams();
   const location = useLocation();
 
