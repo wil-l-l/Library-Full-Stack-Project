@@ -30,7 +30,7 @@ const BookPage = () => {
   ) : (
     <section
       className="book-page page-padding"
-      style={{ paddingBottom: "800px" }}
+      style={{ paddingBottom: "350px" }}
     >
       <div className="book-page__buttons-bar">
         <InteractButton icon={ShareIcon} />
@@ -41,7 +41,19 @@ const BookPage = () => {
         </div>
       </div>
       <div className="book-page__book-display">
-        <BookCard title={book.title} authors={book.authors} />
+        <BookCard
+          title={book.title}
+          authors={book.authors}
+          style={{
+            card: {
+              zoom: "1.1",
+              rowGap: "5px",
+            },
+            imgBox: {
+              height: "160px",
+            },
+          }}
+        />
       </div>
       <Ratings />
       <Details summary={book.summary} tags={book.tags} authors={book.authors} />
