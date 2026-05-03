@@ -1,6 +1,7 @@
 .book-card {
   cursor: pointer;
   width: 100%;
+  min-width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -15,9 +16,11 @@
   margin-top: 10px;
   font-weight: 600;
   font-size: 1.35rem;
+  overflow-wrap: break-word;
 }
 
 .book-card__author {
   color: #959595;
   font-size: 1.2rem;
+  overflow-wrap: break-word;
 }
