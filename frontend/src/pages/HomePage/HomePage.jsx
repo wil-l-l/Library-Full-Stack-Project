@@ -21,8 +21,8 @@ function HomePage() {
       .filter(({ type, popular, trending }) => {
         return category.match(new RegExp(type, "gi")) && popular && !trending;
       })
-      .map(({ authors, title }) => (
-        <BookCard title={title} authors={authors} />
+      .map(({ authors, title, _id }) => (
+        <BookCard title={title} authors={authors} _id={_id} />
       ));
 
   return books === null ? (

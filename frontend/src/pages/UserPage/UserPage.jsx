@@ -15,8 +15,7 @@ const UserPage = () => {
   };
 
   const [activeTab, setActiveTab] = useState(tabs.borrowed);
-  const { user, setUser } = useContext(UserContext);
-  const navigate = useNavigate();
+  const { user } = useContext(UserContext);
 
   useScrollToTop();
 
@@ -26,20 +25,6 @@ const UserPage = () => {
       : activeTab === tabs.history
         ? user.history
         : user.favorites;
-
-  const bookBtnClickHandler = async (endpoint) => {
-    let response = await fetch(endpoint, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userId: user._id,
-      }),
-    });
-    response = await response.json();
-    if (response.success) setUser(response.data);
-  };
 
   return (
     <section
