@@ -26,3 +26,25 @@
 .book-page__interact-bar__text {
   font-size: 1.4rem;
 }
+
+.book-page__tab-bar {
+  margin-top: 20px;
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.book-page__tab-bar__btn {
+  border: none;
+  background: none;
+  font-size: 1.7rem;
+  font-weight: 500;
+  padding-bottom: 3px;
+}
+
+.book-page__tab-bar__btn--open {
+  border-bottom: 1px solid black;
+}
+.book-page__tab-bar__btn--closed {
+  opacity: 0.5;
+}

@@ -21,6 +21,19 @@ const BookPage = () => {
 
   useBooks((loadedBooks) => setBook(getBookById(id, loadedBooks)));
 
+  const details = "Details";
+  const rate = "Rate";
+  const [activeTab, setActiveTab] = useState(details);
+
+  const getActiveTabBtn = (tab) => (
+    <button
+      className={`book-page__tab-bar__btn book-page__tab-bar__btn--${activeTab === tab ? "open" : "closed"}`}
+      onClick={() => setActiveTab(tab)}
+    >
+      {tab}
+    </button>
+  );
+
   return !books || book === null ? (
     <p>Book is loading...</p>
   ) : book === false ? (
@@ -47,7 +60,17 @@ const BookPage = () => {
         />
       </div>
       <Ratings ratersCount={book.ratersCount} ratingStars={book.ratingStars} />
-      <Details summary={book.summary} tags={book.tags} authors={book.authors} />
+      <div className="book-page__tab-bar">
+        {getActiveTabBtn(details)}
+        {getActiveTabBtn(rate)}
+      </div>
+      {activeTab === details && (
+        <Details
+          summary={book.summary}
+          tags={book.tags}
+          authors={book.authors}
+        />
+      )}
     </section>
   );
 };
