@@ -11,6 +11,7 @@ import useScrollToTop from "../../hooks/useScrollToTop";
 import BookCard from "../../components/BookCard/BookCard";
 import InteractButton from "./InteractButton/InteractButton";
 import Ratings from "./Ratings/Ratings";
+import Details from "./Details/Details";
 
 const BookPage = () => {
   const { id } = useParams();
@@ -43,6 +44,7 @@ const BookPage = () => {
         <BookCard title={book.title} authors={book.authors} />
       </div>
       <Ratings />
+      <Details summary={book.summary} tags={book.tags} />
     </section>
   );
 };

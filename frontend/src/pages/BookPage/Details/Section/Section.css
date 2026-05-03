@@ -1,0 +1,14 @@
+.book-page__details__section__heading {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.book-page__details__section__content-box {
+  margin-top: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 1.2rem;
+  color: #434343;
+  line-height: 17px;
+}
