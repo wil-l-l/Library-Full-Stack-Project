@@ -1,0 +1,28 @@
+.user-page__nav-bar {
+  margin-top: 20px;
+  list-style: none;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  text-align: center;
+  height: 60px;
+  background-color: #f7f7f7;
+  border-radius: 80px;
+}
+
+.user-page__nav-bar__btn {
+  border: none;
+  background: transparent;
+  font-weight: 500;
+  font-size: 1.3rem;
+}
+
+.user-page__nav-bar__btn--closed {
+  color: #959595;
+}
+
+.user-page__nav-bar__btn--open {
+  color: white;
+  background-color: #6d6d6d;
+}

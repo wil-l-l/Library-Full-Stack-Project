@@ -1,5 +1,5 @@
 :root {
-  --page-padding: 12px;
+  --page-padding: 14px;
 }
 
 html {
@@ -11,6 +11,7 @@ button,
 input {
   font-size: 1.6rem;
   font-family: "SF Pro Display", sans-serif;
+  letter-spacing: 0.2px;
 }
 
 h2 {

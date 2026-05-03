@@ -4,18 +4,25 @@ import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { useNavigate } from "react-router";
 import useScrollToTop from "../../hooks/useScrollToTop";
+import UserNavBar from "./UserNavBar/UserNavBar";
+import BookCard from "../../components/BookCard/BookCard";
 
 const UserPage = () => {
-  const [activeTab, setActiveTab] = useState("borrowed");
+  const tabs = {
+    borrowed: "Borrowed",
+    favorites: "Favorites",
+    history: "History",
+  };
+  const [activeTab, setActiveTab] = useState(tabs.borrowed);
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   useScrollToTop();
 
   const listToIterThrough = () =>
-    activeTab === "borrowed"
+    activeTab === tabs.borrowed
       ? user.books
-      : activeTab === "history"
+      : activeTab === tabs.history
         ? user.history
         : user.favorites;
 
@@ -34,71 +41,23 @@ const UserPage = () => {
   };
 
   return (
-    <>
-      <NavBar />
-      <section className="user-page" style={{ marginBottom: " 1000px" }}>
-        <div className="user-page__tabs-bar">
-          <button
-            className={`user-page__tabs-bar__btn user-page__tabs-bar__btn--${"borrowed" === activeTab ? "open" : "closed"} `}
-            onClick={() => setActiveTab("borrowed")}
-          >
-            Borrowed
-          </button>
-          <button
-            className={`user-page__tabs-bar__btn user-page__tabs-bar__btn--${"favorites" === activeTab ? "open" : "closed"} `}
-            onClick={() => setActiveTab("favorites")}
-          >
-            Favorites
-          </button>
-          <button
-            className={`user-page__tabs-bar__btn user-page__tabs-bar__btn--${"history" === activeTab ? "open" : "closed"} `}
-            onClick={() => setActiveTab("history")}
-          >
-            History
-          </button>
-          <button
-            className={`user-page__tabs-bar__btn user-page__tabs-bar__btn--closed `}
-            onClick={() => {
-              setUser(null);
-              localStorage.setItem("user", null);
-              navigate("/");
-            }}
-          >
-            Logout
-          </button>
-        </div>
-        <ul className="user-page__active-cards-list">
-          {listToIterThrough() &&
-            listToIterThrough().length > 0 &&
-            listToIterThrough().map(({ title, _id }) => (
-              <li
-                className="user-page__active-cards-list__book-card"
-                onClick={() => navigate(`/book/${_id}`)}
-              >
-                <p>{title}</p>
-                {activeTab === "borrowed" && (
-                  <button
-                    onClick={() =>
-                      bookBtnClickHandler(`/api/loan/return/${_id}`)
-                    }
-                  >
-                    Return
-                  </button>
-                )}
-                {activeTab === "favorites" && (
-                  <button
-                    onClick={() =>
-                      bookBtnClickHandler(`/api/user/unfavorite/${_id}`)
-                    }
-                  >
-                    Unfavorite
-                  </button>
-                )}
-              </li>
-            ))}
-        </ul>
-      </section>
-    </>
+    <section
+      className="user-page page-padding"
+      style={{ marginBottom: " 1000px" }}
+    >
+      <UserNavBar tabs={[tabs.borrowed, tabs.favorites, tabs.history]} />
+      <h3 className="user-page__active-tab-text">{activeTab}</h3>
+      <div className="user-page__book-cards-box">
+        <BookCard title={"The Atomic Habits"} authors={["James Clear"]} />
+        <BookCard title={"The Atomic Habits"} authors={["James Clear"]} />
+        <BookCard title={"The Atomic Habits"} authors={["James Clear"]} />
+        
+        
+        <BookCard title={"The Atomic Habits"} authors={["James Clear"]} />
+        <BookCard title={"The Atomic Habits"} authors={["James Clear"]} />
+        <BookCard title={"The Atomic Habits"} authors={["James Clear"]} />
+      </div>
+    </section>
   );
 };
 
