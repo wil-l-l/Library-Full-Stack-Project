@@ -3,6 +3,8 @@ import "./Details.css";
 import Section from "./Section/Section";
 import { useNavigate } from "react-router";
 import formatAuthorName from "../../../utils/formatAuthorName";
+import PlusIcon from "../../../assets/icons/plus.png";
+import MinusIcon from "../../../assets/icons/minus.png";
 
 const Details = ({ summary, tags, authors }) => {
   const [doExpandText, setDoExpandText] = useState(false);
@@ -36,7 +38,12 @@ const Details = ({ summary, tags, authors }) => {
               style={{ zoom: ".8", fontWeight: "600px", marginTop: "10px" }}
               onClick={() => setDoExpandText(!doExpandText)}
             >
-              {doExpandText ? "-" : "+"}
+              <img
+                src={!doExpandText ? PlusIcon : MinusIcon}
+                alt=""
+                style={{ width: "16px" }}
+                className="book-page__interact-btn__icon"
+              />
             </button>
           </>
         }
