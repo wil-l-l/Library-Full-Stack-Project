@@ -1,0 +1,12 @@
+.book-page__rating-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 15px;
+}
+
+.book-page__rating-input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid black;
+}

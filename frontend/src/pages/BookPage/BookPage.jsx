@@ -10,6 +10,7 @@ import InteractButton from "./InteractButton/InteractButton";
 import Ratings from "./Ratings/Ratings";
 import Details from "./Details/Details";
 import InteractionBar from "./InteractionBar/InteractionBar";
+import RatingBox from "./RatingBox/RatingBox";
 
 const BookPage = () => {
   const { id } = useParams();
@@ -64,12 +65,14 @@ const BookPage = () => {
         {getActiveTabBtn(details)}
         {getActiveTabBtn(rate)}
       </div>
-      {activeTab === details && (
+      {activeTab === details ? (
         <Details
           summary={book.summary}
           tags={book.tags}
           authors={book.authors}
         />
+      ) : (
+        <RatingBox id={id} />
       )}
     </section>
   );
