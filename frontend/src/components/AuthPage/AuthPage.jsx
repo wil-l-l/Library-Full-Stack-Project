@@ -80,6 +80,7 @@ const AuthPage = ({
         )}
       </form>
       {outsideChildren}
+      <Link to={"/home"} className="auth-page__home-page-link" >Browse our catalog without an account!</Link>
     </div>
   );
 };
