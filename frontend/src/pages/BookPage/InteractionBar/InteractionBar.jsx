@@ -11,14 +11,17 @@ const InteractionBar = () => {
     share: "Share",
   };
 
-  const [currentAction, setCurrentAction] = useState(actions.borrow);
+  const [currentAction, setCurrentAction] = useState(null);
 
-  const getInteractBtn = (action, icon) => (
+  const getInteractBtn = (action, icon, clickHandler = null) => (
     <InteractButton
       action={action}
       setCurrentAction={setCurrentAction}
       currentAction={currentAction}
       icon={icon}
+      clickHandler={
+        clickHandler ? clickHandler : () => console.log("Run click handler")
+      }
     />
   );
 
@@ -29,7 +32,9 @@ const InteractionBar = () => {
         {getInteractBtn(actions.favorite, HeartIcon)}
         {getInteractBtn(actions.share, ShareIcon)}
       </div>
-      <p className="book-page__interact-bar__text">{currentAction}</p>
+      <p className="book-page__interact-bar__text">
+        {currentAction === null ? "Click a button to start." : currentAction}
+      </p>
     </div>
   );
 };
