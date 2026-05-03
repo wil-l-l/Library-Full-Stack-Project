@@ -1,12 +1,14 @@
 import "./Ratings.css";
 import Stars from "./Stars/Stars";
 
-const Ratings = () => {
-  return (
+const Ratings = ({ ratersCount = null, ratingStars = null }) => {
+  return !ratersCount ? (
+    <p className="book-page__ratings-box">Book has not been rated!</p>
+  ) : (
     <div className="book-page__ratings-box">
-      <p>4.0</p>
+      <p>{ratersCount}</p>
       <Stars />
-      <p>(22)</p>
+      <p>({ratingStars})</p>
     </div>
   );
 };

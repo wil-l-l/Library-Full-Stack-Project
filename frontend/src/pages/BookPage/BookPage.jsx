@@ -46,7 +46,7 @@ const BookPage = () => {
           }}
         />
       </div>
-      <Ratings />
+      <Ratings ratersCount={book.ratersCount} ratingStars={book.ratingStars} />
       <Details summary={book.summary} tags={book.tags} authors={book.authors} />
     </section>
   );
