@@ -4,11 +4,12 @@ import HeartIcon from "../../../assets/icons/heart.png";
 import ShareIcon from "../../../assets/icons/share.png";
 import { useContext, useState } from "react";
 import { UserContext } from "../../../contexts/UserContext";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 const InteractionBar = ({ id }) => {
   const { user, setUser } = useContext(UserContext);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const actions = {
     borrow: "Borrow",
@@ -19,6 +20,8 @@ const InteractionBar = ({ id }) => {
   const [currentAction, setCurrentAction] = useState(null);
 
   const bookBtnClickHandler = async (endpoint) => {
+    if (!user) navigate("/login");
+
     let response = await fetch(endpoint, {
       method: "PATCH",
       headers: {
