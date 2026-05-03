@@ -54,13 +54,12 @@ const UserPage = () => {
       />
       <h3 className="user-page__active-tab-text">{activeTab}</h3>
       <div className="user-page__book-cards-box">
-        <BookCard title={"The Atomic Habits"} authors={["James Clear"]} />
-        <BookCard title={"The Atomic Habits"} authors={["James Clear"]} />
-        <BookCard title={"The Atomic Habits"} authors={["James Clear"]} />
-
-        <BookCard title={"The Atomic Habits"} authors={["James Clear"]} />
-        <BookCard title={"The Atomic Habits"} authors={["James Clear"]} />
-        <BookCard title={"The Atomic Habits"} authors={["James Clear"]} />
+        {listToIterThrough() &&
+          listToIterThrough().length > 0 &&
+          listToIterThrough().map(({ title, authors, _id }) => (
+            <BookCard title={title} authors={authors} _id={_id} />
+          ))}
+        {!listToIterThrough() && <p>{activeTab} shelf is empty</p>}
       </div>
     </section>
   );

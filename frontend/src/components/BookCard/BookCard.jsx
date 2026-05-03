@@ -5,6 +5,7 @@ const BookCard = ({
   img = null,
   title,
   authors,
+  _id,
   style = { card: null, imgBox: null },
 }) => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const BookCard = ({
   return (
     <div
       className="book-card"
-      onClick={() => navigate(`/book/${"69f64e7f1e27fc093e17997f"}`)}
+      onClick={() => navigate(`/book/${_id}`)}
       style={style.card}
     >
       <div className="book-card__img-box" style={style.imgBox}></div>
