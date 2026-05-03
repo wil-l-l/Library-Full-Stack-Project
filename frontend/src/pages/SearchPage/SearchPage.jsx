@@ -4,7 +4,6 @@ import SearchNavBtns from "./SearchNavBtns/SearchNavBtns";
 import { useContext, useState } from "react";
 import { BooksContext } from "../../contexts/BooksContext";
 import { useLocation, useSearchParams } from "react-router";
-import GenericSlideItem from "../../components/GenericSlideItem/GenericSlideItem";
 import BookDisplay from "../../components/BookDisplay/BookDisplay";
 import useBooks from "../../hooks/useBooks";
 import PaginationBar from "./PaginationBar/PaginationBar";

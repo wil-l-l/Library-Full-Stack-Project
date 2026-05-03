@@ -34,12 +34,6 @@ button {
   text-decoration: underline;
 }
 
-.horizontal-scroll-box {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-}
-
 .error-text {
   font-size: 1.3rem;
   color: rgb(183, 6, 6);

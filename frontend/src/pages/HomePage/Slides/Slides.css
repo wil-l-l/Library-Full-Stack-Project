@@ -1,0 +1,29 @@
+.slides-title-box {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.slides__title {
+  font-size: 1.6rem;
+}
+
+.slides__see-all-text {
+  cursor: pointer;
+  opacity: 0.4;
+}
+
+.slides {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  column-gap: 10px;
+}
+
+.slides .book-card {
+  min-width: 120px;
+}
