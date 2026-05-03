@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 import { CiUser } from "react-icons/ci";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
+import SearchBar from "../SearchBar/SearchBar";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -14,21 +15,11 @@ const NavBar = () => {
 
   return (
     <nav className="nav-bar">
-      <div className="nav-bar__text-box" onClick={() => navigate(`/`)}>
-        <p className="nav-bar__text-box__welcome-txt">Welcome to</p>
-        <p className="nav-bar__text-box__library-txt">E-Library</p>
+      <div className="nav-bar__profile-img-box">
+        <img src="" alt="" />
       </div>
-      <div className="nav-bar__items-box">
-        <div className="nav-bar__user-icon-box">
-          <p className="nav-bar__user-icon-box__username">
-            {user ? user.username : "Not logged in"}
-          </p>
-          <CiUser
-            size={35}
-            onClick={() => navigate(`/${user ? "user" : "login"}`)}
-          />
-        </div>
-        <NavBarItem icon={SearchIcon} />
+      <div className="nav-bar__search-bar">
+        <SearchBar />
       </div>
     </nav>
   );

@@ -35,7 +35,7 @@ function HomePage() {
       style={{ marginBottom: "1000px" }}
     >
       <main className="home-page__main-section">
-        <SearchBar />
+        <NavBar />
         <Slides
           title={categories.ebook}
           slides={getBooksByCategory(categories.ebook)}

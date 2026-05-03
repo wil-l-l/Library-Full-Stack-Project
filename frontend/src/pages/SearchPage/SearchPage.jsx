@@ -120,9 +120,12 @@ const SearchPage = () => {
     <p>Could not load search page. Please try again! </p>
   ) : (
     <>
-      <NavBar />
-      <main className="search-page" style={{ marginBottom: "2000px" }}>
-        <div className="search-page-results-box page-padding">
+      <main
+        className="search-page page-padding"
+        style={{ marginBottom: "2000px" }}
+      >
+        <div>
+          <NavBar />
           <p className="search-page-results-box__line-1">
             {filteredBooks.length} MATCHES IN
           </p>

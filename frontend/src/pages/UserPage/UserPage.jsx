@@ -46,6 +46,7 @@ const UserPage = () => {
       className="user-page page-padding"
       style={{ marginBottom: " 1000px" }}
     >
+      <NavBar />
       <UserNavBar
         tabs={[tabs.borrowed, tabs.favorites, tabs.history]}
         activeTab={activeTab}
