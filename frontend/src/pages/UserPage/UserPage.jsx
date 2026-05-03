@@ -1,6 +1,6 @@
 import NavBar from "../../components/NavBar/NavBar";
 import "./UserPage.css";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { useNavigate } from "react-router";
 import useScrollToTop from "../../hooks/useScrollToTop";
@@ -15,9 +15,14 @@ const UserPage = () => {
   };
 
   const [activeTab, setActiveTab] = useState(tabs.borrowed);
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   useScrollToTop();
+
+  useEffect(() => {
+    !user && navigate("/login");
+  }, [user, navigate]);
 
   const listToIterThrough = () =>
     activeTab === tabs.borrowed
@@ -37,15 +42,29 @@ const UserPage = () => {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />
-      <h3 className="user-page__active-tab-text">{activeTab}</h3>
-      <div className="user-page__book-cards-box">
-        {listToIterThrough() &&
-          listToIterThrough().length > 0 &&
-          listToIterThrough().map(({ title, authors, _id }) => (
-            <BookCard title={title} authors={authors} _id={_id} />
-          ))}
-        {!listToIterThrough() && <p>{activeTab} shelf is empty</p>}
+      <div className="user-page__active-tab-box">
+        <h3 className="user-page__active-tab-text">{activeTab}</h3>
+        <button
+          className="user-page__active-tab-box__logout-btn white-black-btn"
+          onClick={() => {
+            setUser(null);
+            localStorage.setItem("user", null);
+            navigate("/");
+          }}
+        >
+          Logout
+        </button>
       </div>
+      {user && (
+        <div className="user-page__book-cards-box">
+          {listToIterThrough() &&
+            listToIterThrough().length > 0 &&
+            listToIterThrough().map(({ title, authors, _id }) => (
+              <BookCard title={title} authors={authors} _id={_id} />
+            ))}
+          {!listToIterThrough() && <p>{activeTab} shelf is empty</p>}
+        </div>
+      )}
     </section>
   );
 };

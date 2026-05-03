@@ -4,9 +4,15 @@
   justify-content: center;
   align-items: flex-start;
 }
+.user-page__active-tab-box {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
 
 .user-page__active-tab-text {
-  margin-top: 20px;
   font-size: 1.45rem;
   font-weight: 600;
 }
@@ -18,4 +24,8 @@
   column-gap: 14px;
   row-gap: 13px;
   min-width: 113px;
+}
+
+.user-page__active-tab-box__logout-btn {
+  padding: 5px 12px;
 }

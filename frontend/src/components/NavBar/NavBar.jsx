@@ -2,13 +2,11 @@ import "./NavBar.css";
 import NavBarItem from "./NavBarItem/NavBarItem";
 import SearchIcon from "../../assets/icons/search--white.png";
 import { useNavigate } from "react-router";
-import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import SearchBar from "../SearchBar/SearchBar";
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const { user } = useContext(UserContext);
 
   return (
     <nav className="nav-bar">
