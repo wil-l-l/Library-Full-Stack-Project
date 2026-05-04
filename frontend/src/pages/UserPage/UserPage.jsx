@@ -59,7 +59,7 @@ const UserPage = () => {
   return (
     <section
       className="user-page page-padding"
-      style={{ marginBottom: " 1000px" }}
+      style={{ marginBottom: " 100px" }}
     >
       <NavBar />
       <UserNavBar
