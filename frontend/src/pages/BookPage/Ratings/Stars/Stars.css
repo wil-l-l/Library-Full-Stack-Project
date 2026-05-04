@@ -7,3 +7,9 @@
 .book-page__ratings-box__stars-box__star-icon {
   width: 15px;
 }
+
+@media (min-width: 768px) {
+  .book-page__ratings-box__stars-box__star-icon {
+    width: 17px;
+  }
+}
