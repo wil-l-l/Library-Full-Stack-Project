@@ -59,7 +59,7 @@ const InteractionBar = ({ id }) => {
         )}
       </div>
       <p className="book-page__interact-bar__text">
-        {currentAction === null ? "Click a button to start." : currentAction}
+        {currentAction === null ? "..." : currentAction}
       </p>
     </div>
   );
