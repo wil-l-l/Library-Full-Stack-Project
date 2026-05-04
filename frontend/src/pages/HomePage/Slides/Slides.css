@@ -51,6 +51,9 @@
   .slides__see-all-text {
     font-size: 1.8rem;
   }
+  .slides::-webkit-scrollbar {
+    height: 9px;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -62,5 +65,8 @@
   }
   .slides .book-card {
     zoom: 1.2;
+  }
+  .slides::-webkit-scrollbar {
+    height: 10px;
   }
 }
