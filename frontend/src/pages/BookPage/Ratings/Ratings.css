@@ -5,3 +5,10 @@
   align-items: center;
   column-gap: 10px;
 }
+
+@media (min-width: 1024px) {
+  .book-page__ratings-box {
+    margin-left: 9px;
+    zoom: 1.1;
+  }
+}
