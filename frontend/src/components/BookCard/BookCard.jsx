@@ -40,7 +40,9 @@ const BookCard = ({
       <div className="book-card__img-box" style={style.imgBox}></div>
       <p className="book-card__title">{title}</p>
       {authors.map((name) => (
-        <p className="book-card__author">{name}</p>
+        <p className="book-card__author" key={name}>
+          {name}
+        </p>
       ))}
     </div>
   );

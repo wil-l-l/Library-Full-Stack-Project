@@ -22,7 +22,7 @@ function HomePage() {
         return category.match(new RegExp(type, "gi")) && popular && !trending;
       })
       .map(({ authors, title, _id }) => (
-        <BookCard title={title} authors={authors} _id={_id} />
+        <BookCard title={title} authors={authors} _id={_id} key={_id} />
       ));
 
   return books === null ? (
