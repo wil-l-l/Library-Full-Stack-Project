@@ -1,0 +1,11 @@
+.error-page {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+}
+
+.error-page__btn {
+  padding: 15px;
+}

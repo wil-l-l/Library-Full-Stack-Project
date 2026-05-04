@@ -6,9 +6,10 @@ import BookPage from "./pages/BookPage/BookPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import UserPage from "./pages/UserPage/UserPage";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
-  { element: <HomePage />, path: "/" },
+  { element: <HomePage />, path: "/", errorElement: <ErrorPage /> },
   {
     element: <HomePage />,
     path: "/home",
