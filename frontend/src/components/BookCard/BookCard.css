@@ -13,6 +13,13 @@
   border-radius: 12px;
 }
 
+.book-card__img-box__cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
 .book-card__title {
   margin-top: 10px;
   font-weight: 600;

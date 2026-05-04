@@ -20,10 +20,10 @@
 .user-page__book-cards-box {
   padding: 10px 0px;
   display: grid;
-  grid-template-columns: repeat(3, 113px);
+  grid-template-columns: repeat(3, 109px);
   column-gap: 14px;
   row-gap: 13px;
-  min-width: 113px;
+  min-width: 109px;
 }
 
 .user-page__active-tab-box__logout-btn {

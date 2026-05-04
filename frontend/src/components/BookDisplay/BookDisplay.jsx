@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router";
 import "./BookDisplay.css";
+import getRandomCover from "../../utils/getRandomCover";
 
-const BookDisplay = ({ authors, title, summary, cover = null, _id }) => {
+const BookDisplay = ({ authors, title, summary, _id }) => {
   const navigate = useNavigate();
   const TEXT_THRESHOLD = 200;
 
@@ -24,7 +25,13 @@ const BookDisplay = ({ authors, title, summary, cover = null, _id }) => {
         </button>
       </div>
       <div className="book-display__book-card">
-        <div className="book-display__book-card__cover-box"></div>
+        <div className="book-display__book-card__cover-box">
+          <img
+            src={getRandomCover()}
+            alt=""
+            className="book-display__book-card__cover-box__cover"
+          />
+        </div>
         <div className="book-display__book-card__summary">
           {summary.length > TEXT_THRESHOLD
             ? summary.slice(0, TEXT_THRESHOLD) + `...`
