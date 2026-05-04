@@ -37,3 +37,15 @@
 .search-page__pagination-menu__input::placeholder {
   font-size: 1.4rem;
 }
+
+@media (min-width: 768px) {
+  .search-page__page-display {
+    zoom: 1.3;
+  }
+}
+
+@media (min-width: 1024px) {
+  .search-page__page-display {
+    zoom: 1.5;
+  }
+}

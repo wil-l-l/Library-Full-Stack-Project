@@ -59,3 +59,15 @@
   text-align: right;
   overflow-wrap: break-word;
 }
+
+@media (min-width: 768px) {
+  .book-display {
+    zoom: 1.2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .book-display {
+    zoom: 1.5;
+  }
+}
