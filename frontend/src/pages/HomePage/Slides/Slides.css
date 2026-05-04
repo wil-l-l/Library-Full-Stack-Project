@@ -17,6 +17,9 @@
   cursor: pointer;
   opacity: 0.4;
 }
+.slides__see-all-text:hover {
+  text-decoration: underline;
+}
 
 .slides {
   margin-top: 10px;
@@ -38,4 +41,26 @@
 .slides::-webkit-scrollbar-thumb {
   background-color: black;
   border-radius: 5px;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .slides__title {
+    font-size: 2rem;
+  }
+  .slides__see-all-text {
+    font-size: 1.8rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .slides__title {
+    font-size: 2.2rem;
+  }
+  .slides__see-all-text {
+    font-size: 1.9rem;
+  }
+  .slides .book-card {
+    zoom: 1.2;
+  }
 }

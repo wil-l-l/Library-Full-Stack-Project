@@ -32,7 +32,7 @@ function HomePage() {
   ) : (
     <section
       className="home-page page-padding"
-      style={{ marginBottom: "1000px" }}
+      style={{ marginBottom: "50px" }}
     >
       <main className="home-page__main-section">
         <NavBar />
