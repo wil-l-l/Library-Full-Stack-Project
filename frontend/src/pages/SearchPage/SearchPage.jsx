@@ -150,6 +150,7 @@ const SearchPage = () => {
                       summary={summary}
                       cover={cover}
                       _id={_id}
+                      key={_id}
                     />
                   ),
               )

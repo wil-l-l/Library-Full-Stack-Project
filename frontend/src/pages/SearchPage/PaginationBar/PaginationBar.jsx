@@ -17,6 +17,7 @@ const PaginationBar = ({
       <li
         className="search-page__page-display__pages-list__item"
         onClick={() => setPage(pageNum)}
+        key={other || pageNum}
       >
         {other === null ? `Page ${pageNum}` : other}
       </li>

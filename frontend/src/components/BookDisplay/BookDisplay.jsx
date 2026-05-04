@@ -10,7 +10,9 @@ const BookDisplay = ({ authors, title, summary, cover = null, _id }) => {
       <div className="book-display__top-box">
         <div className="book-display__top-box__left">
           {authors.map((name) => (
-            <p className="book-display__authors">{name}</p>
+            <p className="book-display__authors" key={name}>
+              {name}
+            </p>
           ))}
           <p className="book-display__title">{title}</p>
         </div>
