@@ -10,12 +10,13 @@ const User = mongoose.model(
       required: true,
       minlength: 7,
       maxlength: 22,
+      unique: true,
     },
     password: {
       type: String,
       required: true,
       minlength: 8,
-      maxlength: 200,
+      maxlength: 300,
       select: false,
     },
     books: {
@@ -36,7 +37,7 @@ const User = mongoose.model(
 function validateUser(reqBody) {
   const schema = Joi.object({
     username: Joi.string().min(7).max(22).required(),
-    password: Joi.string().min(8).max(200).required(),
+    password: Joi.string().min(8).max(300).required(),
   });
 
   return schema.validate(reqBody);

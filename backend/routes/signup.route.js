@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { User, validateUser } = require("../models/user.model");
+const bcrypt = require("bcrypt");
 
 router.post("/", async (req, res) => {
   const { username, password } = req.body;
@@ -23,6 +24,10 @@ router.post("/", async (req, res) => {
     username,
     password,
   });
+
+  const salt = await bcrypt.genSalt();
+  newUser.password = await bcrypt.hash(password, salt);
+
   newUser = await newUser.save();
 
   res.status(201).send({
@@ -30,6 +35,7 @@ router.post("/", async (req, res) => {
     data: {
       ...newUser._doc,
       __v: undefined,
+      password: undefined,
     },
     message: "Successfully created new user",
   });
