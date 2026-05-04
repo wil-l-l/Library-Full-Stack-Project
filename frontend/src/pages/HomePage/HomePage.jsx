@@ -36,6 +36,8 @@ function HomePage() {
     >
       <main className="home-page__main-section">
         <NavBar />
+        <h3 className="home-page__below-nav-text-1">Welcome to</h3>
+        <h3 className="home-page__below-nav-text-2">ELibrary</h3>
         <Slides
           title={categories.ebook}
           slides={getBooksByCategory(categories.ebook)}
