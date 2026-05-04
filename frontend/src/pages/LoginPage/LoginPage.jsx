@@ -10,7 +10,7 @@ const LoginPage = () => {
 
   return (
     <AuthPage
-      heading={"Log in"}
+      heading={"Login"}
       subheading={"Log in to use all the features of this app!"}
       endpoint={"login"}
       doOnSuccess={(responseData) => {

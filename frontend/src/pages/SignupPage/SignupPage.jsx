@@ -7,7 +7,7 @@ const SignupPage = () => {
 
   return (
     <AuthPage
-      heading={"Sign up"}
+      heading={"Signup"}
       subheading={"Sign up to borrow books online!"}
       endpoint={"signup"}
       showOnSuccess={
