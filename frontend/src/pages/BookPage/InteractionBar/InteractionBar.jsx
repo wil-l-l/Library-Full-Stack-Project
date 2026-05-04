@@ -1,3 +1,4 @@
+import "./InteractionBar.css";
 import InteractButton from "../InteractButton/InteractButton";
 import EBookIcon from "../../../assets/icons/ebook.png";
 import HeartIcon from "../../../assets/icons/heart.png";

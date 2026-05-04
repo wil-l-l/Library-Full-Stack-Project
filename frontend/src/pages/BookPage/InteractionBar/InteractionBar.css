@@ -1,0 +1,23 @@
+.book-page__interact-bar {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  margin-top: 20px;
+}
+
+.book-page__interact-bar__text {
+  margin-top: 10px;
+  font-size: 1.4rem;
+}
+
+@media (min-width: 768px) {
+  .book-page__interact-bar__text {
+    font-size: 1.6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .book-page__interact-bar__text {
+    font-size: 1.8rem;
+  }
+}

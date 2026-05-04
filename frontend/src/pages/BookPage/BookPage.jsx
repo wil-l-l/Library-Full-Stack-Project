@@ -42,7 +42,7 @@ const BookPage = () => {
   ) : (
     <section
       className="book-page page-padding"
-      style={{ paddingBottom: "350px" }}
+      style={{ paddingBottom: "80px" }}
     >
       <InteractionBar id={id} />
       <div className="book-page__book-display">

@@ -20,3 +20,15 @@
   padding: 7px 10px;
   background: none;
 }
+
+@media (min-width: 768px) {
+  .book-page__details {
+    zoom: 1.2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .book-page__details {
+    zoom: 1.3;
+  }
+}
