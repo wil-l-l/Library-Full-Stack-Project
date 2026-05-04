@@ -72,6 +72,7 @@ const Details = ({ summary, tags, authors }) => {
               <button
                 className="book-page__details__btn"
                 onClick={() => navigate(`/search?tag=${tag.toLowerCase()}`)}
+                key={tag}
               >
                 {tag}
               </button>
@@ -89,6 +90,7 @@ const Details = ({ summary, tags, authors }) => {
                 onClick={() =>
                   navigate(`/search?author=${formatAuthorName(name)}`)
                 }
+                key={name}
               >
                 {name}
               </button>

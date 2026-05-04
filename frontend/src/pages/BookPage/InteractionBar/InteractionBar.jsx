@@ -28,6 +28,7 @@ const InteractionBar = ({ id }) => {
       currentAction={currentAction}
       icon={icon}
       clickHandler={clickHandler}
+      key={action}
     />
   );
 
