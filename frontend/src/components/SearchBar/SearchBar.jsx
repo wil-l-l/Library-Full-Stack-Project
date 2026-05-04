@@ -21,6 +21,7 @@ const SearchBar = () => {
           });
           setSearchText("");
         }}
+        className="search-bar__form"
       >
         <input
           type="text"
