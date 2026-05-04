@@ -20,7 +20,7 @@ const PaginationBar = ({
       >
         {other === null ? `Page ${pageNum}` : other}
       </li>
-    ) : pageNumFormref.current === null ? (
+    ) : (
       <form
         action="
     "
@@ -46,7 +46,7 @@ const PaginationBar = ({
           onKeyDown={(e) => e.key === "Escape" && pageNumFormref.current.blur()}
         />
       </form>
-    ) : null;
+    );
 
   const SPLIT_THRESHOLD = 6;
 
@@ -70,7 +70,9 @@ const PaginationBar = ({
               : pageRange.map((pageNum, index) =>
                   index + 1 < SPLIT_THRESHOLD || index + 1 === MAX_PAGES
                     ? getPageListItem(pageNum)
-                    : getPageListItem(null, "..."),
+                    : index + 1 === SPLIT_THRESHOLD
+                      ? getPageListItem(null, "...")
+                      : null,
                 )}
           </ul>
         )}
