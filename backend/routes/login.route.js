@@ -2,8 +2,6 @@ const express = require("express");
 const router = express.Router();
 const { User, validateUser } = require("../models/user.model");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const config = require("config");
 
 router.post("/", async (req, res) => {
   const { username, password } = req.body;
@@ -30,15 +28,10 @@ router.post("/", async (req, res) => {
       .status(404)
       .send({ success: false, message: "Incorrect username or password" });
 
-  const userJWT = jwt.sign(
-    { ...userFound._doc, password: undefined },
-    config.get("jwtPrivateKey"),
-  );
-
   res.status(200).send({
     success: true,
     message: "Successfully logged in.",
-    data: userJWT,
+    data: userFound.generateJWT(),
   });
 });
 
