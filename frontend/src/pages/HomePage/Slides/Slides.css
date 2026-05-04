@@ -1,9 +1,12 @@
 .slides-title-box {
-  margin-top: 10px;
+  margin-top: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+}
+.slides-title-box:first-of-type {
+  margin-top: 10px;
 }
 
 .slides__title {
@@ -26,4 +29,13 @@
 
 .slides .book-card {
   min-width: 120px;
+}
+
+.slides::-webkit-scrollbar {
+  height: 6px;
+}
+
+.slides::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 5px;
 }
