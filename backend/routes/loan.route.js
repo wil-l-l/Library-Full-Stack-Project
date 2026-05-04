@@ -8,18 +8,18 @@ const {
   default: getUserPartialBookCopy,
 } = require("../utils/getUserPartialBookCopy");
 const USER_LOAN_LIMIT = 3;
+const authToken = require("../middleware/authToken");
 
-router.patch("/:id", async (req, res) => {
+router.patch("/:id", authToken, async (req, res) => {
   const { id } = req.params;
   const { userId } = req.body;
+  const user = req.user;
 
-  if (!(mongoose.isValidObjectId(id) && mongoose.isValidObjectId(userId)))
-    return res.status(400);
+  if (!mongoose.isValidObjectId(id)) return res.status(400);
 
   const bookToLoan = await Book.findById(id);
-  const user = await User.findById(userId);
 
-  if (!(bookToLoan && user))
+  if (!bookToLoan)
     return res.status(404).send({
       success: false,
       message: "Could not find requested resource.",
@@ -64,17 +64,17 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
-router.patch("/return/:id", async (req, res) => {
+router.patch("/return/:id", authToken, async (req, res) => {
   const { id } = req.params;
   const { userId } = req.body;
+  const user = req.user;
 
-  if (!(mongoose.isValidObjectId(id) && mongoose.isValidObjectId(userId)))
+  if (!mongoose.isValidObjectId(id))
     return res.status(400).send({ success: false });
 
   const bookToReturn = await Book.findById(id);
-  const user = await User.findById(userId);
 
-  if (!(bookToReturn && user))
+  if (!bookToReturn)
     return res.status(404).send({
       success: false,
       message: "Could not find requested resource.",

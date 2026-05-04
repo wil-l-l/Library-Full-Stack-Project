@@ -35,7 +35,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.methods.generateJWT = function () {
   return jwt.sign(
-    { ...this, password: undefined },
+    { ...this._doc, password: undefined },
     config.get("jwtPrivateKey"),
   );
 };

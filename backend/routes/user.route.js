@@ -6,18 +6,19 @@ const {
   default: getUserPartialBookCopy,
 } = require("../utils/getUserPartialBookCopy");
 const { default: validateIdList } = require("../utils/validateIdList");
+const authToken = require("../middleware/authToken");
 
 async function getAndVerifyIdsAndUserAndBook(req, res) {
   const bookId = req.params.id;
   const { userId } = req.body;
+  const user = req.user;
 
   const validIdsResult = validateIdList([bookId, userId], res);
   if (validIdsResult !== 0) return validIdsResult;
 
-  const user = await User.findById(userId);
   const book = await Book.findById(bookId);
 
-  if (!(user && book))
+  if (!book)
     return res.status(404).send({
       success: false,
       message: "Could not find requested resource.",
@@ -26,7 +27,12 @@ async function getAndVerifyIdsAndUserAndBook(req, res) {
   return { bookId, userId, book, user };
 }
 
-router.patch("/favorite/:id", async (req, res) => {
+router.get("/me", authToken, async (req, res) => {
+  const user = await User.findById(req.user._id).select("-password");
+  res.send(user);
+});
+
+router.patch("/favorite/:id", authToken, async (req, res) => {
   const response = await getAndVerifyIdsAndUserAndBook(req, res);
   if (Object.hasOwn(response, "userId") === false) return response;
   const { bookId, userId, book, user } = response;
@@ -54,7 +60,7 @@ router.patch("/favorite/:id", async (req, res) => {
   }
 });
 
-router.patch("/unfavorite/:id", async (req, res) => {
+router.patch("/unfavorite/:id", authToken, async (req, res) => {
   const response = await getAndVerifyIdsAndUserAndBook(req, res);
   if (Object.hasOwn(response, "userId") === false) return response;
   const { bookId, userId, book, user } = response;
@@ -81,7 +87,7 @@ router.patch("/unfavorite/:id", async (req, res) => {
   });
 });
 
-router.patch("/rate/:id", async (req, res) => {
+router.patch("/rate/:id", authToken, async (req, res) => {
   const response = await getAndVerifyIdsAndUserAndBook(req, res);
   if (Object.hasOwn(response, "userId") === false) return response;
   const { bookId, userId, book, user } = response;
