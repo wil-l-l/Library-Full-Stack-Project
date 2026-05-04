@@ -51,9 +51,32 @@
 
 .auth-page__outside-form-text {
   margin-top: 15px;
+}
+.auth-page__home-page-link {
+  margin-top: 10px;
+}
+
+.auth-page__outside-form-text,
+.auth-page__home-page-link {
   font-size: 1.4rem;
 }
 
-.auth-page__home-page-link {
-  font-size: 1.4rem;
+@media (min-width: 768px) {
+  .auth-form {
+    zoom: 1.2;
+  }
+  .auth-page__outside-form-text,
+  .auth-page__home-page-link {
+    font-size: 1.6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .auth-form {
+    zoom: 1.4;
+  }
+  .auth-page__outside-form-text,
+  .auth-page__home-page-link {
+    font-size: 2rem;
+  }
 }
