@@ -29,3 +29,32 @@
 .user-page__active-tab-box__logout-btn {
   padding: 5px 12px;
 }
+
+@media (min-width: 768px) {
+  .user-page__active-tab-text {
+    font-size: 2.1rem;
+  }
+  .user-page__book-cards-box {
+    grid-template-columns: repeat(6, 1fr);
+    row-gap: 35px;
+    min-width: 1fr;
+  }
+  .user-page__book-cards-box .book-card {
+    zoom: 1.1;
+  }
+  .user-page__active-tab-box__logout-btn {
+    font-size: 1.8rem;
+    padding: 5px 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .user-page__book-cards-box {
+    margin-top: 10px;
+    grid-template-columns: repeat(7, 130px);
+    min-width: 130px;
+  }
+  .user-page__book-cards-box .book-card {
+    zoom: 1.3;
+  }
+}
