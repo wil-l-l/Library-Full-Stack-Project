@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const { User, validateUser } = require("../models/user.model");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const config = require("config");
 
 router.post("/", async (req, res) => {
   const { username, password } = req.body;
@@ -30,15 +32,22 @@ router.post("/", async (req, res) => {
 
   newUser = await newUser.save();
 
-  res.status(201).send({
-    success: true,
-    data: {
-      ...newUser._doc,
-      __v: undefined,
-      password: undefined,
-    },
-    message: "Successfully created new user",
-  });
+  const userJWT = jwt.sign(
+    { ...newUser._doc, password: undefined },
+    config.get("jwtPrivateKey"),
+  );
+  res
+    .header("x-user-auth-token", userJWT)
+    .status(201)
+    .send({
+      success: true,
+      data: {
+        ...newUser._doc,
+        __v: undefined,
+        password: undefined,
+      },
+      message: "Successfully created new user",
+    });
 });
 
 module.exports = router;
