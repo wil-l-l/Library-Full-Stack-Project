@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import "./PaginationBar.css";
 
 const PaginationBar = ({
@@ -9,6 +10,46 @@ const PaginationBar = ({
   pageRange,
   setPage,
 }) => {
+  const pageNumFormref = useRef(null);
+
+  const getPageListItem = (pageNum, other = null) =>
+    !other ? (
+      <li
+        className="search-page__page-display__pages-list__item"
+        onClick={() => setPage(pageNum)}
+      >
+        {other === null ? `Page ${pageNum}` : other}
+      </li>
+    ) : pageNumFormref.current === null ? (
+      <form
+        action="
+    "
+        onClick={(e) => e.stopPropagation()}
+        onSubmit={(e) => {
+          e.preventDefault();
+          const pageNumSubmitted = Number(pageNumFormref.current.value);
+
+          if (pageNumSubmitted >= 1 && pageNumSubmitted <= MAX_PAGES) {
+            setPage(pageNumSubmitted);
+            pageNumFormref.current.blur();
+          } else setPage(1);
+
+          setShowPages(false);
+        }}
+      >
+        <input
+          type="number"
+          placeholder="Enter page number"
+          ref={pageNumFormref}
+          className="search-page__pagination-menu__input"
+          onClick={(e) => e.stopPropagation()}
+          onKeyDown={(e) => e.key === "Escape" && pageNumFormref.current.blur()}
+        />
+      </form>
+    ) : null;
+
+  const SPLIT_THRESHOLD = 6;
+
   return (
     <div className="search-page__page-display">
       <p>
@@ -24,14 +65,13 @@ const PaginationBar = ({
         PG
         {showPages && (
           <ul className="search-page__page-display__pages-list">
-            {pageRange.map((pageNum) => (
-              <li
-                className="search-page__page-display__pages-list__item"
-                onClick={() => setPage(pageNum)}
-              >
-                Page {pageNum}
-              </li>
-            ))}
+            {MAX_PAGES < SPLIT_THRESHOLD
+              ? pageRange.map((pageNum) => getPageListItem(pageNum))
+              : pageRange.map((pageNum, index) =>
+                  index + 1 < SPLIT_THRESHOLD || index + 1 === MAX_PAGES
+                    ? getPageListItem(pageNum)
+                    : getPageListItem(null, "..."),
+                )}
           </ul>
         )}
       </button>
