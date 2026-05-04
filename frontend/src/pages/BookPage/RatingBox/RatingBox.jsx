@@ -10,7 +10,9 @@ const RatingBox = ({ id }) => {
 
   const [ratingResponse, setRatingResponse] = useState(null);
 
-  return (
+  return user &&
+    user.history.length > 0 &&
+    user.history.some(({ _id }) => _id === id) ? (
     <form
       action=""
       className="book-page__rating-form"
@@ -46,6 +48,8 @@ const RatingBox = ({ id }) => {
         <p>Response submitted, thank you!</p>
       )}
     </form>
+  ) : (
+    <p>You have to read this book to rate it.</p>
   );
 };
 
