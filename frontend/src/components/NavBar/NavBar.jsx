@@ -1,5 +1,4 @@
 import "./NavBar.css";
-import NavBarItem from "./NavBarItem/NavBarItem";
 import SearchIcon from "../../assets/icons/search--white.png";
 import { useNavigate } from "react-router";
 import { UserContext } from "../../contexts/UserContext";

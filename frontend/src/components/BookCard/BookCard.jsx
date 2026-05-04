@@ -25,7 +25,10 @@ const BookCard = ({
       {enableButtons.icon && (
         <button
           className="book-card__btn"
-          onClick={enableButtons.onClickHandler}
+          onClick={(e) => {
+            e.stopPropagation();
+            enableButtons.onClickHandler();
+          }}
         >
           <img
             src={enableButtons.icon}
