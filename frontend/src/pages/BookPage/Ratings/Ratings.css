@@ -6,9 +6,16 @@
   column-gap: 10px;
 }
 
+@media (min-width: 768px) {
+  .book-page__ratings-box {
+    margin-left: 0px;
+    zoom: 1.1;
+  }
+}
+
 @media (min-width: 1024px) {
   .book-page__ratings-box {
-    margin-left: 9px;
-    zoom: 1.1;
+    margin-left: 5px;
+    zoom: 1.2;
   }
 }
