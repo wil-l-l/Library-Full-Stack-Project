@@ -5,6 +5,7 @@ import ShareIcon from "../../../assets/icons/share.png";
 import { useContext, useState } from "react";
 import { UserContext } from "../../../contexts/UserContext";
 import { useLocation, useNavigate } from "react-router";
+import bookBtnClickHandler from "../../../utils/bookBtnClickHandler";
 
 const InteractionBar = ({ id }) => {
   const { user, setUser } = useContext(UserContext);
@@ -18,22 +19,6 @@ const InteractionBar = ({ id }) => {
   };
 
   const [currentAction, setCurrentAction] = useState(null);
-
-  const bookBtnClickHandler = async (endpoint) => {
-    if (!user) navigate("/login");
-
-    let response = await fetch(endpoint, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userId: user._id,
-      }),
-    });
-    response = await response.json();
-    if (response.success) setUser(response.data);
-  };
 
   const getInteractBtn = (action, icon, clickHandler) => (
     <InteractButton
@@ -49,10 +34,15 @@ const InteractionBar = ({ id }) => {
     <div className="book-page__interaction-box">
       <div className="book-page__interact-bar horizontal-scroll-box ">
         {getInteractBtn(actions.borrow, EBookIcon, () =>
-          bookBtnClickHandler(`/api/loan/${id}`, "PATCH"),
+          bookBtnClickHandler(`/api/loan/${id}`, user, setUser, navigate),
         )}
         {getInteractBtn(actions.favorite, HeartIcon, () =>
-          bookBtnClickHandler(`/api/user/favorite/${id}`, "PATCH"),
+          bookBtnClickHandler(
+            `/api/user/favorite/${id}`,
+            user,
+            setUser,
+            navigate,
+          ),
         )}
         {getInteractBtn(actions.share, ShareIcon, () =>
           navigator.clipboard.writeText("http://localhost:5173" + pathname),

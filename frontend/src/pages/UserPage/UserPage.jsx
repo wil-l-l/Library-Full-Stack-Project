@@ -6,6 +6,9 @@ import { useNavigate } from "react-router";
 import useScrollToTop from "../../hooks/useScrollToTop";
 import UserNavBar from "./UserNavBar/UserNavBar";
 import BookCard from "../../components/BookCard/BookCard";
+import BookIcon from "../../assets/icons/ebook.png";
+import HeartIcon from "../../assets/icons/heart.png";
+import bookBtnClickHandler from "../../utils/bookBtnClickHandler";
 
 const UserPage = () => {
   const tabs = {
@@ -30,6 +33,28 @@ const UserPage = () => {
       : activeTab === tabs.history
         ? user.history
         : user.favorites;
+
+  const getActionBtn = (_id) => {
+    const interactBtn = {};
+
+    if (activeTab === tabs.borrowed) {
+      interactBtn.icon = BookIcon;
+      interactBtn.onClickHandler = () => {
+        bookBtnClickHandler(`/api/loan/return/${_id}`, user, setUser, navigate);
+      };
+    } else if (activeTab === tabs.favorites) {
+      interactBtn.icon = HeartIcon;
+      interactBtn.onClickHandler = () =>
+        bookBtnClickHandler(
+          `/api/user/unfavorite/${_id}`,
+          user,
+          setUser,
+          navigate,
+        );
+    }
+
+    return interactBtn;
+  };
 
   return (
     <section
@@ -60,7 +85,12 @@ const UserPage = () => {
           {listToIterThrough() &&
             listToIterThrough().length > 0 &&
             listToIterThrough().map(({ title, authors, _id }) => (
-              <BookCard title={title} authors={authors} _id={_id} />
+              <BookCard
+                title={title}
+                authors={authors}
+                _id={_id}
+                enableButtons={getActionBtn(_id)}
+              />
             ))}
           {!listToIterThrough() && <p>{activeTab} shelf is empty</p>}
         </div>
