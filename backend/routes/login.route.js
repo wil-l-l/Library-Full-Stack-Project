@@ -3,6 +3,7 @@ const router = express.Router();
 const { User, validateUser } = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const config = require("config");
 
 router.post("/", async (req, res) => {
   const { username, password } = req.body;
@@ -31,7 +32,7 @@ router.post("/", async (req, res) => {
 
   const userJWT = jwt.sign(
     { ...userFound._doc, password: undefined },
-    "privateKey",
+    config.get("jwtPrivateKey"),
   );
 
   res.status(200).send({

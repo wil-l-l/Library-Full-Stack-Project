@@ -6,6 +6,12 @@ const signup = require("./routes/signup.route");
 const login = require("./routes/login.route");
 const loan = require("./routes/loan.route");
 const user = require("./routes/user.route");
+const config = require("config");
+
+if (!config.get("jwtPrivateKey")) {
+  console.error("Could not start app.\nError: jwtPrivateKey is not defined");
+  process.exit(1);
+}
 
 mongoose
   .connect("mongodb://localhost/library")
