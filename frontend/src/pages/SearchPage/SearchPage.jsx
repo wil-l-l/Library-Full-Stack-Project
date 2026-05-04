@@ -1,6 +1,5 @@
 import "./SearchPage.css";
 import NavBar from "../../components/NavBar/NavBar";
-import SearchNavBtns from "./SearchNavBtns/SearchNavBtns";
 import { useContext, useState } from "react";
 import { BooksContext } from "../../contexts/BooksContext";
 import { useLocation, useSearchParams } from "react-router";
