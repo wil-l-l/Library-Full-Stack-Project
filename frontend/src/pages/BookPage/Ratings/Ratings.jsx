@@ -7,7 +7,7 @@ const Ratings = ({ ratersCount = null, ratingStars = null }) => {
   ) : (
     <div className="book-page__ratings-box">
       <p>{ratersCount}</p>
-      <Stars />
+      <Stars ratingStars={ratingStars} />
       <p>({ratingStars})</p>
     </div>
   );
