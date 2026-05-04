@@ -84,12 +84,13 @@ const UserPage = () => {
         <div className="user-page__book-cards-box">
           {listToIterThrough() &&
             listToIterThrough().length > 0 &&
-            listToIterThrough().map(({ title, authors, _id }) => (
+            listToIterThrough().map(({ title, authors, _id }, index) => (
               <BookCard
                 title={title}
                 authors={authors}
                 _id={_id}
                 enableButtons={getActionBtn(_id)}
+                key={_id + index}
               />
             ))}
           {!listToIterThrough() && <p>{activeTab} shelf is empty</p>}
