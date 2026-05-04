@@ -1,4 +1,10 @@
-const bookBtnClickHandler = async (endpoint, user, setUser, navigate) => {
+const bookBtnClickHandler = async (
+  endpoint,
+  user,
+  setUser,
+  navigate,
+  setResponseState = null,
+) => {
   if (!user) return navigate("/login");
 
   let response = await fetch(endpoint, {
@@ -11,6 +17,7 @@ const bookBtnClickHandler = async (endpoint, user, setUser, navigate) => {
     }),
   });
   response = await response.json();
+  setResponseState && setResponseState(response);
   if (response.success) setUser(response.data);
 };
 

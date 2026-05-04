@@ -19,6 +19,7 @@ const InteractionBar = ({ id }) => {
   };
 
   const [currentAction, setCurrentAction] = useState(null);
+  const [responseState, setResponseState] = useState(null);
 
   const getInteractBtn = (action, icon, clickHandler) => (
     <InteractButton
@@ -34,7 +35,13 @@ const InteractionBar = ({ id }) => {
     <div className="book-page__interaction-box">
       <div className="book-page__interact-bar horizontal-scroll-box ">
         {getInteractBtn(actions.borrow, EBookIcon, () =>
-          bookBtnClickHandler(`/api/loan/${id}`, user, setUser, navigate),
+          bookBtnClickHandler(
+            `/api/loan/${id}`,
+            user,
+            setUser,
+            navigate,
+            setResponseState,
+          ),
         )}
         {getInteractBtn(actions.favorite, HeartIcon, () =>
           bookBtnClickHandler(
@@ -42,6 +49,7 @@ const InteractionBar = ({ id }) => {
             user,
             setUser,
             navigate,
+            setResponseState,
           ),
         )}
         {getInteractBtn(actions.share, ShareIcon, () =>
@@ -50,6 +58,11 @@ const InteractionBar = ({ id }) => {
       </div>
       <p className="book-page__interact-bar__text">
         {currentAction === null ? "..." : currentAction}
+      </p>
+      <p className="book-page__interact-bar__text">
+        {responseState && currentAction !== actions.share
+          ? responseState && responseState.message
+          : currentAction === actions.share && "Copied book link to clipboard!"}
       </p>
     </div>
   );
