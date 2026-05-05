@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const config = require("config");
+const cors = require("cors");
 
 process.on("uncaughtException", (ex) => {
   console.error("Caught an uncaught exception", ex);
@@ -22,6 +23,8 @@ if (!config.get("db")) {
   console.error("Could not start app.\nError: db is not defined");
   process.exit(1);
 }
+
+app.use(cors());
 
 require("./startup/routes")(app);
 require("./startup/production")(app);
