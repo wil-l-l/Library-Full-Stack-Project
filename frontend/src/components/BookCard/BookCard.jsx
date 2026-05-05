@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 import "./BookCard.css";
 import HeartIcon from "../../assets/icons/heart.png";
 import ShareIcon from "../../assets/icons/share.png";
-import getRandomCover from "../../utils/getRandomCover";
+import getBookCover from "../../utils/getBookCover";
 
 const BookCard = ({
   title,
@@ -39,7 +39,7 @@ const BookCard = ({
       )}
       <div className="book-card__img-box" style={style.imgBox}>
         <img
-          src={getRandomCover()}
+          src={getBookCover(title)}
           alt=""
           className="book-card__img-box__cover"
         />

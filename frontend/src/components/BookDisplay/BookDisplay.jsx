@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import "./BookDisplay.css";
-import getRandomCover from "../../utils/getRandomCover";
+import getBookCover from "../../utils/getBookCover";
 
 const BookDisplay = ({ authors, title, summary, _id }) => {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const BookDisplay = ({ authors, title, summary, _id }) => {
       <div className="book-display__book-card">
         <div className="book-display__book-card__cover-box">
           <img
-            src={getRandomCover()}
+            src={getBookCover(title)}
             alt=""
             className="book-display__book-card__cover-box__cover"
           />
