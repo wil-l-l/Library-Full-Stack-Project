@@ -20,16 +20,19 @@ const RatingBox = ({ id }) => {
       onSubmit={async (e) => {
         e.preventDefault();
 
-        let response = await fetch(`/api/user/rate/${id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            "x-user-auth-token": localStorage.getItem("userJWT"),
+        let response = await fetch(
+          `https://library-project-backend-i28f.onrender.com/api/user/rate/${id}`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              "x-user-auth-token": localStorage.getItem("userJWT"),
+            },
+            body: JSON.stringify({
+              rating: Number(ratingRef.current.value),
+            }),
           },
-          body: JSON.stringify({
-            rating: Number(ratingRef.current.value),
-          }),
-        });
+        );
 
         response = await response.json();
         setRatingResponse(response);
