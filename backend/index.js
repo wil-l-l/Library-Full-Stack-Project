@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const config = require("config");
 
 process.on("uncaughtException", (ex) => {
-  console.error("Caught an Uncaught exception", ex);
+  console.error("Caught an uncaught exception", ex);
   process.exit(1);
 });
 
