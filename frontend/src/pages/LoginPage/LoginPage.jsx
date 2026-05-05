@@ -11,7 +11,7 @@ const LoginPage = () => {
       subheading={"Log in to use all the features of this app!"}
       endpoint={"login"}
       doOnSuccess={(responseData) => {
-        navigate(-1);
+        navigate("/");
         localStorage.setItem("userJWT", responseData);
       }}
       outsideChildren={
