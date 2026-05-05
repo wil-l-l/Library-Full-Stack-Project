@@ -19,6 +19,7 @@ if (!config.get("jwtPrivateKey")) {
 }
 
 require("./startup/routes")(app);
+require("./startup/production")(app);
 
 mongoose
   .connect("mongodb://localhost/library")
