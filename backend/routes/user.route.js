@@ -10,10 +10,10 @@ const authToken = require("../middleware/authToken");
 
 async function getAndVerifyIdsAndUserAndBook(req, res) {
   const bookId = req.params.id;
-  const { userId } = req.body;
-  const user = req.user;
+  const userId = req.user._id;
+  const user = await User.findById(userId);
 
-  const validIdsResult = validateIdList([bookId, userId], res);
+  const validIdsResult = validateIdList([bookId], res);
   if (validIdsResult !== 0) return validIdsResult;
 
   const book = await Book.findById(bookId);
@@ -24,18 +24,18 @@ async function getAndVerifyIdsAndUserAndBook(req, res) {
       message: "Could not find requested resource.",
     });
 
-  return { bookId, userId, book, user };
+  return { bookId, book, user };
 }
 
 router.get("/me", authToken, async (req, res) => {
   const user = await User.findById(req.user._id).select("-password");
-  res.send(user);
+  res.status(200).send(user);
 });
 
 router.patch("/favorite/:id", authToken, async (req, res) => {
   const response = await getAndVerifyIdsAndUserAndBook(req, res);
-  if (Object.hasOwn(response, "userId") === false) return response;
-  const { bookId, userId, book, user } = response;
+  if (Object.hasOwn(response, "book") === false) return response;
+  const { bookId, book, user } = response;
 
   if (user.favorites.some(({ _id }) => _id === bookId))
     return res.status(400).send({
@@ -62,8 +62,8 @@ router.patch("/favorite/:id", authToken, async (req, res) => {
 
 router.patch("/unfavorite/:id", authToken, async (req, res) => {
   const response = await getAndVerifyIdsAndUserAndBook(req, res);
-  if (Object.hasOwn(response, "userId") === false) return response;
-  const { bookId, userId, book, user } = response;
+  if (Object.hasOwn(response, "book") === false) return response;
+  const { bookId, book, user } = response;
 
   if (user.favorites.length === 0)
     return res.status(400).send({
@@ -89,9 +89,10 @@ router.patch("/unfavorite/:id", authToken, async (req, res) => {
 
 router.patch("/rate/:id", authToken, async (req, res) => {
   const response = await getAndVerifyIdsAndUserAndBook(req, res);
-  if (Object.hasOwn(response, "userId") === false) return response;
-  const { bookId, userId, book, user } = response;
+  if (Object.hasOwn(response) === false) return response;
+  const { bookId, book, user } = response;
   const { rating: userRating } = req.body;
+  const userId = user._id.toString();
 
   const userBookToRate = user.history.find(({ _id }) => _id === bookId);
   if (!userBookToRate)

@@ -12,8 +12,8 @@ const authToken = require("../middleware/authToken");
 
 router.patch("/:id", authToken, async (req, res) => {
   const { id } = req.params;
-  const { userId } = req.body;
-  const user = req.user;
+  const userId = req.user._id;
+  const user = await User.findById(userId);
 
   if (!mongoose.isValidObjectId(id)) return res.status(400);
 
@@ -66,8 +66,8 @@ router.patch("/:id", authToken, async (req, res) => {
 
 router.patch("/return/:id", authToken, async (req, res) => {
   const { id } = req.params;
-  const { userId } = req.body;
-  const user = req.user;
+  const userId = req.user._id;
+  const user = await User.findById(userId);
 
   if (!mongoose.isValidObjectId(id))
     return res.status(400).send({ success: false });
