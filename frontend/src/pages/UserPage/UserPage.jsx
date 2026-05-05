@@ -2,7 +2,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import "./UserPage.css";
 import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import useScrollToTop from "../../hooks/useScrollToTop";
 import UserNavBar from "./UserNavBar/UserNavBar";
 import BookCard from "../../components/BookCard/BookCard";
@@ -56,40 +56,46 @@ const UserPage = () => {
       style={{ marginBottom: " 100px" }}
     >
       <NavBar />
-      <UserNavBar
-        tabs={[tabs.borrowed, tabs.favorites, tabs.history]}
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-      />
-      <div className="user-page__active-tab-box">
-        <h3 className="user-page__active-tab-text">{activeTab}</h3>
-        {user && (
-          <button
-            className="user-page__active-tab-box__logout-btn white-black-btn"
-            onClick={() => {
-              localStorage.removeItem("userJWT");
-              setUser(null);
-              navigate("/");
-            }}
-          >
-            Logout
-          </button>
-        )}
-      </div>
       {user && (
-        <div className="user-page__book-cards-box">
-          {listToIterThrough() &&
-            listToIterThrough().length > 0 &&
-            listToIterThrough().map(({ title, authors, _id }, index) => (
-              <BookCard
-                title={title}
-                authors={authors}
-                _id={_id}
-                enableButtons={getActionBtn(_id)}
-                key={_id + index}
-              />
-            ))}
-          {!listToIterThrough() && <p>{activeTab} shelf is empty</p>}
+        <>
+          <UserNavBar
+            tabs={[tabs.borrowed, tabs.favorites, tabs.history]}
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+          />
+          <div className="user-page__active-tab-box">
+            <h3 className="user-page__active-tab-text">{activeTab}</h3>
+            <button
+              className="user-page__active-tab-box__logout-btn white-black-btn"
+              onClick={() => {
+                localStorage.removeItem("userJWT");
+                setUser(null);
+                navigate("/");
+              }}
+            >
+              Logout
+            </button>
+          </div>
+          <div className="user-page__book-cards-box">
+            {listToIterThrough() &&
+              listToIterThrough().length > 0 &&
+              listToIterThrough().map(({ title, authors, _id }, index) => (
+                <BookCard
+                  title={title}
+                  authors={authors}
+                  _id={_id}
+                  enableButtons={getActionBtn(_id)}
+                  key={_id + index}
+                />
+              ))}
+            {!listToIterThrough() && <p>{activeTab} shelf is empty</p>}
+          </div>
+        </>
+      )}
+      {!user && (
+        <div className="user-page__no-user-text-box">
+          <p>Not logged in</p>
+          <Link to={"/login"}>Log in now!</Link>
         </div>
       )}
     </section>

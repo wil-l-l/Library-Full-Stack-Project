@@ -24,9 +24,9 @@ const RatingBox = ({ id }) => {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
+            "x-user-auth-token": localStorage.getItem("userJWT"),
           },
           body: JSON.stringify({
-            userId: user._id,
             rating: Number(ratingRef.current.value),
           }),
         });

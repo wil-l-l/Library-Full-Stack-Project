@@ -89,7 +89,7 @@ router.patch("/unfavorite/:id", authToken, async (req, res) => {
 
 router.patch("/rate/:id", authToken, async (req, res) => {
   const response = await getAndVerifyIdsAndUserAndBook(req, res);
-  if (Object.hasOwn(response) === false) return response;
+  if (Object.hasOwn(response, "book") === false) return response;
   const { bookId, book, user } = response;
   const { rating: userRating } = req.body;
   const userId = user._id.toString();

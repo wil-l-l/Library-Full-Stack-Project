@@ -12,6 +12,7 @@ import Details from "./Details/Details";
 import InteractionBar from "./InteractionBar/InteractionBar";
 import RatingBox from "./RatingBox/RatingBox";
 import NavBar from "../../components/NavBar/NavBar";
+import useUser from "../../hooks/useUser";
 
 const BookPage = () => {
   const { id } = useParams();
@@ -35,6 +36,8 @@ const BookPage = () => {
       {tab}
     </button>
   );
+
+  useUser();
 
   return !books || book === null ? (
     <p>Book is loading...</p>

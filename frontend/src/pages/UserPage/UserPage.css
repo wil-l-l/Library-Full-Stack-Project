@@ -30,6 +30,11 @@
   padding: 5px 12px;
 }
 
+.user-page__no-user-text-box {
+  margin-top: 30px;
+  font-size: 2rem;
+}
+
 @media (min-width: 768px) {
   .user-page__active-tab-text {
     font-size: 2.1rem;
@@ -46,6 +51,9 @@
     font-size: 1.8rem;
     padding: 5px 16px;
   }
+  .user-page__no-user-text-box {
+    font-size: 2.4rem;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -56,5 +64,8 @@
   }
   .user-page__book-cards-box .book-card {
     zoom: 1.3;
+  }
+  .user-page__no-user-text-box {
+    font-size: 2.8rem;
   }
 }
