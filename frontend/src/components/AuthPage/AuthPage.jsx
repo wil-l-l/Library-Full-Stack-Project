@@ -63,6 +63,8 @@ const AuthPage = ({
           className="auth-form__input-field"
           ref={usernameRef}
           defaultValue={"bookworm1"}
+          minLength={7}
+          maxLength={22}
         />
         <input
           type="password"
@@ -70,6 +72,8 @@ const AuthPage = ({
           className="auth-form__input-field"
           ref={passwordRef}
           defaultValue={"candy12345"}
+          minLength={8}
+          maxLength={500}
         />
         <button type="submit" className="auth-page__btn">
           {heading}
