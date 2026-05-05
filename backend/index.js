@@ -8,6 +8,16 @@ const loan = require("./routes/loan.route");
 const user = require("./routes/user.route");
 const config = require("config");
 
+process.on("uncaughtException", (ex) => {
+  console.error("Caught an Uncaught exception");
+  process.exit(1);
+});
+
+process.on("unhandledRejection", () => {
+  console.log("Caught an unhandled rejection");
+  process.exit(1);
+});
+
 if (!config.get("jwtPrivateKey")) {
   console.error("Could not start app.\nError: jwtPrivateKey is not defined");
   process.exit(1);
