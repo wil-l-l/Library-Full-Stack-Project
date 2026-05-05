@@ -7,9 +7,7 @@ function useBooks(callbackOnSuccess = null) {
   useEffect(() => {
     const fetchAllBooks = async () => {
       if (books) return;
-      const response = await fetch(
-        "https://library-project-backend-i28f.onrender.com/books",
-      );
+      const response = await fetch("/api/books");
       const loadedBooks = await response.json();
       if (loadedBooks.success) {
         setBooks(loadedBooks.data);
