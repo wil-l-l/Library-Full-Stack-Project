@@ -9,7 +9,6 @@
 
 .book-card__img-box {
   height: 150px;
-  background-color: rgb(208, 208, 208);
   border-radius: 12px;
 }
 
@@ -44,6 +43,7 @@
   align-items: center;
   border-radius: 50%;
   border: none;
+  z-index: 1;
 }
 
 .book-card__btn__img {
