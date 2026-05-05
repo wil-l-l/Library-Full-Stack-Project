@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import "./Slides.css";
-import { frontConstants as sharedConstants } from "../../../frontConstants";
+import sharedConstants from "../../../frontConstants";
 
 const Slides = ({ title, slides = null }) => {
   const navigate = useNavigate();

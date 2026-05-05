@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 import formatAuthorName from "../../../utils/formatAuthorName";
 import PlusIcon from "../../../assets/icons/plus.png";
 import MinusIcon from "../../../assets/icons/minus.png";
-import { frontConstants as sharedConstants } from "../../../frontConstants";
+import sharedConstants from "../../../frontConstants";
 
 const Details = ({ summary, tags, authors }) => {
   const [doExpandText, setDoExpandText] = useState(false);
