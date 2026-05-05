@@ -1,4 +1,3 @@
-import AtomicHabits from "../assets/covers/atomic.jpg";
 import Dune from "../assets/covers/dune.jpg";
 import HarryPotter from "../assets/covers/harrypotterandthesorcerersstone.jpg";
 import MagicTreeHouse from "../assets/covers/magictreehouse.jpg";
@@ -9,7 +8,6 @@ import DragonTattoo from "../assets/covers/thegirlwiththedragontattoo.jpg";
 import Giver from "../assets/covers/thegiver.jpg";
 import Hobbit from "../assets/covers/thehobbit.jpg";
 import HungerGames from "../assets/covers/thehungergames.jpg";
-import Rings from "../assets/covers/rings.jpg";
 import MockingBird from "../assets/covers/tokillamockingbird.jpg";
 import Pi from "../assets/covers/lifeofpi.jpg";
 import Jane from "../assets/covers/janeeyre.jpg";
@@ -25,7 +23,6 @@ import Dracula from "../assets/covers/dracula.jpg";
 import Road from "../assets/covers/theroad.jpg";
 import Ender from "../assets/covers/endersgame.jpg";
 import NameofWind from "../assets/covers/thenameofthewind.jpg";
-import Martian from "../assets/covers/martian.jpg";
 import Player from "../assets/covers/readyplayerone.jpg";
 import Silent from "../assets/covers/thesilentpatient.jpg";
 import Educated from "../assets/covers/educated.jpg";
@@ -37,7 +34,6 @@ const getBookCover = (title) => {
     HarryPotter,
     GeorgeOrwell1984,
     MockingBird,
-    Rings,
     Alchemist,
     Davinci,
     HungerGames,
@@ -57,12 +53,10 @@ const getBookCover = (title) => {
     Giver,
     Ender,
     NameofWind,
-    Martian,
     Player,
     DragonTattoo,
     Silent,
     Educated,
-    AtomicHabits,
   ];
 
   return covers[
