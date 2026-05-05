@@ -46,13 +46,13 @@
 
 @media (min-width: 768px) {
   .slides__title {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
   .slides__see-all-text {
     font-size: 1.9rem;
   }
   .slides .book-card {
-    zoom: 1.1;
+    zoom: 1.2;
   }
 }
 
@@ -61,6 +61,6 @@
     font-size: 2.2rem;
   }
   .slides .book-card {
-    zoom: 1.2;
+    zoom: 1.3;
   }
 }
