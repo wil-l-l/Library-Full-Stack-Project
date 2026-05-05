@@ -39,12 +39,20 @@ const UserPage = () => {
     if (activeTab === tabs.borrowed) {
       interactBtn.icon = BookIcon;
       interactBtn.onClickHandler = () => {
-        bookBtnClickHandler(`/api/loan/return/${_id}`, setUser, navigate);
+        bookBtnClickHandler(
+          `https://library-project-backend-i28f.onrender.com/loan/return/${_id}`,
+          setUser,
+          navigate,
+        );
       };
     } else if (activeTab === tabs.favorites) {
       interactBtn.icon = HeartIcon;
       interactBtn.onClickHandler = () =>
-        bookBtnClickHandler(`/api/user/unfavorite/${_id}`, setUser, navigate);
+        bookBtnClickHandler(
+          `https://library-project-backend-i28f.onrender.com/user/unfavorite/${_id}`,
+          setUser,
+          navigate,
+        );
     }
 
     return interactBtn;

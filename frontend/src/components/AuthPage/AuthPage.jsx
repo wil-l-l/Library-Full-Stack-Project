@@ -23,16 +23,19 @@ const AuthPage = ({
   const submitAuthForm = async (e, username, password) => {
     e.preventDefault();
 
-    let response = await fetch(`/api/${endpoint}`, {
-      method: "POST",
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-      headers: {
-        "Content-Type": "application/json",
+    let response = await fetch(
+      `https://library-project-backend-i28f.onrender.com/${endpoint}`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
       },
-    });
+    );
 
     return await response.json();
   };

@@ -8,12 +8,15 @@ function useUser() {
     const getUser = async () => {
       if (!localStorage.getItem("userJWT")) return;
 
-      const response = await fetch("/api/user/me", {
-        method: "GET",
-        headers: {
-          "x-user-auth-token": localStorage.getItem("userJWT"),
+      const response = await fetch(
+        "https://library-project-backend-i28f.onrender.com/user/me",
+        {
+          method: "GET",
+          headers: {
+            "x-user-auth-token": localStorage.getItem("userJWT"),
+          },
         },
-      });
+      );
       const userData = await response.json();
       setUser(userData);
     };
