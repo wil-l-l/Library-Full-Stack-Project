@@ -38,7 +38,7 @@ const InteractionBar = ({ id }) => {
       <div className="book-page__interact-bar horizontal-scroll-box ">
         {getInteractBtn(actions.borrow, EBookIcon, () =>
           bookBtnClickHandler(
-            `https://library-project-backend-i28f.onrender.com/loan/${id}`,
+            `/api/loan/${id}`,
             setUser,
             navigate,
             setResponseState,
@@ -46,7 +46,7 @@ const InteractionBar = ({ id }) => {
         )}
         {getInteractBtn(actions.favorite, HeartIcon, () =>
           bookBtnClickHandler(
-            `https://library-project-backend-i28f.onrender.com/user/favorite/${id}`,
+            `/api/user/favorite/${id}`,
             setUser,
             navigate,
             setResponseState,
