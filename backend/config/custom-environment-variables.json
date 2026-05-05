@@ -1,3 +1,4 @@
 {
-  "jwtPrivateKey": "library_jwtPrivateKey"
+  "jwtPrivateKey": "library_jwtPrivateKey",
+  "db": "ELibDB"
 }
