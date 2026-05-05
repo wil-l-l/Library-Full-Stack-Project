@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import "./MediaNavBar.css";
-import sharedConstants from "../../../../sharedConstants";
+import { frontConstants as sharedConstants } from "../../frontConstants";
 
 const MediaNavBar = () => {
   const navigate = useNavigate();
