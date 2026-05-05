@@ -44,10 +44,7 @@ const BookPage = () => {
   ) : book === false ? (
     <p className="red-text">Could not load book, please try again</p>
   ) : (
-    <section
-      className="book-page page-padding"
-      style={{ paddingBottom: "80px" }}
-    >
+    <main className="book-page page-padding" style={{ paddingBottom: "80px" }}>
       <NavBar />
       <InteractionBar id={id} />
       <div className="book-page__book-display">
@@ -79,7 +76,7 @@ const BookPage = () => {
       ) : (
         <RatingBox id={id} />
       )}
-    </section>
+    </main>
   );
 };
 

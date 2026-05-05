@@ -30,11 +30,8 @@ function HomePage() {
   ) : books === false ? (
     <p className="red-text">Could not load data</p>
   ) : (
-    <section
-      className="home-page page-padding"
-      style={{ marginBottom: "50px" }}
-    >
-      <main className="home-page__main-section">
+    <main className="home-page page-padding" style={{ marginBottom: "50px" }}>
+      <section className="home-page__main-section">
         <NavBar />
         <h3 className="home-page__below-nav-text-1">Welcome to</h3>
         <h3 className="home-page__below-nav-text-2">ELibrary</h3>
@@ -46,8 +43,8 @@ function HomePage() {
           title={categories.audiobook}
           slides={getBooksByCategory(categories.audiobook)}
         />
-      </main>
-    </section>
+      </section>
+    </main>
   );
 }
 

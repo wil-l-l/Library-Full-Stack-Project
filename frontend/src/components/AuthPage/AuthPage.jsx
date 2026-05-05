@@ -38,7 +38,7 @@ const AuthPage = ({
   };
 
   return (
-    <div className="auth-page">
+    <main className="auth-page">
       <form
         action=""
         className="auth-form"
@@ -83,7 +83,7 @@ const AuthPage = ({
       <Link to={"/home"} className="auth-page__home-page-link">
         Browse our catalog without an account!
       </Link>
-    </div>
+    </main>
   );
 };
 

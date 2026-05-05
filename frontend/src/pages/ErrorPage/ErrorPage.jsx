@@ -5,7 +5,7 @@ const ErrorPage = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="error-page">
+    <main className="error-page">
       <h3>Can't find the page your looking for.</h3>
       <p>Please return home!</p>
       <button
@@ -14,7 +14,7 @@ const ErrorPage = () => {
       >
         HOME
       </button>
-    </section>
+    </main>
   );
 };
 

@@ -51,10 +51,7 @@ const UserPage = () => {
   };
 
   return (
-    <section
-      className="user-page page-padding"
-      style={{ marginBottom: " 100px" }}
-    >
+    <main className="user-page page-padding" style={{ marginBottom: " 100px" }}>
       <NavBar />
       {user && (
         <>
@@ -98,7 +95,7 @@ const UserPage = () => {
           <Link to={"/login"}>Log in now!</Link>
         </div>
       )}
-    </section>
+    </main>
   );
 };
 
