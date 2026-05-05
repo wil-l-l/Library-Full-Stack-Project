@@ -1,6 +1,6 @@
 import NavBar from "../../components/NavBar/NavBar";
 import "./UserPage.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { useNavigate } from "react-router";
 import useScrollToTop from "../../hooks/useScrollToTop";
@@ -9,6 +9,7 @@ import BookCard from "../../components/BookCard/BookCard";
 import BookIcon from "../../assets/icons/ebook.png";
 import HeartIcon from "../../assets/icons/heart.png";
 import bookBtnClickHandler from "../../utils/bookBtnClickHandler";
+import useUser from "../../hooks/useUser";
 
 const UserPage = () => {
   const tabs = {
@@ -21,11 +22,9 @@ const UserPage = () => {
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-  useScrollToTop();
+  useUser();
 
-  useEffect(() => {
-    !user && navigate("/login");
-  }, [user, navigate]);
+  useScrollToTop();
 
   const listToIterThrough = () =>
     activeTab === tabs.borrowed
@@ -40,17 +39,12 @@ const UserPage = () => {
     if (activeTab === tabs.borrowed) {
       interactBtn.icon = BookIcon;
       interactBtn.onClickHandler = () => {
-        bookBtnClickHandler(`/api/loan/return/${_id}`, user, setUser, navigate);
+        bookBtnClickHandler(`/api/loan/return/${_id}`, setUser, navigate);
       };
     } else if (activeTab === tabs.favorites) {
       interactBtn.icon = HeartIcon;
       interactBtn.onClickHandler = () =>
-        bookBtnClickHandler(
-          `/api/user/unfavorite/${_id}`,
-          user,
-          setUser,
-          navigate,
-        );
+        bookBtnClickHandler(`/api/user/unfavorite/${_id}`, setUser, navigate);
     }
 
     return interactBtn;
@@ -69,16 +63,18 @@ const UserPage = () => {
       />
       <div className="user-page__active-tab-box">
         <h3 className="user-page__active-tab-text">{activeTab}</h3>
-        <button
-          className="user-page__active-tab-box__logout-btn white-black-btn"
-          onClick={() => {
-            setUser(null);
-            localStorage.setItem("user", null);
-            navigate("/");
-          }}
-        >
-          Logout
-        </button>
+        {user && (
+          <button
+            className="user-page__active-tab-box__logout-btn white-black-btn"
+            onClick={() => {
+              localStorage.removeItem("userJWT");
+              setUser(null);
+              navigate("/");
+            }}
+          >
+            Logout
+          </button>
+        )}
       </div>
       {user && (
         <div className="user-page__book-cards-box">

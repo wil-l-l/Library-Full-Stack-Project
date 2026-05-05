@@ -11,6 +11,7 @@ import Ratings from "./Ratings/Ratings";
 import Details from "./Details/Details";
 import InteractionBar from "./InteractionBar/InteractionBar";
 import RatingBox from "./RatingBox/RatingBox";
+import NavBar from "../../components/NavBar/NavBar";
 
 const BookPage = () => {
   const { id } = useParams();
@@ -44,6 +45,7 @@ const BookPage = () => {
       className="book-page page-padding"
       style={{ paddingBottom: "80px" }}
     >
+      <NavBar />
       <InteractionBar id={id} />
       <div className="book-page__book-display">
         <BookCard

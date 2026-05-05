@@ -1,12 +1,9 @@
 import AuthPage from "../../components/AuthPage/AuthPage";
 import { Link, useNavigate } from "react-router";
 import "./LoginPage.css";
-import { useContext } from "react";
-import { UserContext } from "../../contexts/UserContext";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { setUser } = useContext(UserContext);
 
   return (
     <AuthPage
@@ -15,7 +12,7 @@ const LoginPage = () => {
       endpoint={"login"}
       doOnSuccess={(responseData) => {
         navigate(-1);
-        setUser(responseData);
+        localStorage.setItem("userJWT", responseData);
       }}
       outsideChildren={
         <p className="auth-page__outside-form-text">

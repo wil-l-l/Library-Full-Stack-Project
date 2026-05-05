@@ -3,14 +3,14 @@ import InteractButton from "../InteractButton/InteractButton";
 import EBookIcon from "../../../assets/icons/ebook.png";
 import HeartIcon from "../../../assets/icons/heart.png";
 import ShareIcon from "../../../assets/icons/share.png";
-import { useContext, useState } from "react";
+import { useState, useContext } from "react";
 import { UserContext } from "../../../contexts/UserContext";
 import { useLocation, useNavigate } from "react-router";
 import bookBtnClickHandler from "../../../utils/bookBtnClickHandler";
 
 const InteractionBar = ({ id }) => {
-  const { user, setUser } = useContext(UserContext);
   const { pathname } = useLocation();
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const actions = {
@@ -39,7 +39,6 @@ const InteractionBar = ({ id }) => {
         {getInteractBtn(actions.borrow, EBookIcon, () =>
           bookBtnClickHandler(
             `/api/loan/${id}`,
-            user,
             setUser,
             navigate,
             setResponseState,
@@ -48,7 +47,6 @@ const InteractionBar = ({ id }) => {
         {getInteractBtn(actions.favorite, HeartIcon, () =>
           bookBtnClickHandler(
             `/api/user/favorite/${id}`,
-            user,
             setUser,
             navigate,
             setResponseState,
