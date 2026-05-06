@@ -9,6 +9,19 @@ MAIN LINK (Frontend): https://library-frontend-wil-l-l.vercel.app
 Backend Link: https://library-project-backend-i28f.onrender.com/
 *Keep open while using website, required
 
+Instructions:
+1. Click on any book card on the home page  
+2. On the bookpage, click on the book icon to borrow a book
+3. Because you're not logged in, login with the pre-filled login credentials on the LoginPage
+4. Now click on any book card on the home page again
+5. Now on a book page, click on the book icon to borrow the book
+6. Click on the 'USER' button at the top of the page
+7. Now on the UserPage, Click on the book button on the top left to return the book
+8. Go to history tab on the same page to see the book you just returned
+7. Click on the book you just returned
+8. On the book page again, click on the 'Rate' button to give a 5-star rating to the book
+9. Reload the book page you are on and the rating you submitted will show up
+
 ## Features
 
 - Perform searches on library catalog

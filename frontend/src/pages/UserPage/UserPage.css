@@ -26,10 +26,6 @@
   min-width: 109px;
 }
 
-.user-page__book-cards-box .book-card__img-box :hover {
-  transform: translateY(-20px);
-}
-
 .user-page__active-tab-box__logout-btn {
   padding: 5px 12px;
 }
