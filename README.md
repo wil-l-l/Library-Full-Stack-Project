@@ -2,7 +2,12 @@
 
 ## Demo
 
-Live Link! https://library-frontend-henna-six.vercel.app/
+Must open both links!
+
+MAIN LINK (Frontend): library-frontend-wil-l-l.vercel.app
+
+Backend Link: https://library-project-backend-i28f.onrender.com/
+*Keep open while using website, required
 
 ## Features
 
@@ -13,7 +18,6 @@ Live Link! https://library-frontend-henna-six.vercel.app/
 - Copy book link to clipboard
 - View borrowed books, favorited books, and history of borrowed books
 - Authentication & Authorization
-
 
 ## Tech Used
 
@@ -31,7 +35,6 @@ Live Link! https://library-frontend-henna-six.vercel.app/
 - Vercel
 - Render
 
-
 ## Development Insights
 
 What challenges did you face, and how did you overcome them?
@@ -42,6 +45,6 @@ Can you describe your development process from its initial stages to final deplo
 
 I started this project by creating book functionality on the backend. Once, I had established the bare minimum I needed on the backend, I worked on displaying the books on the backend to the frontend and user interactions with books. After that, I restyled the website and developed the rest of the project.
 
-
 ## Planned Improvements
+
 TBD
