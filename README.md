@@ -4,7 +4,7 @@
 
 Must open both links!
 
-MAIN LINK (Frontend): library-frontend-wil-l-l.vercel.app
+MAIN LINK (Frontend): https://library-frontend-wil-l-l.vercel.app
 
 Backend Link: https://library-project-backend-i28f.onrender.com/
 *Keep open while using website, required
