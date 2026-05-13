@@ -13,12 +13,13 @@ const router = createBrowserRouter([
   {
     element: <HomePage />,
     path: "/home",
+    errorElement: <ErrorPage />,
   },
-  { element: <SearchPage />, path: "/search" },
-  { element: <BookPage />, path: "/book/:id" },
-  { element: <SignupPage />, path: "/signup" },
-  { element: <LoginPage />, path: "/login" },
-  { element: <UserPage />, path: "/user" },
+  { element: <SearchPage />, path: "/search", errorElement: <ErrorPage /> },
+  { element: <BookPage />, path: "/book/:id", errorElement: <ErrorPage /> },
+  { element: <SignupPage />, path: "/signup", errorElement: <ErrorPage /> },
+  { element: <LoginPage />, path: "/login", errorElement: <ErrorPage /> },
+  { element: <UserPage />, path: "/user", errorElement: <ErrorPage /> },
 ]);
 
 export default router;

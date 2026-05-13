@@ -53,7 +53,9 @@ const InteractionBar = ({ id }) => {
           ),
         )}
         {getInteractBtn(actions.share, ShareIcon, () =>
-          navigator.clipboard.writeText("http://localhost:5173" + pathname),
+          navigator.clipboard.writeText(
+            "library-frontend-wil-l-l.vercel.app" + pathname,
+          ),
         )}
       </div>
       <p className="book-page__interact-bar__text">
